@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gabby's Graphicz - Black Friday Order</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #5A3E36;
+    color: #0B0B0B;
+    padding: 2rem;
+    background-image: radial-gradient(#F4A7B9 5%, transparent 5%);
+    background-size: 40px 40px;
+  }
+  h1, h2 { text-align: center; color: #F4A7B9; }
+  .container { max-width: 900px; margin: auto; background: rgba(255,255,255,0.9); padding: 2rem; border-radius: 12px; }
+  input, select, button { padding: 0.5rem; margin: 0.3rem 0; border-radius: 6px; width: 100%; font-size: 1rem; }
+  button { background: #F4A7B9; cursor: pointer; font-weight: bold; border: none; }
+  .service { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .service input { width: 60px; margin-left: 1rem; }
+  .total { font-size: 1.2rem; font-weight: bold; margin-top: 1rem; text-align: right; }
+  .coupon { margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Gabby's Graphicz - Black Friday Special</h1>
+
+  <h2>Services & Prices</h2>
+  <div id="services">
+    <div class="service">
+      <span>Images & Illustrations ($5 each)</span>
+      <input type="number" min="0" value="0" data-price="5" class="qty">
+    </div>
+    <div class="service">
+      <span>Fonts & Typography ($3 each)</span>
+      <input type="number" min="0" value="0" data-price="3" class="qty">
+    </div>
+    <div class="service">
+      <span>Backgrounds & Textures ($4 each)</span>
+      <input type="number" min="0" value="0" data-price="4" class="qty">
+    </div>
+  </div>
+
+  <div class="coupon">
+    <label>Coupon Code:</label>
+    <input id="couponCode" placeholder="Enter code">
+    <button type="button" onclick="applyCoupon()">Apply Coupon</button>
+    <div id="couponMsg"></div>
+  </div>
+
+  <div class="total">Total: $<span id="total">0</span></div>
+
+  <h2>Payment</h2>
+  <select id="paymentMethod">
+    <option>Cash App</option>
+    <option>Credit/Debit Card</option>
+  </select>
+
+  <div id="cardInfo" style="display:none;">
+    <input placeholder="Card Type (Visa/Mastercard/AmEx)" id="cardType">
+    <input placeholder="Card Number (16 digits)" id="cardNumber">
+    <input placeholder="CVV (3 digits)" id="cardCVV" maxlength="3">
+  </div>
+
+  <h2>Customer Info</h2>
+  <input placeholder="Full Name" id="name">
+  <input placeholder="Email" id="email" type="email">
+  <input placeholder="Phone" id="phone">
+
+  <button onclick="submitOrder()">Submit Order</button>
+</div>
+
+<script>
+let appliedCoupons = {};
+let couponActive = true;
+
+// Auto coupon popup on page load
+window.onload = function() {
+  if(couponActive){
+    alert("Black Friday Special! Use code BF10 for 10% off or BF20 for 20% off! One-time use per customer.");
+  }
+  calculateTotal();
+}
+
+// Toggle card info
+document.getElementById('paymentMethod').addEventListener('change', function() {
+  document.getElementById('cardInfo').style.display = this.value === "Credit/Debit Card" ? "block" : "none";
+});
+
+// Calculate total
+function calculateTotal() {
+  let total = 0;
+  document.querySelectorAll('.qty').forEach(input => {
+    total += input.value * input.dataset.price;
+  });
+  // Apply any coupon
+  for(let code in appliedCoupons){
+    total = total * (1 - appliedCoupons[code]/100);
+  }
+  document.getElementById('total').innerText = total.toFixed(2);
+}
+
+// Update total whenever quantity changes
+document.querySelectorAll('.qty').forEach(input => {
+  input.addEventListener('input', calculateTotal);
+});
+
+// Apply coupon
+function applyCoupon(){
+  const code = document.getElementById('couponCode').value.trim().toUpperCase();
+  let msg = "";
+  if(code === "BF10" && !appliedCoupons[code]){
+    appliedCoupons[code] = 10;
+    msg = "10% off applied!";
+  } else if(code === "BF20" && !appliedCoupons[code]){
+    appliedCoupons[code] = 20;
+    msg = "20% off applied!";
+  } else {
+    msg = "Invalid or already used coupon.";
+  }
+  document.getElementById('couponMsg').innerText = msg;
+  calculateTotal();
+}
+
+// Submit order
+function submitOrder(){
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const payment = document.getElementById('paymentMethod').value;
+  const cardType = document.getElementById('cardType').value;
+  const cardNumber = document.getElementById('cardNumber').value;
+  const cardCVV = document.getElementById('cardCVV').value;
+
+  let serviceDetails = "";
+  document.querySelectorAll('.service').forEach((div, i) => {
+    const qty = div.querySelector('input').value;
+    const name = div.querySelector('span').innerText;
+    if(qty > 0) serviceDetails += `${name} x ${qty}\n`;
+  });
+
+  const total = document.getElementById('total').innerText;
+
+  let body = `
+Customer: ${name}
+Email: ${email}
+Phone: ${phone}
+Services:
+${serviceDetails}
+Payment: ${payment}${payment==="Credit/Debit Card" ? ` - ${cardType} - ****${cardNumber.slice(-4)} CVV:${cardCVV}` : ""}
+Total: $${total}
+`;
+
+  window.location.href = `mailto:gabbysgraphicz@gmail.com?subject=Gabby's Graphicz Order from ${name}&body=${encodeURIComponent(body)}`;
+}
+</script>
