@@ -1,184 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Step 1: Select Order</title>
-<style>
-  body {
-    font-family: 'Inter', Arial, sans-serif;
-    background-color: #5A3E36;
-    color: #0B0B0B;
-    padding: 2rem;
-    background-image: radial-gradient(#F4A7B9 5%, transparent 5%);
-    background-size: 40px 40px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-  }
-  h1 { text-align: center; color: #F4A7B9; }
-  h2 { text-align: center; color: #5A3E36; margin-top: 1rem;}
-  .container { 
-    width: 100%;
-    max-width: 650px; 
-    margin: auto; 
-    background: rgba(255,255,255,0.95); 
-    padding: 2rem; 
-    border-radius: 12px; 
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3); 
-  }
-  input:not([type="number"], [type="checkbox"], [type="radio"]), select, textarea { 
-    padding: 0.75rem; margin: 0.5rem 0; border-radius: 8px; width: 100%; font-size: 1rem; border: 1px solid #5A3E36; box-sizing: border-box; 
-  }
-  .button-base {
-    color: #0B0B0B; cursor: pointer; font-weight: bold; border: none; transition: background-color 0.2s, transform 0.1s;
-    margin-top: 1.5rem; padding: 1rem; box-shadow: 0 4px #E08FA8; background: #F4A7B9; width: 100%; border-radius: 8px;
-  }
-  #reviewOrderBtn:not([disabled]):hover { background: #E08FA8; } 
-  #reviewOrderBtn:not([disabled]):active { transform: translateY(2px); box-shadow: 0 2px #E08FA8; }
-  [disabled] { cursor: not-allowed !important; background-color: #ccc !important; box-shadow: none !important; color: #666 !important; }
-  section { margin-top: 1.5rem; padding: 1rem; background: #f7f7f7; border-radius: 8px; border: 1px solid #ccc; }
-  label { display: block; margin-top: 0.75rem; font-weight: 600; }
-  .coupon-section { margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
-  .coupon-section input { margin: 0; flex-grow: 1; }
-  .coupon-section button { width: auto; margin: 0; background: #5A3E36; color: white; padding: 0.75rem 1rem; border-radius: 8px; }
-  .coupon-section button:hover { background: #452F28; }
-  #couponFeedback { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; color: #5A3E36; text-align: center; font-weight: bold; }
-  #coupon { margin: 1rem 0; font-weight: bold; color: #5A3E36; text-align: center; padding: 0.5rem; background: #F4A7B9; border-radius: 6px; }
-  .total { font-size: 1.8rem; font-weight: bold; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #F4A7B9; text-align: right; color: #5A3E36; }
-</style>
-</head>
-<body>
-<div class="container">
-    <h1>Gabby's Graphicz - Custom Order</h1>
-    <p style="text-align: center; color: #5A3E36; font-style: italic;">Step 1: Select your design elements.</p>
-    <div id="coupon">Loading one-time Black Friday coupon...</div>
-    <hr>
-    <form id="orderForm">
-        <h2>1. Select Your Items</h2>
-        <section>
-            <h3>Images & Illustrations ($0.75 - $1.00 per image)</h3>
-            <label for="imgQty">Quantity of images:</label>
-            <input type="number" id="imgQty" min="0" value="0" class="qty-input">
-        </section>
-        <section>
-            <h3>Fonts & Typography ($1.50 - $3.50 per font)</h3>
-            <label for="fontQty">Quantity of fonts:</label>
-            <input type="number" id="fontQty" min="0" value="0" class="qty-input">
-        </section>
-        <section>
-            <h3>Backgrounds & Textures ($1.50 - $3.50 per design)</h3>
-            <label for="bgQty">Quantity of backgrounds:</label>
-            <input type="number" id="bgQty" min="0" value="0" class="qty-input">
-        </section>
-        <hr>
-        <section>
-            <h3>Coupons</h3>
-            <div class="coupon-section">
-                <input id="couponCode" placeholder="Enter coupon code (e.g., BF1234)">
-                <button type="button" id="applyCouponBtn">Apply Coupon</button>
-            </div>
-            <div id="couponFeedback"></div>
-        </section>
-        <div class="total">Estimated Total: $<span id="total">0.00</span></div>
-        <button type="submit" class="button-base" id="reviewOrderBtn" disabled>
-            Proceed to Payment $<span id="reviewAmount">0.00</span>
-        </button>
-    </form>
-</div>
-<script>
-(function() {
-    let appliedCoupon = false; 
-    let discountPercent = 0.0; 
-    let randomCoupon = '';
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabby’s Graphicz – Step 1</title>
 
-    const D = {
-        totalDisplay: document.getElementById('total'),
-        reviewAmountDisplay: document.getElementById('reviewAmount'),
-        couponCodeInput: document.getElementById('couponCode'),
-        applyCouponBtn: document.getElementById('applyCouponBtn'),
-        couponFeedbackDiv: document.getElementById('couponFeedback'),
-        couponMsgDiv: document.getElementById('coupon'),
-        orderForm: document.getElementById('orderForm'),
-        reviewOrderBtn: document.getElementById('reviewOrderBtn'),
-    };
-
-    // Initialize a one-time coupon and discount (e.g., random 10–30% off)
-    function initCoupon() {
-      const percentOptions = [0.10, 0.15, 0.20, 0.25, 0.30];
-      discountPercent = percentOptions[Math.floor(Math.random() * percentOptions.length)];
-      randomCoupon = 'BF' + Math.floor(1000 + Math.random() * 9000);
-      D.couponMsgDiv.textContent = `Black Friday: Use code ${randomCoupon} for ${(discountPercent * 100).toFixed(0)}% off (one-time).`;
-    }
-
-    function calculateTotal() {
-        const imgQty = parseInt(document.getElementById('imgQty').value)||0;
-        const fontQty = parseInt(document.getElementById('fontQty').value)||0;
-        const bgQty = parseInt(document.getElementById('bgQty').value)||0;
-
-        let subtotal = 0;
-        for(let i=0;i<imgQty;i++){ subtotal += (Math.random()*0.25 + 0.75); }
-        for(let i=0;i<fontQty;i++){ subtotal += (Math.random()*2 + 1.5); }
-        for(let i=0;i<bgQty;i++){ subtotal += (Math.random()*2 + 1.5); }
-
-        let finalTotal = subtotal;
-        if (appliedCoupon) { finalTotal = subtotal * (1 - discountPercent); }
-
-        finalTotal = parseFloat(Math.max(0.50, finalTotal).toFixed(2));
-        const displayTotal = finalTotal.toFixed(2);
-        D.totalDisplay.textContent = displayTotal;
-        D.reviewAmountDisplay.textContent = displayTotal;
-        D.reviewOrderBtn.disabled = finalTotal <= 0.50;
-        return finalTotal;
-    }
-
-    function handleApplyCoupon() {
-        const entered = D.couponCodeInput.value.trim().toUpperCase();
-        const displayPercent = (discountPercent * 100).toFixed(0);
-
-        if(entered === randomCoupon && !appliedCoupon){
-            appliedCoupon = true;
-            D.couponFeedbackDiv.style.color = '#5CB85C';
-            D.couponFeedbackDiv.textContent = `Coupon applied! ${displayPercent}% off total.`;
-            calculateTotal();
-        } else if (appliedCoupon) {
-            D.couponFeedbackDiv.style.color = '#5A3E36';
-            D.couponFeedbackDiv.textContent = 'Coupon is already applied.';
-        } else {
-            D.couponFeedbackDiv.style.color = '#D9534F';
-            D.couponFeedbackDiv.textContent = 'Invalid coupon code.';
+    <style>
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            background: #ffd6eb;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
+
+        header {
+            text-align: center;
+            padding: 25px 10px;
+            background: white;
+            border-bottom: 4px solid hotpink;
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 5px solid hotpink;
+            padding-left: 10px;
+            font-weight: 600;
+        }
+
+        .product-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid hotpink;
+            font-size: 16px;
+        }
+
+        .next-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: hotpink;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 20px;
+            margin-top: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Sample embeds */
+        .sample-box {
+            margin-bottom: 50px;
+        }
+
+        iframe {
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(63,69,81,0.16);
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Gabby’s Graphicz – Order Step 1</h1>
+    <p>Select Your Product</p>
+</header>
+
+<div class="container">
+
+    <div class="product-box">
+        <h2 class="section-title">Choose a Service</h2>
+
+        <label for="product">Select what you want designed:</label>
+        <select id="product" onchange="saveChoice()">
+            <option value="">Select an option…</option>
+            <option value="Logo – $10">Logo – $10</option>
+            <option value="Flyer – $7">Flyer – $7</option>
+            <option value="Business Card – $5">Business Card – $5</option>
+            <option value="Thumbnail – $5">Thumbnail – $5</option>
+            <option value="Banner – $10">Banner – $10</option>
+            <option value="Intro/Outro – $15">Intro/Outro – $15</option>
+            <option value="Digital Invitation – $6">Digital Invitation – $6</option>
+            <option value="Album Cover – $10">Album Cover – $10</option>
+            <option value="Custom Illustration – $12">Custom Illustration – $12</option>
+        </select>
+    </div>
+
+
+    <!-- ========================= -->
+    <!--       SAMPLES SECTION     -->
+    <!-- ========================= -->
+
+    <h2 class="section-title">Images & Illustrations (Samples)</h2>
+
+    <!-- SAMPLE 1 -->
+    <div class="sample-box">
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; overflow: hidden;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
+                src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"
+                allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+        </div>
+        <p style="text-align:center; margin-top:10px;">
+            Sample 1 — by Gabrielle Monroe
+        </p>
+    </div>
+
+    <!-- SAMPLE 2 -->
+    <div class="sample-box">
+        <div style="position: relative; width: 100%; height: 0; padding-top: 141.42%; overflow: hidden;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
+                src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"
+                allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+        </div>
+        <p style="text-align:center; margin-top:10px;">
+            Sample 2 — Black & White Minimal Poster
+        </p>
+    </div>
+
+    <!-- SAMPLE 3 -->
+    <div class="sample-box">
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; overflow: hidden;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
+                src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed"
+                allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+        </div>
+        <p style="text-align:center; margin-top:10px;">
+            Sample 3 — by Gabrielle Monroe
+        </p>
+    </div>
+
+
+    <!-- NEXT BUTTON -->
+    <a class="next-btn" href="payment_step2.html">Continue to Payment</a>
+
+</div>
+
+
+<script>
+    function saveChoice() {
+        const value = document.getElementById("product").value;
+        localStorage.setItem("selectedProduct", value);
     }
-
-    // Event bindings
-    D.applyCouponBtn.addEventListener('click', handleApplyCoupon);
-    ['imgQty','fontQty','bgQty'].forEach(id => {
-      document.getElementById(id).addEventListener('input', calculateTotal);
-    });
-
-    D.orderForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const imgQty = document.getElementById('imgQty').value;
-        const fontQty = document.getElementById('fontQty').value;
-        const bgQty = document.getElementById('bgQty').value;
-        const amount = calculateTotal();
-        const params = new URLSearchParams({
-          img: imgQty,
-          font: fontQty,
-          bg: bgQty,
-          amount: amount,
-          coupon: appliedCoupon,
-          discount: discountPercent,
-          couponCode: D.couponCodeInput.value.trim()
-        });
-        window.location.href = `payment_step2.html?${params.toString()}`;
-    });
-
-    // Initialize
-    initCoupon();
-    calculateTotal();
-})();
 </script>
+
 </body>
 </html>
