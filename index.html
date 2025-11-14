@@ -1,165 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabby's Graphicz – Step 1</title>
+<meta charset="UTF-8">
+<title>Gabby's Graphicz – Order Step 1</title>
 
-    <!-- Babaloo Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Babaloo&display=swap" rel="stylesheet">
+<!-- Baloo font (closest match to Canva’s Babaloo) -->
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url('https://i.imgur.com/l09CznV.jpeg'); /* cheetah pattern */
-            background-size: cover;
-            background-attachment: fixed;
-            font-family: Arial, sans-serif;
-            color: black;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #FBEED7;
+        color: #222;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 25px;
-            margin: 40px auto;
-            border-radius: 12px;
-        }
+    /* CHEETAH BACKGROUND */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image:
+            radial-gradient(#000 2px, transparent 2px),
+            radial-gradient(#000 2px, transparent 2px),
+            radial-gradient(#000 2px, transparent 2px);
+        background-size: 50px 50px;
+        background-position: 0 0, 25px 25px, 12px 12px;
+        opacity: 0.25;
+        z-index: -1;
+    }
 
-        h1 {
-            font-family: "Babaloo", cursive;
-            font-size: 48px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #d91e63;
-            font-weight: bold;
-        }
+    h1 {
+        font-family: 'Baloo 2', cursive;
+        text-align: center;
+        font-size: 48px;
+        margin-top: 20px;
+        color: #000;
+        letter-spacing: 1px;
+    }
 
-        h2 {
-            font-size: 28px;
-            margin-top: 30px;
-            margin-bottom: 10px;
-            color: #222;
-            text-align: center;
-        }
+    .container {
+        max-width: 900px;
+        background: white;
+        margin: 30px auto;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
 
-        .service-box {
-            margin: 15px 0;
-        }
+    label {
+        font-size: 18px;
+        font-weight: bold;
+        display: block;
+        margin-top: 20px;
+    }
 
-        label {
-            font-size: 20px;
-        }
+    select, textarea, input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+        margin-top: 6px;
+        font-size: 16px;
+    }
 
-        .button-box {
-            text-align: center;
-            margin-top: 30px;
-        }
+    textarea {
+        height: 120px;
+    }
 
-        button {
-            background: #d91e63;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 20px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
+    .samples-title {
+        font-family: 'Baloo 2', cursive;
+        font-size: 32px;
+        text-align: center;
+        margin-top: 40px;
+    }
 
-        button:hover {
-            background: #b21852;
-        }
+    .sample-block {
+        margin-bottom: 40px;
+    }
 
-        .sample-frame {
-            margin-bottom: 40px;
-        }
-    </style>
+    button {
+        margin-top: 35px;
+        width: 100%;
+        padding: 15px;
+        background: #D99152;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        font-family: 'Baloo 2';
+    }
+
+    button:hover {
+        background: #b97338;
+    }
+</style>
 </head>
 
 <body>
 
+<h1>Gabby's Graphicz – Order Form</h1>
+
 <div class="container">
 
-    <h1>Gabby's Graphicz</h1>
+    <!-- SERVICE SELECTION -->
+    <label for="service">Choose Your Service:</label>
+    <select id="service">
+        <option disabled selected>Select a service...</option>
+        <option>Logo – $15</option>
+        <option>Flyer – $20</option>
+        <option>Poster – $10</option>
+        <option>Website Graphics – $25</option>
+        <option>Business Cards – $10</option>
+        <option>Banners – $15</option>
+        <option>Invitations – $12</option>
+    </select>
 
-    <h2>Choose Your Service</h2>
+    <label for="description">Describe what you want:</label>
+    <textarea id="description" placeholder="Tell me the vibe, colors, wording, layout, etc."></textarea>
 
-    <form action="payment_step2.html" method="GET">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="Enter name">
 
-        <div class="service-box">
-            <input type="checkbox" name="service" value="Logo Design">
-            <label>Logo Design – $15</label>
-        </div>
+    <label for="email">Your Email:</label>
+    <input type="text" id="email" placeholder="Enter email">
 
-        <div class="service-box">
-            <input type="checkbox" name="service" value="Flyer Design">
-            <label>Flyer Design – $18</label>
-        </div>
-
-        <div class="service-box">
-            <input type="checkbox" name="service" value="Business Card">
-            <label>Business Card – $10</label>
-        </div>
-
-        <div class="service-box">
-            <input type="checkbox" name="service" value="Invitations">
-            <label>Invitations – $12</label>
-        </div>
-
-        <div class="service-box">
-            <input type="checkbox" name="service" value="Social Media Graphics">
-            <label>Social Media Graphics – $20</label>
-        </div>
-
-        <div class="service-box">
-            <input type="checkbox" name="service" value="Custom Illustration">
-            <label>Custom Illustration – $25</label>
-        </div>
-
-        <div class="button-box">
-            <button type="submit">Next Step</button>
-        </div>
-    </form>
-
-
-
-
-    <h2>Samples (Images & Illustrations)</h2>
+    <!-- SAMPLES SECTION -->
+    <div class="samples-title">Sample Designs</div>
 
     <!-- SAMPLE 1 -->
-    <div class="sample-frame">
+    <div class="sample-block">
         <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%;
-             box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
+            box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
             <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
-                src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"
-                allowfullscreen="allowfullscreen" allow="fullscreen">
-            </iframe>
+                    src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"
+                    allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- SAMPLE 2 -->
-    <div class="sample-frame">
+    <div class="sample-block">
         <div style="position: relative; width: 100%; height: 0; padding-top: 141.42%;
-             box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
+            box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
             <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
-                src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"
-                allowfullscreen="allowfullscreen" allow="fullscreen">
-            </iframe>
+                    src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"
+                    allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- SAMPLE 3 -->
-    <div class="sample-frame">
+    <div class="sample-block">
         <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%;
-             box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
+            box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
             <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
-                src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed"
-                allowfullscreen="allowfullscreen" allow="fullscreen">
-            </iframe>
+                    src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed"
+                    allowfullscreen></iframe>
         </div>
     </div>
+
+    <button onclick="window.location.href='payment_step2.html'">
+        Continue to Payment
+    </button>
 
 </div>
 
