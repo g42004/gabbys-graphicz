@@ -1,168 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Gabby's Graphicz – Order Step 1</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Baloo font (closest match to Canva’s Babaloo) -->
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+<!-- Babaloo Font -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee+Shade&family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+
+<title>Gabby's Graphicz – Step 1</title>
 
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #FBEED7;
-        color: #222;
-    }
-
-    /* CHEETAH BACKGROUND */
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background-image:
-            radial-gradient(#000 2px, transparent 2px),
-            radial-gradient(#000 2px, transparent 2px),
-            radial-gradient(#000 2px, transparent 2px);
-        background-size: 50px 50px;
-        background-position: 0 0, 25px 25px, 12px 12px;
-        opacity: 0.25;
-        z-index: -1;
-    }
-
-    h1 {
-        font-family: 'Baloo 2', cursive;
-        text-align: center;
-        font-size: 48px;
-        margin-top: 20px;
-        color: #000;
-        letter-spacing: 1px;
+        background: url('https://i.imgur.com/u7hzf0V.jpeg'); /* cheetah print */
+        background-size: cover;
+        background-attachment: fixed;
+        backdrop-filter: brightness(0.9);
+        padding: 20px;
     }
 
     .container {
+        width: 90%;
         max-width: 900px;
+        margin: auto;
         background: white;
-        margin: 30px auto;
-        padding: 30px;
-        border-radius: 18px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+        font-family: 'Baloo 2', sans-serif;
+        font-size: 45px;
+        text-align: center;
+        color: black;
+        margin-top: 0;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-top: 30px;
     }
 
     label {
         font-size: 18px;
         font-weight: bold;
-        display: block;
-        margin-top: 20px;
     }
 
-    select, textarea, input[type="text"] {
+    select, button {
         width: 100%;
         padding: 12px;
+        margin-top: 10px;
         border-radius: 8px;
-        border: 1px solid #aaa;
-        margin-top: 6px;
         font-size: 16px;
     }
 
-    textarea {
-        height: 120px;
-    }
-
-    .samples-title {
-        font-family: 'Baloo 2', cursive;
-        font-size: 32px;
-        text-align: center;
-        margin-top: 40px;
+    button {
+        background: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 25px;
+        font-size: 18px;
     }
 
     .sample-block {
         margin-bottom: 40px;
     }
 
-    button {
-        margin-top: 35px;
-        width: 100%;
-        padding: 15px;
-        background: #D99152;
-        color: white;
-        border: none;
+    .sample-block iframe {
         border-radius: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        font-family: 'Baloo 2';
     }
 
-    button:hover {
-        background: #b97338;
+    .price-list {
+        background: #ffe6f7;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
     }
+
 </style>
 </head>
 
 <body>
 
-<h1>Gabby's Graphicz – Order Form</h1>
-
 <div class="container">
 
+    <h1>Gabby's Graphicz</h1>
+
+    <!-- PRICES -->
+    <div class="price-list">
+        <h2>Prices</h2>
+        <p>• Images & Illustrations – $0.75 – $1.00 per image<br>
+           • Fonts & Typography Design – $1.50 – $3.50 per font<br>
+           • Backgrounds & Textures – $1.50 – $3.50 per design<br>
+           • College Student Discounts – 10–20% off</p>
+    </div>
+
     <!-- SERVICE SELECTION -->
-    <label for="service">Choose Your Service:</label>
+    <h2>Choose Your Service</h2>
+
+    <label for="service">Select a service:</label>
     <select id="service">
-        <option disabled selected>Select a service...</option>
-        <option>Logo – $15</option>
-        <option>Flyer – $20</option>
-        <option>Poster – $10</option>
-        <option>Website Graphics – $25</option>
-        <option>Business Cards – $10</option>
-        <option>Banners – $15</option>
-        <option>Invitations – $12</option>
+        <option value="">-- Choose one --</option>
+        <option value="images">Images & Illustrations</option>
+        <option value="fonts">Fonts & Typography</option>
+        <option value="backgrounds">Backgrounds & Textures</option>
+        <option value="bundle">Bundle Package</option>
     </select>
 
-    <label for="description">Describe what you want:</label>
-    <textarea id="description" placeholder="Tell me the vibe, colors, wording, layout, etc."></textarea>
+    <button onclick="window.location.href='payment_step2.html'">Next Step → Payment</button>
 
-    <label for="name">Your Name:</label>
-    <input type="text" id="name" placeholder="Enter name">
 
-    <label for="email">Your Email:</label>
-    <input type="text" id="email" placeholder="Enter email">
-
-    <!-- SAMPLES SECTION -->
-    <div class="samples-title">Sample Designs</div>
+    <!-- SAMPLE SECTION -->
+    <h2>Sample Work</h2>
 
     <!-- SAMPLE 1 -->
     <div class="sample-block">
         <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%;
-            box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
-            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
-                    src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"
-                    allowfullscreen></iframe>
+             box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden;">
+            <iframe loading="lazy"
+                style="position: absolute; width: 100%; height: 100%; border: none;"
+                src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed">
+            </iframe>
         </div>
+        <p style="text-align:center; margin-top:10px;">Sample Design 1 – by Gabrielle Monroe</p>
     </div>
 
     <!-- SAMPLE 2 -->
     <div class="sample-block">
         <div style="position: relative; width: 100%; height: 0; padding-top: 141.42%;
-            box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
-            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
-                    src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"
-                    allowfullscreen></iframe>
+             box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden;">
+            <iframe loading="lazy"
+                style="position: absolute; width: 100%; height: 100%; border: none;"
+                src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed">
+            </iframe>
         </div>
+        <p style="text-align:center; margin-top:10px;">Black & White Minimal Poster – by Gabrielle Monroe</p>
     </div>
 
     <!-- SAMPLE 3 -->
     <div class="sample-block">
         <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%;
-            box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px;">
-            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; border: none;"
-                    src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed"
-                    allowfullscreen></iframe>
+             box-shadow: 0 2px 8px rgba(63,69,81,0.16); overflow: hidden;">
+            <iframe loading="lazy"
+                style="position: absolute; width: 100%; height: 100%; border: none;"
+                src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed">
+            </iframe>
         </div>
+        <p style="text-align:center; margin-top:10px;">Sample Design 3 – by Gabrielle Monroe</p>
     </div>
-
-    <button onclick="window.location.href='payment_step2.html'">
-        Continue to Payment
-    </button>
 
 </div>
 
