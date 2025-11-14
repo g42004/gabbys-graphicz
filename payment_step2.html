@@ -114,7 +114,7 @@
   function processPayment() {
     const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
     params.set('method', selectedMethod);
-    window.location.href = `confirmation_step3.html?${params.toString()}`;
+   window.location.href = `path/to/confirmation_step3.html?${params.toString()}`;
   }
 </script>
 </body>
