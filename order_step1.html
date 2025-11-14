@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabby's Graphicz - Step 1: Select Order</title>
+<style>
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #5A3E36;
+    color: #0B0B0B;
+    padding: 2rem;
+    background-image: radial-gradient(#F4A7B9 5%, transparent 5%);
+    background-size: 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  h1 { text-align: center; color: #F4A7B9; }
+  h2 { text-align: center; color: #5A3E36; margin-top: 1rem;}
+  .container { 
+    width: 100%;
+    max-width: 650px; 
+    margin: auto; 
+    background: rgba(255,255,255,0.95); 
+    padding: 2rem; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3); 
+  }
+  input:not([type="number"], [type="checkbox"], [type="radio"]), select, textarea { 
+    padding: 0.75rem; margin: 0.5rem 0; border-radius: 8px; width: 100%; font-size: 1rem; border: 1px solid #5A3E36; box-sizing: border-box; 
+  }
+  .button-base {
+    color: #0B0B0B; cursor: pointer; font-weight: bold; border: none; transition: background-color 0.2s, transform 0.1s;
+    margin-top: 1.5rem; padding: 1rem; box-shadow: 0 4px #E08FA8; background: #F4A7B9; width: 100%; border-radius: 8px;
+  }
+  #reviewOrderBtn:not([disabled]):hover { background: #E08FA8; } 
+  #reviewOrderBtn:not([disabled]):active { transform: translateY(2px); box-shadow: 0 2px #E08FA8; }
+  [disabled] { cursor: not-allowed !important; background-color: #ccc !important; box-shadow: none !important; color: #666 !important; }
+  section { margin-top: 1.5rem; padding: 1rem; background: #f7f7f7; border-radius: 8px; border: 1px solid #ccc; }
+  label { display: block; margin-top: 0.75rem; font-weight: 600; }
+  .coupon-section { margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .coupon-section input { margin: 0; flex-grow: 1; }
+  .coupon-section button { width: auto; margin: 0; background: #5A3E36; color: white; padding: 0.75rem 1rem; border-radius: 8px; }
+  .coupon-section button:hover { background: #452F28; }
+  #couponFeedback { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; color: #5A3E36; text-align: center; font-weight: bold; }
+  #coupon { margin: 1rem 0; font-weight: bold; color: #5A3E36; text-align: center; padding: 0.5rem; background: #F4A7B9; border-radius: 6px; }
+  .total { font-size: 1.8rem; font-weight: bold; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #F4A7B9; text-align: right; color: #5A3E36; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Gabby's Graphicz - Custom Order</h1>
+    <p style="text-align: center; color: #5A3E36; font-style: italic;">Step 1: Select your design elements.</p>
+    <div id="coupon">Loading one-time Black Friday coupon...</div>
+    <hr>
+    <form id="orderForm">
+        <h2>1. Select Your Items</h2>
+        <section>
+            <h3>Images & Illustrations ($0.75 - $1.00 per image)</h3>
+            <label for="imgQty">Quantity of images:</label>
+            <input type="number" id="imgQty" min="0" value="0" class="qty-input">
+        </section>
+        <section>
+            <h3>Fonts & Typography ($1.50 - $3.50 per font)</h3>
+            <label for="fontQty">Quantity of fonts:</label>
+            <input type="number" id="fontQty" min="0" value="0" class="qty-input">
+        </section>
+        <section>
+            <h3>Backgrounds & Textures ($1.50 - $3.50 per design)</h3>
+            <label for="bgQty">Quantity of backgrounds:</label>
+            <input type="number" id="bgQty" min="0" value="0" class="qty-input">
+        </section>
+        <hr>
+        <section>
+            <h3>Coupons</h3>
+            <div class="coupon-section">
+                <input id="couponCode" placeholder="Enter coupon code (e.g., BF1234)">
+                <button type="button" id="applyCouponBtn">Apply Coupon</button>
+            </div>
+            <div id="couponFeedback"></div>
+        </section>
+        <div class="total">Estimated Total: $<span id="total">0.00</span></div>
+        <button type="submit" class="button-base" id="reviewOrderBtn" disabled>
+            Proceed to Payment $<span id="reviewAmount">0.00</span>
+        </button>
+    </form>
+</div>
+<script>
+(function() {
+    let appliedCoupon = false; 
+    let discountPercent = 0.0; 
+    let randomCoupon = '';
+
+    const D = {
+        totalDisplay: document.getElementById('total'),
+        reviewAmountDisplay: document.getElementById('reviewAmount'),
+        couponCodeInput: document.getElementById('couponCode'),
+        applyCouponBtn: document.getElementById('applyCouponBtn'),
+        couponFeedbackDiv: document.getElementById('couponFeedback'),
+        couponMsgDiv: document.getElementById('coupon'),
+        orderForm: document.getElementById('orderForm'),
+        reviewOrderBtn: document.getElementById('reviewOrderBtn'),
+    };
+
+    // Initialize a one-time coupon and discount (e.g., random 10–30% off)
+    function initCoupon() {
+      const percentOptions = [0.10, 0.15, 0.20, 0.25, 0.30];
+      discountPercent = percentOptions[Math.floor(Math.random() * percentOptions.length)];
+      randomCoupon = 'BF' + Math.floor(1000 + Math.random() * 9000);
+      D.couponMsgDiv.textContent = `Black Friday: Use code ${randomCoupon} for ${(discountPercent * 100).toFixed(0)}% off (one-time).`;
+    }
+
+    function calculateTotal() {
+        const imgQty = parseInt(document.getElementById('imgQty').value)||0;
+        const fontQty = parseInt(document.getElementById('fontQty').value)||0;
+        const bgQty = parseInt(document.getElementById('bgQty').value)||0;
+
+        let subtotal = 0;
+        for(let i=0;i<imgQty;i++){ subtotal += (Math.random()*0.25 + 0.75); }
+        for(let i=0;i<fontQty;i++){ subtotal += (Math.random()*2 + 1.5); }
+        for(let i=0;i<bgQty;i++){ subtotal += (Math.random()*2 + 1.5); }
+
+        let finalTotal = subtotal;
+        if (appliedCoupon) { finalTotal = subtotal * (1 - discountPercent); }
+
+        finalTotal = parseFloat(Math.max(0.50, finalTotal).toFixed(2));
+        const displayTotal = finalTotal.toFixed(2);
+        D.totalDisplay.textContent = displayTotal;
+        D.reviewAmountDisplay.textContent = displayTotal;
+        D.reviewOrderBtn.disabled = finalTotal <= 0.50;
+        return finalTotal;
+    }
+
+    function handleApplyCoupon() {
+        const entered = D.couponCodeInput.value.trim().toUpperCase();
+        const displayPercent = (discountPercent * 100).toFixed(0);
+
+        if(entered === randomCoupon && !appliedCoupon){
+            appliedCoupon = true;
+            D.couponFeedbackDiv.style.color = '#5CB85C';
+            D.couponFeedbackDiv.textContent = `Coupon applied! ${displayPercent}% off total.`;
+            calculateTotal();
+        } else if (appliedCoupon) {
+            D.couponFeedbackDiv.style.color = '#5A3E36';
+            D.couponFeedbackDiv.textContent = 'Coupon is already applied.';
+        } else {
+            D.couponFeedbackDiv.style.color = '#D9534F';
+            D.couponFeedbackDiv.textContent = 'Invalid coupon code.';
+        }
+    }
+
+    // Event bindings
+    D.applyCouponBtn.addEventListener('click', handleApplyCoupon);
+    ['imgQty','fontQty','bgQty'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calculateTotal);
+    });
+
+    D.orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const imgQty = document.getElementById('imgQty').value;
+        const fontQty = document.getElementById('fontQty').value;
+        const bgQty = document.getElementById('bgQty').value;
+        const amount = calculateTotal();
+        const params = new URLSearchParams({
+          img: imgQty,
+          font: fontQty,
+          bg: bgQty,
+          amount: amount,
+          coupon: appliedCoupon,
+          discount: discountPercent,
+          couponCode: D.couponCodeInput.value.trim()
+        });
+        window.location.href = `payment_step2.html?${params.toString()}`;
+    });
+
+    // Initialize
+    initCoupon();
+    calculateTotal();
+})();
+</script>
+</body>
+</html>
