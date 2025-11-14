@@ -7,18 +7,17 @@
 <style>
   body {
     font-family: 'Inter', Arial, sans-serif;
-    background-color: #FFC0CB; /* Pink background */
+    background-color: #ffc0cb; /* pink background */
     color: #0B0B0B;
     padding: 2rem;
-    background-image: radial-gradient(#FFB6C1 5%, transparent 5%);
+    background-image: radial-gradient(#F4A7B9 5%, transparent 5%);
     background-size: 40px 40px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
   }
-  h1 { text-align: center; color: #FF1493; }
-  h2 { text-align: center; color: #C71585; margin-top: 1rem;}
+  h1 { text-align: center; color: #F4A7B9; }
   .container { 
     width: 100%;
     max-width: 650px; 
@@ -28,152 +27,79 @@
     border-radius: 12px; 
     box-shadow: 0 8px 16px rgba(0,0,0,0.3); 
   }
-  input:not([type="number"], [type="checkbox"], [type="radio"]), select, textarea { 
-    padding: 0.75rem; margin: 0.5rem 0; border-radius: 8px; width: 100%; font-size: 1rem; border: 1px solid #C71585; box-sizing: border-box; 
+  input[type="number"], input[type="text"] { 
+    padding: 0.75rem; margin: 0.5rem 0; border-radius: 8px; width: 100%; font-size: 1rem; border: 1px solid #5A3E36; 
   }
-  .button-base {
-    color: #fff; cursor: pointer; font-weight: bold; border: none; transition: background-color 0.2s, transform 0.1s;
-    margin-top: 1.5rem; padding: 1rem; box-shadow: 0 4px #C71585; background: #FF69B4; width: 100%; border-radius: 8px;
+  button {
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #F4A7B9;
+    margin-top: 1.5rem;
+    cursor: pointer;
   }
-  #reviewOrderBtn:not([disabled]):hover { background: #FF1493; } 
-  #reviewOrderBtn:not([disabled]):active { transform: translateY(2px); box-shadow: 0 2px #C71585; }
-  [disabled] { cursor: not-allowed !important; background-color: #ccc !important; box-shadow: none !important; color: #666 !important; }
-  section { margin-top: 1.5rem; padding: 1rem; background: #ffe4e1; border-radius: 8px; border: 1px solid #ffc0cb; }
-  label { display: block; margin-top: 0.75rem; font-weight: 600; }
-  .coupon-section { margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
-  .coupon-section input { margin: 0; flex-grow: 1; }
-  .coupon-section button { width: auto; margin: 0; background: #C71585; color: white; padding: 0.75rem 1rem; border-radius: 8px; }
-  .coupon-section button:hover { background: #A020F0; }
-  #couponFeedback { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; color: #C71585; text-align: center; font-weight: bold; }
-  #coupon { margin: 1rem 0; font-weight: bold; color: #C71585; text-align: center; padding: 0.5rem; background: #FFB6C1; border-radius: 6px; }
-  .total { font-size: 1.8rem; font-weight: bold; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #FF69B4; text-align: right; color: #C71585; }
+  button:hover { background-color: #E08FA8; }
+  .total { font-size: 1.8rem; font-weight: bold; margin-top: 2rem; text-align: right; color: #5A3E36; }
 </style>
 </head>
 <body>
 <div class="container">
     <h1>Gabby's Graphicz - Custom Order</h1>
-    <p style="text-align: center; color: #C71585; font-style: italic;">Step 1: Select your design elements.</p>
-    <div id="coupon">Loading one-time Black Friday coupon...</div>
-    <hr>
     <form id="orderForm">
         <h2>1. Select Your Items</h2>
-        <section>
-            <h3>Images & Illustrations ($0.75 - $1.00 per image)</h3>
-            <label for="imgQty">Quantity of images:</label>
-            <input type="number" id="imgQty" min="0" value="0" class="qty-input">
-        </section>
-        <section>
-            <h3>Fonts & Typography ($1.50 - $3.50 per font)</h3>
-            <label for="fontQty">Quantity of fonts:</label>
-            <input type="number" id="fontQty" min="0" value="0" class="qty-input">
-        </section>
-        <section>
-            <h3>Backgrounds & Textures ($1.50 - $3.50 per design)</h3>
-            <label for="bgQty">Quantity of backgrounds:</label>
-            <input type="number" id="bgQty" min="0" value="0" class="qty-input">
-        </section>
-        <hr>
-        <section>
-            <h3>Coupons</h3>
-            <div class="coupon-section">
-                <input id="couponCode" placeholder="Enter coupon code (e.g., BF1234)">
-                <button type="button" id="applyCouponBtn">Apply Coupon</button>
-            </div>
-            <div id="couponFeedback"></div>
-        </section>
-        <div class="total">Estimated Total: $<span id="total">0.00</span></div>
-        <button type="submit" class="button-base" id="reviewOrderBtn" disabled>
-            Proceed to Payment $<span id="reviewAmount">0.00</span>
-        </button>
+        <label>Images ($0.75 - $1.00 per image)</label>
+        <input type="number" id="imgQty" min="0" value="0">
+
+        <label>Fonts ($1.50 - $3.50 per font)</label>
+        <input type="number" id="fontQty" min="0" value="0">
+
+        <label>Backgrounds ($1.50 - $3.50 per design)</label>
+        <input type="number" id="bgQty" min="0" value="0">
+
+        <div class="total">Total: $<span id="total">0.00</span></div>
+
+        <button type="submit">Proceed to Payment</button>
     </form>
 </div>
+
 <script>
-(function() {
-    let appliedCoupon = false; 
-    let discountPercent = 0.0; 
-    let randomCoupon = '';
-
-    const D = {
-        totalDisplay: document.getElementById('total'),
-        reviewAmountDisplay: document.getElementById('reviewAmount'),
-        couponCodeInput: document.getElementById('couponCode'),
-        applyCouponBtn: document.getElementById('applyCouponBtn'),
-        couponFeedbackDiv: document.getElementById('couponFeedback'),
-        couponMsgDiv: document.getElementById('coupon'),
-        orderForm: document.getElementById('orderForm'),
-        reviewOrderBtn: document.getElementById('reviewOrderBtn'),
-    };
-
-    function initCoupon() {
-      const percentOptions = [0.10, 0.15, 0.20, 0.25, 0.30];
-      discountPercent = percentOptions[Math.floor(Math.random() * percentOptions.length)];
-      randomCoupon = 'BF' + Math.floor(1000 + Math.random() * 9000);
-      D.couponMsgDiv.textContent = `Black Friday: Use code ${randomCoupon} for ${(discountPercent * 100).toFixed(0)}% off (one-time).`;
-    }
+(function(){
+    const totalDisplay = document.getElementById('total');
+    const form = document.getElementById('orderForm');
 
     function calculateTotal() {
         const imgQty = parseInt(document.getElementById('imgQty').value)||0;
         const fontQty = parseInt(document.getElementById('fontQty').value)||0;
         const bgQty = parseInt(document.getElementById('bgQty').value)||0;
 
-        let subtotal = 0;
-        for(let i=0;i<imgQty;i++){ subtotal += (Math.random()*0.25 + 0.75); }
-        for(let i=0;i<fontQty;i++){ subtotal += (Math.random()*2 + 1.5); }
-        for(let i=0;i<bgQty;i++){ subtotal += (Math.random()*2 + 1.5); }
+        let total = 0;
+        for(let i=0;i<imgQty;i++) total += Math.random()*0.25+0.75;
+        for(let i=0;i<fontQty;i++) total += Math.random()*2+1.5;
+        for(let i=0;i<bgQty;i++) total += Math.random()*2+1.5;
 
-        let finalTotal = subtotal;
-        if (appliedCoupon) { finalTotal = subtotal * (1 - discountPercent); }
-
-        finalTotal = parseFloat(Math.max(0.50, finalTotal).toFixed(2));
-        const displayTotal = finalTotal.toFixed(2);
-        D.totalDisplay.textContent = displayTotal;
-        D.reviewAmountDisplay.textContent = displayTotal;
-        D.reviewOrderBtn.disabled = finalTotal <= 0.50;
-        return finalTotal;
+        total = total.toFixed(2);
+        totalDisplay.textContent = total;
+        return total;
     }
 
-    function handleApplyCoupon() {
-        const entered = D.couponCodeInput.value.trim().toUpperCase();
-        const displayPercent = (discountPercent * 100).toFixed(0);
-
-        if(entered === randomCoupon && !appliedCoupon){
-            appliedCoupon = true;
-            D.couponFeedbackDiv.style.color = '#5CB85C';
-            D.couponFeedbackDiv.textContent = `Coupon applied! ${displayPercent}% off total.`;
-            calculateTotal();
-        } else if (appliedCoupon) {
-            D.couponFeedbackDiv.style.color = '#C71585';
-            D.couponFeedbackDiv.textContent = 'Coupon is already applied.';
-        } else {
-            D.couponFeedbackDiv.style.color = '#D9534F';
-            D.couponFeedbackDiv.textContent = 'Invalid coupon code.';
-        }
-    }
-
-    D.applyCouponBtn.addEventListener('click', handleApplyCoupon);
     ['imgQty','fontQty','bgQty'].forEach(id => {
-      document.getElementById(id).addEventListener('input', calculateTotal);
+        document.getElementById(id).addEventListener('input', calculateTotal);
     });
 
-    D.orderForm.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function(e){
         e.preventDefault();
-        const imgQty = document.getElementById('imgQty').value;
-        const fontQty = document.getElementById('fontQty').value;
-        const bgQty = document.getElementById('bgQty').value;
         const amount = calculateTotal();
-        const params = new URLSearchParams({
-          img: imgQty,
-          font: fontQty,
-          bg: bgQty,
-          amount: amount,
-          coupon: appliedCoupon,
-          discount: discountPercent,
-          couponCode: D.couponCodeInput.value.trim()
-        });
+        const img = document.getElementById('imgQty').value;
+        const font = document.getElementById('fontQty').value;
+        const bg = document.getElementById('bgQty').value;
+
+        const params = new URLSearchParams({img, font, bg, amount});
         window.location.href = `payment_step2.html?${params.toString()}`;
     });
 
-    initCoupon();
     calculateTotal();
 })();
 </script>
