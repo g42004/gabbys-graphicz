@@ -6,116 +6,48 @@
 <title>Gabby's Graphicz - Step 2: Payment</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #FFC0CB; /* Pink background */
-  }
-  .payment-card-label input[type="radio"]:checked + .card-content {
-    border-color: #FF1493;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-  }
-  #card-details-form { display: block; } /* default visible for card option */
+  body { font-family: 'Inter', sans-serif; background-color: #ffe4f0; }
 </style>
 </head>
 <body class="min-h-screen flex items-start justify-center p-4 sm:p-8">
 
 <div id="payment-container" class="w-full max-w-lg bg-white rounded-xl shadow-2xl p-6 sm:p-8 space-y-6">
-  <h1 class="text-3xl font-extrabold text-pink-700 border-b pb-4 mb-4">Step 2: Payment</h1>
-  <p class="text-pink-800 mb-6" id="order-summary">Loading your order details...</p>
+  <h1 class="text-3xl font-extrabold text-pink-600 border-b pb-4 mb-4">Step 2: Payment</h1>
+  <p class="text-gray-700 mb-4" id="order-summary">Loading order...</p>
 
-  <!-- Payment Method Selection -->
-  <div id="payment-methods" class="space-y-4">
-    <!-- Credit Card Option -->
-    <label class="payment-card-label block cursor-pointer">
-      <input type="radio" name="paymentMethod" value="card" checked class="hidden" onchange="toggleCardForm('card')">
-      <div class="card-content p-4 border-2 border-pink-300 rounded-xl transition duration-200 hover:border-pink-500">
-        <span class="text-lg font-semibold text-pink-700">Credit or Debit Card</span>
-      </div>
-    </label>
+  <label><input type="radio" name="paymentMethod" value="card" checked class="hidden" onchange="toggleCardForm('card')">
+    <div class="p-4 border-2 border-gray-200 rounded-xl cursor-pointer">Credit/Debit Card</div>
+  </label>
+  <label><input type="radio" name="paymentMethod" value="paypal" class="hidden" onchange="toggleCardForm('paypal')">
+    <div class="p-4 border-2 border-gray-200 rounded-xl cursor-pointer">PayPal</div>
+  </label>
 
-    <!-- PayPal Option -->
-    <label class="payment-card-label block cursor-pointer">
-      <input type="radio" name="paymentMethod" value="paypal" class="hidden" onchange="toggleCardForm('paypal')">
-      <div class="card-content p-4 border-2 border-pink-300 rounded-xl transition duration-200 hover:border-pink-500">
-        <span class="text-lg font-semibold text-pink-700">PayPal</span>
-      </div>
-    </label>
-
-    <!-- Digital Wallet Option -->
-    <label class="payment-card-label block cursor-pointer">
-      <input type="radio" name="paymentMethod" value="wallet" class="hidden" onchange="toggleCardForm('wallet')">
-      <div class="card-content p-4 border-2 border-pink-300 rounded-xl transition duration-200 hover:border-pink-500">
-        <span class="text-lg font-semibold text-pink-700">Digital Wallet</span>
-      </div>
-    </label>
+  <div id="card-details-form" class="space-y-4 pt-4 border-t mt-4">
+    <input type="text" id="cardNumber" placeholder="Card Number">
+    <input type="text" id="expiryDate" placeholder="MM/YY">
+    <input type="text" id="cvv" placeholder="CVV">
+    <input type="text" id="cardholderName" placeholder="Cardholder Name">
   </div>
 
-  <!-- Card Details Form -->
-  <div id="card-details-form" class="space-y-4 pt-4 border-t mt-6">
-    <h2 class="text-xl font-bold text-pink-700">Card Details</h2>
-    <div>
-      <label for="cardNumber" class="block text-sm font-medium text-pink-700 mb-1">Card Number</label>
-      <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19"
-             class="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm">
-    </div>
-    <div class="flex space-x-4">
-      <div class="flex-1">
-        <label for="expiryDate" class="block text-sm font-medium text-pink-700 mb-1">Expiry Date (MM/YY)</label>
-        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5"
-               class="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm">
-      </div>
-      <div class="flex-1">
-        <label for="cvv" class="block text-sm font-medium text-pink-700 mb-1">CVV</label>
-        <input type="text" id="cvv" placeholder="123" maxlength="4"
-               class="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm">
-      </div>
-    </div>
-    <div>
-      <label for="cardholderName" class="block text-sm font-medium text-pink-700 mb-1">Cardholder Name</label>
-      <input type="text" id="cardholderName" placeholder="John Doe"
-             class="mt-1 block w-full px-4 py-2 border border-pink-300 rounded-lg shadow-sm">
-    </div>
-  </div>
-
-  <!-- Confirm Button -->
-  <div class="pt-6 border-t mt-6">
-    <button id="confirm-payment-btn" onclick="processPayment()"
-            class="w-full py-3 px-4 rounded-lg shadow-md text-lg font-medium text-white bg-pink-600 hover:bg-pink-700">
-      Confirm Payment
-    </button>
-  </div>
+  <button onclick="processPayment()" class="w-full py-3 px-4 rounded-lg bg-pink-600 text-white font-bold mt-4">Confirm Payment</button>
 </div>
 
 <script>
-  // Read URL params from Step 1
-  const params = new URLSearchParams(window.location.search);
-  const amount = params.get('amount');
-  const img = params.get('img');
-  const font = params.get('font');
-  const bg = params.get('bg');
-  const coupon = params.get('coupon');
-  const discount = params.get('discount');
-  const couponCode = params.get('couponCode');
+const params = new URLSearchParams(window.location.search);
+document.getElementById('order-summary').innerHTML = `
+  You selected ${params.get('img')} images, ${params.get('font')} fonts, ${params.get('bg')} backgrounds.<br>
+  <strong>Total: $${params.get('amount')}</strong>
+`;
 
-  // Display order summary
-  const summary = `
-    You selected ${img} images, ${font} fonts, and ${bg} backgrounds.<br>
-    ${coupon === 'true' ? `Coupon ${couponCode} applied (${(discount*100).toFixed(0)}% off).<br>` : ''}
-    <strong>Total: $${amount}</strong>
-  `;
-  document.getElementById('order-summary').innerHTML = summary;
+function toggleCardForm(method) {
+  document.getElementById('card-details-form').style.display = (method === 'card') ? 'block' : 'none';
+}
 
-  // Show/hide card form based on payment method
-  function toggleCardForm(method) {
-    const form = document.getElementById('card-details-form');
-    form.style.display = (method === 'card') ? 'block' : 'none';
-  }
-
-  function processPayment() {
-    const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-    params.set('method', selectedMethod);
-   window.location.href = `path/to/confirmation_step3.html?${params.toString()}`;
-  }
+function processPayment() {
+  const method = document.querySelector('input[name="paymentMethod"]:checked').value;
+  params.set('method', method);
+  window.location.href = `step3.html?${params.toString()}`;
+}
 </script>
 </body>
 </html>
