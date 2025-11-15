@@ -3,153 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Step 1: Order</title>
+<title>Gabby's Graphicz - Order Confirmation</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Babaloo&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Roboto', sans-serif; background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fad0c4, #ffecd2); min-height:100vh; padding:2rem; }
-  h1 { font-family:'Babaloo', cursive; font-size:2.5rem; text-align:center; margin-bottom:1rem; color:#ff3cac; }
-  .container { max-width:900px; margin:auto; background:white; border-radius:12px; padding:2rem; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-  .section { margin-bottom:2rem; }
-  .sample { border:2px solid #ccc; border-radius:8px; padding:0.5rem; margin-bottom:1rem; display:inline-block; width:30%; vertical-align:top; text-align:center; }
-  .sample img { width:100%; border-radius:6px; }
-  .popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:50; }
-  .popup-content { background:white; padding:2rem; border-radius:12px; text-align:center; max-width:400px; }
-  .close-btn { margin-top:1rem; cursor:pointer; padding:0.5rem 1rem; background:#ff3cac; color:white; border:none; border-radius:6px; }
-  .sms { background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); padding:1rem; border-radius:12px; color:white; text-align:center; margin-bottom:2rem; }
+  body { font-family: 'Roboto', sans-serif; background:#ffe6f0; padding:2rem; }
+  .container { max-width:800px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+  h1 { font-family: 'Babaloo', cursive; font-size:2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
+  .summary { margin-top:1rem; font-size:1.1rem; }
+  .summary p { margin-bottom:0.5rem; }
+  .total { font-size:1.3rem; font-weight:bold; margin-top:1rem; }
+  .points { font-weight:bold; color:#F472B6; margin-top:1rem; font-size:1.2rem; }
+  .warning { margin-top:1.5rem; color:red; font-weight:bold; }
+  .terms { margin-top:2rem; font-size:0.95rem; color:#555; }
+  .terms h2 { font-weight:bold; margin-top:1rem; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Gabby's Graphicz</h1>
+  <h1>Order Confirmation</h1>
 
-  <!-- SMS Sign-up -->
-  <div class="sms">
-    <p>Sign up for text updates & exclusive discounts!</p>
-    <input type="text" id="smsNumber" placeholder="Enter your phone number" class="p-2 rounded text-black">
-    <button onclick="alert('Thanks for signing up!')" class="ml-2 p-2 bg-white text-black rounded">Sign Up</button>
+  <div class="summary" id="orderSummary">
+    Loading your order...
   </div>
 
-  <!-- Images & Illustrations -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Images & Illustrations ($0.75 - $1.00 per image)</h2>
-    <div>
-      <div class="sample">
-        <img src="https://via.placeholder.com/150x150?text=Sample1" alt="Sample1">
-        <p>Poster</p>
-        <input type="number" min="0" value="0" class="w-full qty" data-price="0.75">
-      </div>
-      <div class="sample">
-        <img src="https://via.placeholder.com/150x150?text=Sample2" alt="Sample2">
-        <p>Flyer</p>
-        <input type="number" min="0" value="0" class="w-full qty" data-price="0.75">
-      </div>
-      <div class="sample">
-        <img src="https://via.placeholder.com/150x150?text=Sample3" alt="Sample3">
-        <p>Logo</p>
-        <input type="number" min="0" value="0" class="w-full qty" data-price="0.75">
-      </div>
-    </div>
+  <div class="total" id="totalAmount">
+    <!-- Total cost with tax will show here -->
   </div>
 
-  <!-- Fonts -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Fonts & Typography ($1.50 - $3.50 per font)</h2>
-    <select id="fontSelect" class="w-full p-2 rounded mb-2">
-      <option value="Babaloo">Babaloo</option>
-      <option value="Roboto">Roboto</option>
-      <option value="Lobster">Lobster</option>
-      <option value="Pacifico">Pacifico</option>
-    </select>
-    <input type="number" min="0" value="0" id="fontQty" class="w-full p-2 rounded" placeholder="Quantity">
+  <div class="points" id="pointsEarned">
+    <!-- Reward points will show here -->
   </div>
 
-  <!-- Backgrounds & Textures -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Backgrounds & Textures ($1.50 - $3.50 per design)</h2>
-    <select id="bgSelect" class="w-full p-2 rounded mb-2">
-      <option value="Cheetah">Cheetah</option>
-      <option value="Rainbow">Rainbow</option>
-      <option value="Minimal">Minimal</option>
-      <option value="Abstract">Abstract</option>
-    </select>
-    <input type="number" min="0" value="0" id="bgQty" class="w-full p-2 rounded" placeholder="Quantity">
+  <div class="warning">
+    Please review your order carefully. Orders cannot be changed after submission. Refunds are only issued under our refund policy.
   </div>
 
-  <!-- State/Country -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Select State or Country</h2>
-    <select id="stateSelect" class="w-full p-2 rounded">
-      <option value="NC">North Carolina</option>
-      <option value="NY">New York</option>
-      <option value="CA">California</option>
-      <option value="TX">Texas</option>
-      <option value="FL">Florida</option>
-      <!-- Add remaining 46 states -->
-    </select>
-  </div>
+  <div class="terms">
+    <h2>Terms & Services</h2>
+    <p>By placing an order, you agree to our terms and conditions. All designs are for personal or commercial use depending on license purchased.</p>
 
-  <!-- Coupon -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Apply Coupon</h2>
-    <button onclick="showPopup()" class="p-2 bg-pink-500 text-white rounded">View Available Coupons</button>
-  </div>
-
-  <!-- Total -->
-  <div class="section">
-    <p class="text-xl font-bold">Total: $<span id="totalDisplay">0.00</span></p>
-  </div>
-
-  <button onclick="goToStep2()" class="w-full p-3 bg-purple-600 text-white rounded font-bold">Proceed to Step 2</button>
-</div>
-
-<!-- Coupon Popup -->
-<div id="couponPopup" class="popup flex">
-  <div class="popup-content">
-    <h2 class="text-xl font-bold mb-2">Available Coupons</h2>
-    <ul class="text-left mb-2">
-      <li>BLACKFRIDAY - 20% off</li>
-      <li>THANKSGIVING - 15% off</li>
-      <li>CHRISTMAS - 25% off</li>
-    </ul>
-    <button class="close-btn" onclick="closePopup()">Close</button>
+    <h2>Refund Policy</h2>
+    <p>Refunds are available only if the service is not delivered or does not match the description. Digital items and custom designs are non-refundable after delivery.</p>
   </div>
 </div>
 
 <script>
-function showPopup() { document.getElementById('couponPopup').style.display='flex'; }
-function closePopup() { document.getElementById('couponPopup').style.display='none'; }
+// Read URL parameters from Step 2
+const params = new URLSearchParams(window.location.search);
+const imgQty = parseInt(params.get('imgQty')) || 0;
+const fontQty = parseInt(params.get('fontQty')) || 0;
+const bgQty = parseInt(params.get('bgQty')) || 0;
+const imgService = params.get('imgService') || 'N/A';
+const fontSelect = params.get('fontSelect') || 'N/A';
+const bgTheme = params.get('bgTheme') || 'N/A';
+const state = params.get('state') || 'NC';
+const couponCode = params.get('couponCode') || '';
+const couponDiscount = parseFloat(params.get('discount')) || 0;
 
-function goToStep2() {
-  const imgQty = Array.from(document.querySelectorAll('.qty')).reduce((a,b)=>a + parseInt(b.value||0),0);
-  const fontQty = parseInt(document.getElementById('fontQty').value||0);
-  const fontSelect = document.getElementById('fontSelect').value;
-  const bgQty = parseInt(document.getElementById('bgQty').value||0);
-  const bgSelect = document.getElementById('bgSelect').value;
-  const state = document.getElementById('stateSelect').value;
+// Prices
+const imgPrice = 0.75; // minimum
+const fontPrice = 1.50; // minimum
+const bgPrice = 1.50; // minimum
 
-  // Pass as URL parameters
-  const params = new URLSearchParams({
-    imgQty, fontQty, fontSelect, bgQty, bgSelect, state
-  });
-  window.location.href = `payment_step2.html?${params.toString()}`;
+// Calculate subtotal
+let subtotal = (imgQty * imgPrice) + (fontQty * fontPrice) + (bgQty * bgPrice);
+
+// Apply coupon discount
+let discountAmount = 0;
+if(couponDiscount > 0) {
+  discountAmount = subtotal * couponDiscount;
+  subtotal -= discountAmount;
 }
 
-// Update total dynamically
-function updateTotal() {
-  const imgTotal = Array.from(document.querySelectorAll('.qty')).reduce((a,b)=>a + parseInt(b.value||0)*parseFloat(b.dataset.price),0);
-  const fontQty = parseInt(document.getElementById('fontQty').value||0);
-  const fontTotal = fontQty*1.5;
-  const bgQty = parseInt(document.getElementById('bgQty').value||0);
-  const bgTotal = bgQty*1.5;
-  document.getElementById('totalDisplay').innerText = (imgTotal+fontTotal+bgTotal).toFixed(2);
-}
+// State tax rates (default NC 6.75%)
+const stateTaxRates = {
+  "AL":0.04,"AK":0,"AZ":0.056,"AR":0.065,"CA":0.0725,"CO":0.029,"CT":0.0635,"DE":0,
+  "FL":0.06,"GA":0.04,"HI":0.04,"ID":0.06,"IL":0.0625,"IN":0.07,"IA":0.06,"KS":0.065,
+  "KY":0.06,"LA":0.0445,"ME":0.055,"MD":0.06,"MA":0.0625,"MI":0.06,"MN":0.06875,"MS":0.07,
+  "MO":0.04225,"MT":0,"NE":0.055,"NV":0.0685,"NH":0,"NJ":0.06625,"NM":0.05125,"NY":0.04,
+  "NC":0.0675,"ND":0.05,"OH":0.0575,"OK":0.045,"OR":0,"PA":0.06,"RI":0.07,"SC":0.06,
+  "SD":0.045,"TN":0.07,"TX":0.0625,"UT":0.0485,"VT":0.06,"VA":0.053,"WA":0.065,"WV":0.06,
+  "WI":0.05,"WY":0.04
+};
+const taxRate = stateTaxRates[state] || 0.0675; // default NC
+const taxAmount = subtotal * taxRate;
+const total = subtotal + taxAmount;
 
-document.querySelectorAll('.qty, #fontQty, #bgQty').forEach(el=>{
-  el.addEventListener('input', updateTotal);
-});
-updateTotal();
+// Display order summary
+document.getElementById('orderSummary').innerHTML = `
+  <p>Images & Illustrations: ${imgQty} (${imgService}) - $${(imgQty * imgPrice).toFixed(2)}</p>
+  <p>Fonts & Typography: ${fontQty} (${fontSelect}) - $${(fontQty * fontPrice).toFixed(2)}</p>
+  <p>Backgrounds & Textures: ${bgQty} (${bgTheme}) - $${(bgQty * bgPrice).toFixed(2)}</p>
+  ${couponCode ? `<p>Coupon (${couponCode}) Discount: -$${discountAmount.toFixed(2)}</p>` : ''}
+  <p>State: ${state} (Tax: $${taxAmount.toFixed(2)})</p>
+`;
+
+// Display total
+document.getElementById('totalAmount').innerHTML = `Total Paid: $${total.toFixed(2)}`;
+
+// Calculate points: 10 points per $1 spent
+const points = Math.floor(total * 10);
+document.getElementById('pointsEarned').innerHTML = `You earned ${points} reward points for this purchase!`;
+
 </script>
 </body>
 </html>
-
