@@ -24,7 +24,7 @@
 <div class="service-section">
   <h2>Images & Illustrations</h2>
   <p>Price per image: $0.75 - $1.00</p>
-  <label>Quantity: <input type="number" min="0" value="0" id="imgQty"></label>
+  <label>Quantity: <input type="number" min="0" value="0" id="imgQty" oninput="calculateTotal()"></label>
   <label>Service type: 
     <select id="imgType">
       <option>Poster</option>
@@ -43,7 +43,7 @@
 <div class="service-section">
   <h2>Fonts & Typography Design</h2>
   <p>Price per font: $1.50 - $3.50</p>
-  <label>Quantity: <input type="number" min="0" value="0" id="fontQty"></label>
+  <label>Quantity: <input type="number" min="0" value="0" id="fontQty" oninput="calculateTotal()"></label>
   <label>Font choice: 
     <select id="fontSelect">
       <option>Babaloo</option>
@@ -58,14 +58,14 @@
 <div class="service-section">
   <h2>Backgrounds & Textures</h2>
   <p>Price per design: $1.50 - $3.50</p>
-  <label>Quantity: <input type="number" min="0" value="0" id="bgQty"></label>
+  <label>Quantity: <input type="number" min="0" value="0" id="bgQty" oninput="calculateTotal()"></label>
   <label>Theme: <input type="text" id="bgTheme" placeholder="E.g., Cheetah, Pastel, Rainbow"></label>
 </div>
 
 <!-- State Selection -->
 <div class="service-section">
   <label>State:
-    <select id="stateSelect">
+    <select id="stateSelect" onchange="calculateTotal()">
       <option value="NC" selected>North Carolina</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
@@ -120,15 +120,16 @@
   </label>
 </div>
 
+<!-- Coupon and Total -->
+<div style="text-align:center; margin-top:2rem;">
+  <button onclick="showCoupon()" class="bg-pink-500 text-white px-4 py-2 rounded-lg">Apply Coupon</button>
+  <p class="mt-4 font-bold text-xl">Total: $<span id="totalAmount">0.00</span></p>
+</div>
+
 <!-- SMS Signup -->
 <div class="sms-signup">
   <p>Sign up to receive text notifications for discounts and updates!</p>
   <input type="text" id="phoneNumber" placeholder="Enter your phone number">
-</div>
-
-<!-- Coupon Button -->
-<div style="text-align:center; margin-top:2rem;">
-  <button onclick="showCoupon()" class="bg-pink-500 text-white px-4 py-2 rounded-lg">Apply Coupon</button>
 </div>
 
 <!-- Coupon Popup -->
@@ -148,20 +149,34 @@
 </div>
 
 <script>
+const stateTax = {
+  NC:0.0475, AL:0.04, AK:0, AZ:0.056, AR:0.065, CA:0.0725, CO:0.029, CT:0.0635, DE:0,
+  FL:0.06, GA:0.04, HI:0.04, ID:0.06, IL:0.0625, IN:0.07, IA:0.06, KS:0.065, KY:0.06,
+  LA:0.0445, ME:0, MD:0.06, MA:0.0625, MI:0.06, MN:0.06875, MS:0.07, MO:0.04225, MT:0,
+  NE:0.055, NV:0.0685, NH:0, NJ:0.06625, NM:0.05125, NY:0.04, ND:0.05, OH:0.0575,
+  OK:0.045, OR:0, PA:0.06, RI:0.07, SC:0.06, SD:0.045, TN:0.07, TX:0.0625, UT:0.0485,
+  VT:0.06, VA:0.053, WA:0.065, WV:0.06, WI:0.05, WY:0.04
+};
+
 let couponCode = '';
 let discount = 0;
 
-function showCoupon() {
-  document.getElementById('couponPopup').style.display = 'flex';
-}
-function closeCoupon() {
-  document.getElementById('couponPopup').style.display = 'none';
-}
-function applyCoupon(code, disc) {
-  couponCode = code;
-  discount = disc;
-  closeCoupon();
-  alert(`Coupon ${code} applied!`);
+function showCoupon() { document.getElementById('couponPopup').style.display='flex'; }
+function closeCoupon() { document.getElementById('couponPopup').style.display='none'; }
+function applyCoupon(code, disc) { couponCode=code; discount=disc; closeCoupon(); calculateTotal(); alert(`Coupon ${code} applied!`); }
+
+function calculateTotal() {
+  const imgQty = parseInt(document.getElementById('imgQty').value)||0;
+  const fontQty = parseInt(document.getElementById('fontQty').value)||0;
+  const bgQty = parseInt(document.getElementById('bgQty').value)||0;
+  const state = document.getElementById('stateSelect').value;
+
+  const imgPrice = 1.00, fontPrice=3.50, bgPrice=3.50; // use high end
+  let subtotal = (imgQty*imgPrice) + (fontQty*fontPrice) + (bgQty*bgPrice);
+  subtotal = subtotal*(1-discount);
+  const taxRate = stateTax[state]||0.05;
+  const total = subtotal + (subtotal*taxRate);
+  document.getElementById('totalAmount').innerText = total.toFixed(2);
 }
 
 function goToStep2() {
@@ -185,9 +200,12 @@ function goToStep2() {
   params.set('couponCode', couponCode);
   params.set('discount', discount);
   params.set('phone', phone);
-
+  
   window.location.href = `payment_step2.html?${params.toString()}`;
 }
+
+// Initialize
+calculateTotal();
 </script>
 
 </body>
