@@ -3,106 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Step 3: Confirmation</title>
-<link href="https://fonts.googleapis.com/css2?family=Babaloo&display=swap" rel="stylesheet">
+<title>Gabby's Graphicz - Confirmation</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-    body {
-        font-family: 'Inter', Arial, sans-serif;
-        background-color: #fff0f5; /* soft pink */
-        padding: 2rem;
-        display: flex;
-        justify-content: center;
-        min-height: 100vh;
-    }
-    h1 { font-family: 'Babaloo', cursive; text-align: center; color: #F472B6; font-size: 3rem; }
-    .container {
-        max-width: 700px;
-        width: 100%;
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-    section { margin-top: 1.5rem; padding:1rem; border-radius:8px; border:1px solid #ddd; }
-    .order-summary { font-size: 1rem; color: #333; margin-bottom: 1rem; }
-    .warning { color: #b91c1c; font-weight: bold; margin-top: 1rem; text-align:center; }
-    .policy h3 { margin-top:1rem; color:#5A3E36; }
-    .policy p { font-size:0.95rem; line-height:1.5; }
-    .button-base {
-        display: block;
-        width: 100%;
-        padding: 1rem;
-        background: #F472B6;
-        color: white;
-        border: none;
-        font-weight: bold;
-        border-radius:8px;
-        margin-top: 2rem;
-        cursor:pointer;
-        box-shadow: 0 4px #D97706;
-        transition: 0.2s;
-        text-align:center;
-    }
-    .button-base:hover { background:#EC4899; }
+  body { font-family: 'Roboto', sans-serif; background:#ffe6f0; padding:2rem; }
+  .container { max-width:700px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+  h1 { font-family: 'Babaloo', cursive; font-size:2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
+  .summary { margin-top:1rem; font-size:1.1rem; }
+  .points { font-weight:bold; color:#F472B6; margin-top:1rem; font-size:1.2rem; }
+  .warning { margin-top:1.5rem; color:red; font-weight:bold; }
 </style>
 </head>
 <body>
 <div class="container">
-    <h1>Confirm Your Order</h1>
-    <p class="warning">⚠️ Please double-check your order details before proceeding! Once payment is processed, it cannot be reversed without following our refund policy.</p>
+  <h1>Order Confirmation</h1>
 
-    <section class="order-summary">
-        <h2 class="text-lg font-semibold mb-2">Order Summary</h2>
-        <div id="summaryDetails"></div>
-    </section>
+  <div class="summary" id="orderSummary">
+    Loading your order...
+  </div>
 
-    <section class="policy">
-        <h3>Terms & Services</h3>
-        <p>By completing this purchase, you agree to Gabby's Graphicz terms and services. All digital products delivered are licensed for personal or commercial use as specified at checkout. Redistribution or resale without permission is prohibited.</p>
+  <div class="points" id="pointsEarned">
+    <!-- Points will appear here -->
+  </div>
 
-        <h3>Refund Policy</h3>
-        <p>Refunds are only available if the digital product was not delivered, or if there is a significant error in the design not caused by customer input. Once the product is downloaded, no refunds will be issued. All refund requests must be submitted within 7 days of delivery.</p>
-    </section>
+  <div class="warning">
+    Please review your order carefully. Orders cannot be changed after submission. Refunds are only issued under our refund policy.
+  </div>
 
-    <button class="button-base" onclick="completeOrder()">Proceed to Payment</button>
+  <div class="terms mt-4">
+    <h2 class="font-bold">Terms & Services</h2>
+    <p>By placing an order, you agree to our terms and conditions. All designs are for personal or commercial use depending on license purchased.</p>
+
+    <h2 class="font-bold mt-2">Refund Policy</h2>
+    <p>Refunds are available only if the service is not delivered or does not match the description. Digital items and custom designs are non-refundable after delivery.</p>
+  </div>
 </div>
 
 <script>
-    // Grab parameters from URL
-    const params = new URLSearchParams(window.location.search);
-    const imgQty = params.get('imgQty') || 0;
-    const fontQty = params.get('fontQty') || 0;
-    const bgQty = params.get('bgQty') || 0;
-    const imgService = params.get('imgService') || 'N/A';
-    const fontSelect = params.get('fontSelect') || 'N/A';
-    const isStudent = params.get('isStudent') || 'no';
-    const state = params.get('state') || 'Other';
-    const amount = params.get('amount') || 0;
-    const couponCode = params.get('couponCode') || 'None';
-    const discount = parseFloat(params.get('discount')) || 0;
+// Read URL params from Step 2
+const params = new URLSearchParams(window.location.search);
+const imgQty = params.get('imgQty');
+const fontQty = params.get('fontQty');
+const bgQty = params.get('bgQty');
+const imgService = params.get('imgService');
+const fontSelect = params.get('fontSelect');
+const bgTheme = params.get('bgTheme');
+const state = params.get('state');
+const couponCode = params.get('couponCode');
+const total = parseFloat(params.get('total')) || 0;
 
-    const summaryDiv = document.getElementById('summaryDetails');
-    summaryDiv.innerHTML = `
-        <p><strong>Images & Illustrations:</strong> ${imgQty} (${imgService})</p>
-        <p><strong>Fonts & Typography:</strong> ${fontQty} (${fontSelect})</p>
-        <p><strong>Backgrounds & Textures:</strong> ${bgQty}</p>
-        <p><strong>College Discount:</strong> ${isStudent==='yes' ? 'Applied (10–20% off)' : 'Not Applied'}</p>
-        <p><strong>Coupon Code:</strong> ${couponCode} (${discount*100}%)</p>
-        <p><strong>State Tax:</strong> ${state}</p>
-        <p style="margin-top:1rem; font-size:1.2rem;"><strong>Total:</strong> $${parseFloat(amount).toFixed(2)}</p>
-    `;
+// Display summary
+document.getElementById('orderSummary').innerHTML = `
+  <p>Images & Illustrations: ${imgQty} (${imgService})</p>
+  <p>Fonts & Typography: ${fontQty} (${fontSelect})</p>
+  <p>Backgrounds & Textures: ${bgQty} (${bgTheme})</p>
+  <p>State/Region: ${state}</p>
+  <p>Coupon Code: ${couponCode || 'None'}</p>
+  <p><strong>Total Paid: $${total.toFixed(2)}</strong></p>
+`;
 
-    function completeOrder(){
-        // This is where you can integrate with PayPal or other payment gateways
-        alert("Redirecting to payment gateway...");
-        // Example redirect:
-        // window.location.href = "https://www.paypal.com/paypalme/youraccount?amount=" + amount;
-    }
+// Calculate points: 10 points per $1 spent
+const points = Math.floor(total * 10);
+document.getElementById('pointsEarned').innerHTML = `You earned ${points} reward points for this purchase!`;
+
 </script>
 </body>
 </html>
 
-  </script>
-</body>
 </html>
