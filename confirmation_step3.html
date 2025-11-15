@@ -3,15 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Confirmation</title>
+<title>Gabby's Graphicz - Order Confirmation</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body { font-family: 'Roboto', sans-serif; background:#ffe6f0; padding:2rem; }
-  .container { max-width:700px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+  .container { max-width:800px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
   h1 { font-family: 'Babaloo', cursive; font-size:2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
   .summary { margin-top:1rem; font-size:1.1rem; }
+  .summary p { margin-bottom:0.5rem; }
+  .total { font-size:1.3rem; font-weight:bold; margin-top:1rem; }
   .points { font-weight:bold; color:#F472B6; margin-top:1rem; font-size:1.2rem; }
   .warning { margin-top:1.5rem; color:red; font-weight:bold; }
+  .terms { margin-top:2rem; font-size:0.95rem; color:#555; }
+  .terms h2 { font-weight:bold; margin-top:1rem; }
 </style>
 </head>
 <body>
@@ -22,45 +26,80 @@
     Loading your order...
   </div>
 
+  <div class="total" id="totalAmount">
+    <!-- Total cost with tax will show here -->
+  </div>
+
   <div class="points" id="pointsEarned">
-    <!-- Points will appear here -->
+    <!-- Reward points will show here -->
   </div>
 
   <div class="warning">
     Please review your order carefully. Orders cannot be changed after submission. Refunds are only issued under our refund policy.
   </div>
 
-  <div class="terms mt-4">
-    <h2 class="font-bold">Terms & Services</h2>
+  <div class="terms">
+    <h2>Terms & Services</h2>
     <p>By placing an order, you agree to our terms and conditions. All designs are for personal or commercial use depending on license purchased.</p>
 
-    <h2 class="font-bold mt-2">Refund Policy</h2>
+    <h2>Refund Policy</h2>
     <p>Refunds are available only if the service is not delivered or does not match the description. Digital items and custom designs are non-refundable after delivery.</p>
   </div>
 </div>
 
 <script>
-// Read URL params from Step 2
+// Read URL parameters from Step 2
 const params = new URLSearchParams(window.location.search);
-const imgQty = params.get('imgQty');
-const fontQty = params.get('fontQty');
-const bgQty = params.get('bgQty');
-const imgService = params.get('imgService');
-const fontSelect = params.get('fontSelect');
-const bgTheme = params.get('bgTheme');
-const state = params.get('state');
-const couponCode = params.get('couponCode');
-const total = parseFloat(params.get('total')) || 0;
+const imgQty = parseInt(params.get('imgQty')) || 0;
+const fontQty = parseInt(params.get('fontQty')) || 0;
+const bgQty = parseInt(params.get('bgQty')) || 0;
+const imgService = params.get('imgService') || 'N/A';
+const fontSelect = params.get('fontSelect') || 'N/A';
+const bgTheme = params.get('bgTheme') || 'N/A';
+const state = params.get('state') || 'NC';
+const couponCode = params.get('couponCode') || '';
+const couponDiscount = parseFloat(params.get('discount')) || 0;
 
-// Display summary
+// Prices
+const imgPrice = 0.75; // minimum
+const fontPrice = 1.50; // minimum
+const bgPrice = 1.50; // minimum
+
+// Calculate subtotal
+let subtotal = (imgQty * imgPrice) + (fontQty * fontPrice) + (bgQty * bgPrice);
+
+// Apply coupon discount
+let discountAmount = 0;
+if(couponDiscount > 0) {
+  discountAmount = subtotal * couponDiscount;
+  subtotal -= discountAmount;
+}
+
+// State tax rates (default NC 6.75%)
+const stateTaxRates = {
+  "AL":0.04,"AK":0,"AZ":0.056,"AR":0.065,"CA":0.0725,"CO":0.029,"CT":0.0635,"DE":0,
+  "FL":0.06,"GA":0.04,"HI":0.04,"ID":0.06,"IL":0.0625,"IN":0.07,"IA":0.06,"KS":0.065,
+  "KY":0.06,"LA":0.0445,"ME":0.055,"MD":0.06,"MA":0.0625,"MI":0.06,"MN":0.06875,"MS":0.07,
+  "MO":0.04225,"MT":0,"NE":0.055,"NV":0.0685,"NH":0,"NJ":0.06625,"NM":0.05125,"NY":0.04,
+  "NC":0.0675,"ND":0.05,"OH":0.0575,"OK":0.045,"OR":0,"PA":0.06,"RI":0.07,"SC":0.06,
+  "SD":0.045,"TN":0.07,"TX":0.0625,"UT":0.0485,"VT":0.06,"VA":0.053,"WA":0.065,"WV":0.06,
+  "WI":0.05,"WY":0.04
+};
+const taxRate = stateTaxRates[state] || 0.0675; // default NC
+const taxAmount = subtotal * taxRate;
+const total = subtotal + taxAmount;
+
+// Display order summary
 document.getElementById('orderSummary').innerHTML = `
-  <p>Images & Illustrations: ${imgQty} (${imgService})</p>
-  <p>Fonts & Typography: ${fontQty} (${fontSelect})</p>
-  <p>Backgrounds & Textures: ${bgQty} (${bgTheme})</p>
-  <p>State/Region: ${state}</p>
-  <p>Coupon Code: ${couponCode || 'None'}</p>
-  <p><strong>Total Paid: $${total.toFixed(2)}</strong></p>
+  <p>Images & Illustrations: ${imgQty} (${imgService}) - $${(imgQty * imgPrice).toFixed(2)}</p>
+  <p>Fonts & Typography: ${fontQty} (${fontSelect}) - $${(fontQty * fontPrice).toFixed(2)}</p>
+  <p>Backgrounds & Textures: ${bgQty} (${bgTheme}) - $${(bgQty * bgPrice).toFixed(2)}</p>
+  ${couponCode ? `<p>Coupon (${couponCode}) Discount: -$${discountAmount.toFixed(2)}</p>` : ''}
+  <p>State: ${state} (Tax: $${taxAmount.toFixed(2)})</p>
 `;
+
+// Display total
+document.getElementById('totalAmount').innerHTML = `Total Paid: $${total.toFixed(2)}`;
 
 // Calculate points: 10 points per $1 spent
 const points = Math.floor(total * 10);
@@ -68,6 +107,4 @@ document.getElementById('pointsEarned').innerHTML = `You earned ${points} reward
 
 </script>
 </body>
-</html>
-
 </html>
