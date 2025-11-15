@@ -3,175 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Step 1: Order</title>
+<title>Gabby's Graphicz - Order Step 1</title>
 <link href="https://fonts.googleapis.com/css2?family=Babaloo&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body {
     font-family: 'Roboto', sans-serif;
-    background: url('https://images.unsplash.com/photo-1612831455545-8d2e10d1a5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZHxlbnwwfHwwfHw%3D&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center fixed;
-    background-size: cover;
+    background: #ffe6f0; /* Pink background */
     min-height: 100vh;
     padding: 2rem;
   }
-  h1 { font-family: 'Babaloo', cursive; font-size: 2.8rem; color: #F472B6; text-align: center; margin-bottom:1rem;}
-  .container { background: rgba(255,255,255,0.95); max-width: 900px; margin: auto; padding: 2rem; border-radius: 12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-  label { font-weight: 500; }
-  .section { margin-top:1.5rem; padding:1rem; border:1px solid #ddd; border-radius:8px;}
-  .sample-img { width:100%; max-width:250px; margin:1rem 0; border-radius:8px; }
-  .cart-icon { position: fixed; top: 1rem; right: 1rem; cursor: pointer; font-size: 2rem; color:#F472B6;}
+  .container { 
+    background: rgba(255,255,255,0.95); 
+    max-width: 1000px; 
+    margin: auto; 
+    padding: 2rem; 
+    border-radius: 12px; 
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  }
+  h1 { font-family: 'Babaloo', cursive; font-size: 2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
+  table { width:100%; border-collapse: collapse; margin-bottom:1rem; }
+  th, td { padding:0.75rem; border-bottom:1px solid #ddd; text-align:left; }
+  th { background-color:#F472B6; color:white; }
+  .input-qty { width:60px; padding:0.25rem; border-radius:6px; border:1px solid #ccc; }
+  .theme-input { width:100%; padding:0.5rem; border-radius:6px; border:1px solid #ccc; }
+  .total { font-weight:bold; font-size:1.2rem; margin-top:1rem; text-align:right; }
+  .button-base { background-color:#F472B6; color:white; padding:0.75rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:bold; margin-top:1rem; display:block; }
   footer { margin-top:2rem; text-align:center; font-size:0.9rem; color:#555; }
-  select, input[type=number] { padding:0.5rem; border:1px solid #ccc; border-radius:6px; width:100%; }
-  .total { font-weight:bold; font-size:1.2rem; margin-top:1rem; }
 </style>
 </head>
 <body>
 
-<div class="cart-icon" onclick="goToCart()">🛍️</div>
-
 <div class="container">
-  <h1>Gabby's Graphicz - Step 1: Order</h1>
+  <h1>Gabby's Graphicz - Order Your Design</h1>
 
-  <!-- Region / State Selection -->
-  <div class="section">
-    <label for="stateSelect">Select your state or country for taxes:</label>
-    <select id="stateSelect" onchange="updateTax()">
+  <!-- Images & Illustrations -->
+  <div>
+    <h2 class="text-xl font-bold text-gray-700 mb-2">Images & Illustrations ($0.75 - $1.00 each)</h2>
+    <input type="text" id="imgTheme" placeholder="Enter theme/type (e.g., poster, flyer, birthday)" class="theme-input mb-2">
+    Quantity: <input type="number" id="imgQty" class="input-qty" value="0" min="0">
+  </div>
+
+  <!-- Fonts -->
+  <div class="mt-4">
+    <h2 class="text-xl font-bold text-gray-700 mb-2">Fonts & Typography Design ($1.50 - $3.50 per font)</h2>
+    <select id="fontSelect" class="theme-input mb-2">
+      <option value="Babaloo">Babaloo</option>
+      <option value="Roboto">Roboto</option>
+      <option value="Lobster">Lobster</option>
+      <option value="Pacifico">Pacifico</option>
+    </select>
+    Quantity: <input type="number" id="fontQty" class="input-qty" value="0" min="0">
+  </div>
+
+  <!-- Backgrounds & Textures -->
+  <div class="mt-4">
+    <h2 class="text-xl font-bold text-gray-700 mb-2">Backgrounds & Textures ($1.50 - $3.50 per design)</h2>
+    <input type="text" id="bgTheme" placeholder="Enter theme/type" class="theme-input mb-2">
+    Quantity: <input type="number" id="bgQty" class="input-qty" value="0" min="0">
+  </div>
+
+  <!-- State/Country selection for tax -->
+  <div class="mt-4">
+    <h2 class="text-xl font-bold text-gray-700 mb-2">Select State or Country</h2>
+    <select id="stateSelect" class="theme-input">
       <option value="NC" selected>North Carolina</option>
       <option value="NY">New York</option>
       <option value="CA">California</option>
       <option value="TX">Texas</option>
       <option value="Other">Other</option>
     </select>
-    <p id="taxInfo" style="margin-top:0.5rem;">Tax rate: 7.25% (default for NC)</p>
   </div>
 
-  <!-- Images & Illustrations -->
-  <div class="section">
-    <h2 class="text-xl font-semibold mb-2">Images & Illustrations ($0.75 - $1.00 per image)</h2>
-    <p>Type of image/project (posters, flyers, logos, birthdays, etc.):</p>
-    <input type="text" id="imgType" placeholder="E.g., birthday poster">
-    <p>Quantity:</p>
-    <input type="number" id="imgQty" min="0" value="0">
-    
-    <h3 class="mt-2 font-semibold">Sample Images:</h3>
-    <div>
-      <!-- Sample Canva embeds -->
-      <iframe class="sample-img" src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed" allowfullscreen></iframe>
-      <iframe class="sample-img" src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed" allowfullscreen></iframe>
-      <iframe class="sample-img" src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed" allowfullscreen></iframe>
-    </div>
+  <!-- Coupon -->
+  <div class="mt-4">
+    <h2 class="text-xl font-bold text-gray-700 mb-2">Enter Coupon Code</h2>
+    <input type="text" id="couponCode" placeholder="BlackFriday / Thanksgiving / Christmas" class="theme-input">
   </div>
 
-  <!-- Fonts & Typography -->
-  <div class="section">
-    <h2 class="text-xl font-semibold mb-2">Fonts & Typography ($1.50 - $3.50 per font)</h2>
-    <p>Select font(s) from Canva options:</p>
-    <select id="fontSelect">
-      <option value="Babaloo">Babaloo</option>
-      <option value="Roboto">Roboto</option>
-      <option value="Lobster">Lobster</option>
-      <option value="Montserrat">Montserrat</option>
-      <option value="Open Sans">Open Sans</option>
-    </select>
-    <p>Quantity:</p>
-    <input type="number" id="fontQty" min="0" value="0">
-  </div>
+  <!-- Totals -->
+  <div class="total" id="totalDisplay">Total: $0.00</div>
 
-  <!-- Backgrounds & Textures -->
-  <div class="section">
-    <h2 class="text-xl font-semibold mb-2">Backgrounds & Textures ($1.50 - $3.50 per design)</h2>
-    <p>Quantity:</p>
-    <input type="number" id="bgQty" min="0" value="0">
-  </div>
+  <!-- Proceed Button -->
+  <button class="button-base" onclick="goToCart()">Add to Cart / Step 2</button>
 
-  <!-- Discounts & Points -->
-  <div class="section">
-    <h2 class="text-xl font-semibold mb-2">Discounts & Loyalty Points</h2>
-    <p>Are you a college student?</p>
-    <select id="studentDiscount">
-      <option value="no">No</option>
-      <option value="yes">Yes (10–20% off)</option>
-    </select>
-    <p>Coupon code (Black Friday, Thanksgiving, Christmas, etc.):</p>
-    <input type="text" id="couponCode" placeholder="Enter code">
-    <p>Discount points (e.g., 50 points = $5 off):</p>
-    <input type="number" id="loyaltyPoints" min="0" value="0">
-  </div>
-
-  <!-- Order Summary & Total -->
-  <div class="section">
-    <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
-    <div id="orderSummary">Your total will appear here.</div>
-    <button onclick="goToStep2()" class="button-base mt-2">Proceed to Step 2</button>
-  </div>
 </div>
 
 <footer>© Gabrielle Monroe 2025</footer>
 
 <script>
-const taxRates = {
-  'NC': 0.0725,
-  'NY': 0.08875,
-  'CA': 0.0725,
-  'TX': 0.0625,
-  'Other': 0
-};
+const taxRates = { 'NC': 0.0725, 'NY':0.08875, 'CA':0.0725, 'TX':0.0625, 'Other':0 };
 
-function updateTax(){
+// Base prices
+const basePrices = { img:0.75, font:2.5, bg:2.5 };
+
+// Coupons
+const couponCodes = { 'BlackFriday':0.2, 'Thanksgiving':0.15, 'Christmas':0.1 };
+
+function calculateTotal(){
+  let imgQty = parseInt(document.getElementById('imgQty').value)||0;
+  let fontQty = parseInt(document.getElementById('fontQty').value)||0;
+  let bgQty = parseInt(document.getElementById('bgQty').value)||0;
+  let subtotal = imgQty*basePrices.img + fontQty*basePrices.font + bgQty*basePrices.bg;
+
+  // Coupon
+  let code = document.getElementById('couponCode').value;
+  let discount = couponCodes[code] || 0;
+  let discounted = subtotal*(1-discount);
+
+  // Tax
   const state = document.getElementById('stateSelect').value;
-  const rate = taxRates[state] || 0;
-  document.getElementById('taxInfo').innerText = `Tax rate: ${(rate*100).toFixed(2)}%`;
-  updateTotal();
-}
+  const tax = discounted * (taxRates[state] || 0);
 
-function updateTotal(){
-  const imgQty = parseInt(document.getElementById('imgQty').value) || 0;
-  const fontQty = parseInt(document.getElementById('fontQty').value) || 0;
-  const bgQty = parseInt(document.getElementById('bgQty').value) || 0;
-  const student = document.getElementById('studentDiscount').value === 'yes';
-  const coupon = document.getElementById('couponCode').value;
-  const points = parseFloat(document.getElementById('loyaltyPoints').value) || 0;
-  const state = document.getElementById('stateSelect').value;
-
-  let subtotal = imgQty*0.75 + fontQty*2.5 + bgQty*2.5;
-  if(student) subtotal *= 0.9; // 10% discount
-  // Sample coupon handling
-  if(coupon.toLowerCase()==='blackfriday') subtotal *= 0.8;
-  if(coupon.toLowerCase()==='thanksgiving') subtotal *= 0.85;
-  if(coupon.toLowerCase()==='christmas') subtotal *= 0.75;
-  subtotal -= points*0.1; // points discount
-  const tax = subtotal * (taxRates[state] || 0);
-  const total = subtotal + tax;
-
-  document.getElementById('orderSummary').innerHTML = `
-    Subtotal: $${subtotal.toFixed(2)} <br>
-    Tax: $${tax.toFixed(2)} <br>
+  const total = discounted + tax;
+  document.getElementById('totalDisplay').innerHTML = `
+    Subtotal: $${subtotal.toFixed(2)}<br>
+    ${discount>0 ? 'Discount: -$'+(subtotal*discount).toFixed(2)+'<br>':''}
+    Tax (${(taxRates[state]*100).toFixed(2)}%): $${tax.toFixed(2)}<br>
     <strong>Total: $${total.toFixed(2)}</strong>
   `;
 }
 
-document.querySelectorAll('input, select').forEach(el=>el.addEventListener('change', updateTotal));
-updateTotal();
+document.getElementById('imgQty').addEventListener('input', calculateTotal);
+document.getElementById('fontQty').addEventListener('input', calculateTotal);
+document.getElementById('bgQty').addEventListener('input', calculateTotal);
+document.getElementById('stateSelect').addEventListener('change', calculateTotal);
+document.getElementById('couponCode').addEventListener('input', calculateTotal);
 
-function goToStep2(){
-  // Collect all data and go to payment_step2.html
-  const params = new URLSearchParams();
+function goToCart(){
+  let params = new URLSearchParams();
   params.set('imgQty', document.getElementById('imgQty').value);
   params.set('fontQty', document.getElementById('fontQty').value);
   params.set('bgQty', document.getElementById('bgQty').value);
-  params.set('imgService', document.getElementById('imgType').value);
+  params.set('imgService', document.getElementById('imgTheme').value);
   params.set('fontSelect', document.getElementById('fontSelect').value);
-  params.set('isStudent', document.getElementById('studentDiscount').value);
+  params.set('bgTheme', document.getElementById('bgTheme').value);
   params.set('state', document.getElementById('stateSelect').value);
   params.set('couponCode', document.getElementById('couponCode').value);
-  params.set('discount', 0); // you can calculate discount here
-
-  window.location.href = `payment_step2.html?${params.toString()}`;
+  window.location.href = `cart.html?${params.toString()}`;
 }
 
-function goToCart(){
-  window.location.href = 'cart.html'; // separate shopping cart page
-}
+// Initialize total
+calculateTotal();
 </script>
+
 </body>
 </html>
+
