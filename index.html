@@ -1,207 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Gabby's Graphicz – Step 1</title>
+<meta charset="UTF-8">
+<title>Gabby's Graphicz – Step 1</title>
 
-    <!-- Babaloo Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee&family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+<!-- Babaloo Font -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #f7d3d6 url('https://i.imgur.com/2g9G5zM.png'); /* cheetah pattern */
-            background-size: 300px;
-            font-family: Arial, sans-serif;
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial;
+        background: #F7D6C5; /* Soft cheetah-toned beige */
+    }
 
-        .container {
-            background: white;
-            width: 90%;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.15);
-        }
+    h1 {
+        font-family: 'Bebas Neue', cursive;
+        text-align: center;
+        font-size: 60px;
+        margin-top: 20px;
+    }
 
-        h1 {
-            font-family: 'Baloo 2', cursive;
-            font-size: 45px;
-            text-align: center;
-            color: #cf3f70;
-            text-shadow: 1px 1px #00000020;
-        }
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
 
-        h2 {
-            margin-top: 40px;
-            font-size: 26px;
-            color: #222;
-            font-weight: bold;
-        }
+    .section-title {
+        font-size: 28px;
+        margin-top: 30px;
+        font-weight: bold;
+        text-decoration: underline;
+    }
 
-        .sample-box {
-            margin: 20px 0;
-        }
+    .service-box {
+        background: #FFE9E3;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
 
-        .price-line {
-            font-size: 18px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+    label {
+        font-weight: bold;
+    }
 
-        select {
-            padding: 6px;
-            font-size: 14px;
-            margin-left: 10px;
-        }
+    .total-box {
+        margin-top: 30px;
+        background: #F9C9B9;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
 
-        #total {
-            margin-top: 30px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-        }
+    button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 15px;
+        background: #D86F52;
+        color: white;
+        border: none;
+        font-size: 22px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 
-        .next-btn {
-            display: block;
-            margin: 30px auto;
-            padding: 12px 25px;
-            background: #cf3f70;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 20px;
-            cursor: pointer;
-            text-align: center;
-            width: 200px;
-        }
+    button:hover {
+        background: #b85a42;
+    }
 
-        .next-btn:hover {
-            background: #b92c5c;
-        }
-
-        iframe {
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Gabby's Graphicz – Step 1</h1>
-
-    <!-- IMAGES & ILLUSTRATIONS -->
-    <h2>Images & Illustrations – $0.75 to $1.00 each</h2>
-
-    <!-- Sample 1 -->
-    <div class="sample-box">
-        <div style="position: relative; width:100%; height:0; padding-top: 56.25%; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
-            <iframe loading="lazy"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-                src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed">
-            </iframe>
-        </div>
-    </div>
-
-    <!-- Sample 2 -->
-    <div class="sample-box">
-        <div style="position: relative; width:100%; height:0; padding-top: 141.42%; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
-            <iframe loading="lazy"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-                src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed">
-            </iframe>
-        </div>
-    </div>
-
-    <!-- Sample 3 -->
-    <div class="sample-box">
-        <div style="position: relative; width:100%; height:0; padding-top: 56.25%; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
-            <iframe loading="lazy"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-                src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed">
-            </iframe>
-        </div>
-    </div>
-
-    <div class="price-line">
-        Quantity:
-        <select id="imgQty" onchange="calculateTotal()">
-            <option value="0">0</option>
-            <option value="0.75">1 ($0.75)</option>
-            <option value="1.50">2 ($1.50)</option>
-            <option value="2.25">3 ($2.25)</option>
-            <option value="3.00">4 ($3.00)</option>
-        </select>
-    </div>
-
-
-
-    <!-- FONTS & TYPOGRAPHY -->
-    <h2>Fonts & Typography Design – $1.50 to $3.50</h2>
-
-    <div class="price-line">
-        Quantity:
-        <select id="fontQty" onchange="calculateTotal()">
-            <option value="0">0</option>
-            <option value="1.50">1 ($1.50)</option>
-            <option value="3.00">2 ($3.00)</option>
-            <option value="3.50">Premium ($3.50)</option>
-        </select>
-    </div>
-
-
-    <!-- BACKGROUNDS -->
-    <h2>Backgrounds & Textures – $1.50 to $3.50</h2>
-
-    <div class="price-line">
-        Quantity:
-        <select id="bgQty" onchange="calculateTotal()">
-            <option value="0">0</option>
-            <option value="1.50">1 ($1.50)</option>
-            <option value="3.00">2 ($3.00)</option>
-            <option value="3.50">Premium ($3.50)</option>
-        </select>
-    </div>
-
-
-    <!-- DISCOUNT -->
-    <h2>College Student Discount – 10–20% off</h2>
-
-    <div class="price-line">
-        Discount:
-        <select id="discount" onchange="calculateTotal()">
-            <option value="0">None</option>
-            <option value="0.10">10% Off</option>
-            <option value="0.20">20% Off</option>
-        </select>
-    </div>
-
-
-    <!-- TOTAL -->
-    <div id="total">Total: $0.00</div>
-
-    <!-- NEXT BUTTON -->
-    <a href="payment_step2.html">
-        <button class="next-btn">Next → Step 2</button>
-    </a>
-</div>
-
+    iframe {
+        border-radius: 8px;
+        border: none;
+    }
+</style>
 
 <script>
-function calculateTotal() {
-    let img = parseFloat(document.getElementById("imgQty").value);
-    let font = parseFloat(document.getElementById("fontQty").value);
-    let bg = parseFloat(document.getElementById("bgQty").value);
-    let discount = parseFloat(document.getElementById("discount").value);
+function updateTotal() {
+    let imagesQty = document.getElementById("imgQty").value;
+    let fontsQty = document.getElementById("fontQty").value;
+    let bgQty = document.getElementById("bgQty").value;
 
-    let total = img + font + bg;
-    total = total - (total * discount);
+    // Prices
+    let imgPrice = 0.75;
+    let fontPrice = 1.50;
+    let bgPrice = 1.50;
 
-    document.getElementById("total").innerHTML = "Total: $" + total.toFixed(2);
+    let total = (imagesQty * imgPrice) + (fontsQty * fontPrice) + (bgQty * bgPrice);
+    document.getElementById("total").innerText = "$" + total.toFixed(2);
 }
 </script>
+
+</head>
+
+<body>
+
+<h1>Gabby's Graphicz – Order Step 1</h1>
+
+<div class="container">
+
+    <!-- Choose Service -->
+    <h2 class="section-title">Choose Your Service</h2>
+    <select id="serviceType" style="width:100%; padding:10px; font-size:18px;">
+        <option value="Images">Images & Illustrations</option>
+        <option value="Fonts">Fonts & Typography</option>
+        <option value="Background">Backgrounds & Textures</option>
+        <option value="Discount">College Student Discount</option>
+    </select>
+
+    <!-- Images & Illustrations Section -->
+    <div class="service-box">
+        <label>Images & Illustrations – $0.75–$1.00 per image</label><br>
+        Quantity:
+        <input type="number" id="imgQty" min="0" value="0" onchange="updateTotal()">
+    </div>
+
+    <!-- Fonts Section -->
+    <div class="service-box">
+        <label>Fonts & Typography Design – $1.50–$3.50 per font</label><br>
+        Quantity:
+        <input type="number" id="fontQty" min="0" value="0" onchange="updateTotal()">
+    </div>
+
+    <!-- Background Section -->
+    <div class="service-box">
+        <label>Backgrounds & Textures – $1.50–$3.50 per design</label><br>
+        Quantity:
+        <input type="number" id="bgQty" min="0" value="0" onchange="updateTotal()">
+    </div>
+
+    <!-- Total -->
+    <div class="total-box">
+        Total: <span id="total">$0.00</span>
+    </div>
+
+    <!-- Samples -->
+    <h2 class="section-title">Sample Images & Illustrations</h2>
+
+    <!-- SAMPLE 1 -->
+    <div style="margin-top:20px;">
+        <iframe loading="lazy" width="100%" height="350"
+            src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed" allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- SAMPLE 2 -->
+    <div style="margin-top:20px;">
+        <iframe loading="lazy" width="100%" height="350"
+            src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed" allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- SAMPLE 3 -->
+    <div style="margin-top:20px;">
+        <iframe loading="lazy" width="100%" height="350"
+            src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed" allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Step 2 -->
+    <a href="STEP2_URL_HERE">
+        <button>Continue to Step 2</button>
+    </a>
+
+</div>
 
 </body>
 </html>
