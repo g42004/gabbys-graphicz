@@ -6,122 +6,203 @@
 <title>Gabby's Graphicz - Step 1: Order</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { font-family: 'Roboto', sans-serif; background:#ffe6f0; }
-  h1 { font-family:'Babaloo', cursive; color:#F472B6; text-align:center; margin-top:2rem; margin-bottom:1rem; }
-  .container { max-width:900px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-  .section { margin-bottom:1.5rem; }
-  .coupon-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; }
-  .coupon-content { background:#fff; padding:2rem; border-radius:12px; max-width:400px; width:90%; text-align:center; }
-  .coupon-btn { background:#F472B6; color:#fff; padding:0.5rem 1rem; border-radius:8px; margin:0.5rem; cursor:pointer; }
+  body { font-family: 'Roboto', sans-serif; background:#ffe6f0; padding:2rem; }
+  h1 { font-family:'Babaloo', cursive; font-size:2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
+  .container { max-width:900px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+  .section { margin-bottom:2rem; }
+  .summary { font-weight:bold; margin-top:1rem; }
+  .popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:50; }
+  .popup-content { background:#fff; padding:2rem; border-radius:12px; text-align:center; max-width:400px; }
+  .popup-content button { margin-top:1rem; background:#F472B6; color:#fff; padding:0.5rem 1rem; border:none; border-radius:8px; cursor:pointer; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Step 1: Select Your Services</h1>
+<h1>Step 1: Order Your Design</h1>
 
-  <!-- Services Section -->
+<form id="orderForm">
+
+  <!-- Images & Illustrations -->
   <div class="section">
-    <label>Images & Illustrations ($0.75 - $1.00 each)</label>
-    <input type="number" id="imgQty" min="0" value="0" class="border px-2 py-1 rounded ml-2">
-    <select id="imgType" class="border px-2 py-1 rounded ml-2">
-      <option value="Poster">Poster</option>
-      <option value="Flyer">Flyer</option>
-      <option value="Logo">Logo</option>
-      <option value="Birthday">Birthday</option>
-    </select>
+    <h2 class="text-xl font-bold mb-2">Images & Illustrations ($0.75 - $1.00 per image)</h2>
+    <label>Quantity: <input type="number" id="imgQty" min="0" value="0" class="border rounded px-2 py-1"></label>
+    <label>Type of design: <input type="text" id="imgService" placeholder="Poster, Logo, Flyer..." class="border rounded px-2 py-1"></label>
+    <div class="mt-2" id="imgSamples">
+      <!-- Sample embeds -->
+      <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; overflow:hidden; border-radius:8px; margin-top:0.5rem;">
+        <iframe src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed" style="position:absolute; width:100%; height:100%; border:none;"></iframe>
+      </div>
+    </div>
   </div>
 
+  <!-- Fonts & Typography -->
   <div class="section">
-    <label>Fonts & Typography ($1.50 - $3.50 each)</label>
-    <input type="number" id="fontQty" min="0" value="0" class="border px-2 py-1 rounded ml-2">
-    <select id="fontSelect" class="border px-2 py-1 rounded ml-2">
-      <option value="Babaloo">Babaloo</option>
-      <option value="Anton">Anton</option>
-      <option value="Lobster">Lobster</option>
-      <option value="Pacifico">Pacifico</option>
-    </select>
+    <h2 class="text-xl font-bold mb-2">Fonts & Typography ($1.50 - $3.50 per font)</h2>
+    <label>Quantity: <input type="number" id="fontQty" min="0" value="0" class="border rounded px-2 py-1"></label>
+    <label>Font choice: 
+      <select id="fontSelect" class="border rounded px-2 py-1">
+        <option value="Babaloo">Babaloo</option>
+        <option value="Anton">Anton</option>
+        <option value="Poppins">Poppins</option>
+        <option value="Montserrat">Montserrat</option>
+        <option value="Roboto">Roboto</option>
+      </select>
+    </label>
   </div>
 
+  <!-- Backgrounds & Textures -->
   <div class="section">
-    <label>Backgrounds & Textures ($1.50 - $3.50 each)</label>
-    <input type="number" id="bgQty" min="0" value="0" class="border px-2 py-1 rounded ml-2">
-    <input type="text" id="bgTheme" placeholder="Theme (e.g., Cheetah)" class="border px-2 py-1 rounded ml-2">
-  </div>
-
-  <!-- Coupon Button -->
-  <div class="section">
-    <button onclick="openCouponModal()" class="coupon-btn">Apply Coupon</button>
-    <span id="appliedCoupon" class="ml-2 font-bold"></span>
+    <h2 class="text-xl font-bold mb-2">Backgrounds & Textures ($1.50 - $3.50 per design)</h2>
+    <label>Quantity: <input type="number" id="bgQty" min="0" value="0" class="border rounded px-2 py-1"></label>
+    <label>Theme / Color: <input type="text" id="bgTheme" placeholder="Cheetah, Pastel, Minimal..." class="border rounded px-2 py-1"></label>
   </div>
 
   <!-- State Selection -->
   <div class="section">
-    <label>Select State for Tax:</label>
-    <select id="stateSelect" class="border px-2 py-1 rounded ml-2">
-      <option value="NC" selected>North Carolina</option>
+    <h2 class="text-xl font-bold mb-2">Select your state</h2>
+    <select id="stateSelect" class="border rounded px-2 py-1">
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
       <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
       <option value="NY">New York</option>
+      <option value="NC" selected>North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
       <option value="TX">Texas</option>
-      <!-- Add all 46 other states here -->
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
     </select>
   </div>
 
-  <!-- Proceed Button -->
+  <!-- Coupon code -->
   <div class="section">
-    <button onclick="goToPayment()" class="coupon-btn">Next: Payment</button>
+    <button type="button" onclick="openCouponPopup()" class="bg-pink-400 text-white px-4 py-2 rounded">Enter Coupon Code</button>
+    <input type="hidden" id="couponCode" value="">
+    <input type="hidden" id="discount" value="0">
   </div>
+
+  <!-- Summary & Proceed -->
+  <div class="section summary">
+    <p id="totalSummary">Total: $0.00</p>
+    <p id="pointsSummary">Points Earned: 0</p>
+  </div>
+
+  <button type="button" onclick="goToStep2()" class="bg-pink-500 text-white px-6 py-3 rounded w-full">Proceed to Payment</button>
+</form>
 </div>
 
-<!-- Coupon Modal -->
-<div id="couponModal" class="coupon-modal flex">
-  <div class="coupon-content">
-    <h2>Available Coupons</h2>
-    <button class="coupon-btn" onclick="applyCoupon('BLACKFRIDAY',0.2)">Black Friday - 20% Off</button>
-    <button class="coupon-btn" onclick="applyCoupon('THANKSGIVING',0.15)">Thanksgiving - 15% Off</button>
-    <button class="coupon-btn" onclick="applyCoupon('CHRISTMAS',0.1)">Christmas - 10% Off</button>
-    <div style="margin-top:1rem;">
-      <button class="coupon-btn" style="background:#aaa;" onclick="closeCouponModal()">Close</button>
-    </div>
+<!-- Popup Coupon -->
+<div class="popup" id="couponPopup">
+  <div class="popup-content">
+    <h2>Enter Coupon Code</h2>
+    <input type="text" id="popupCode" placeholder="Enter code" class="border rounded px-2 py-1">
+    <br>
+    <button onclick="applyCoupon()">Apply</button>
   </div>
 </div>
 
 <script>
-let discount = 0;
-let couponCode = '';
+const imgPrice = 0.75;
+const fontPrice = 1.50;
+const bgPrice = 1.50;
+const stateTaxRates = { "NC":0.0675 }; // simplified for example
 
-function openCouponModal() {
-  document.getElementById('couponModal').style.display = 'flex';
-}
-function closeCouponModal() {
-  document.getElementById('couponModal').style.display = 'none';
-}
-function applyCoupon(code, value) {
-  couponCode = code;
-  discount = value;
-  document.getElementById('appliedCoupon').innerText = `${code} applied (${value*100}% off)`;
-  closeCouponModal();
-}
+function calculateTotal() {
+  const imgQty = parseInt(document.getElementById('imgQty').value) || 0;
+  const fontQty = parseInt(document.getElementById('fontQty').value) || 0;
+  const bgQty = parseInt(document.getElementById('bgQty').value) || 0;
+  const subtotal = imgQty*imgPrice + fontQty*fontPrice + bgQty*bgPrice;
 
-// Pass data to Step 2
-function goToPayment() {
-  const imgQty = document.getElementById('imgQty').value;
-  const imgType = document.getElementById('imgType').value;
-  const fontQty = document.getElementById('fontQty').value;
-  const fontSelect = document.getElementById('fontSelect').value;
-  const bgQty = document.getElementById('bgQty').value;
-  const bgTheme = document.getElementById('bgTheme').value;
+  const discount = parseFloat(document.getElementById('discount').value) || 0;
+  const subtotalAfterDiscount = subtotal*(1-discount);
+
   const state = document.getElementById('stateSelect').value;
+  const tax = subtotalAfterDiscount*(stateTaxRates[state] || 0.0675);
 
-  const params = new URLSearchParams({
-    imgQty,imgService:imgType,
-    fontQty,fontSelect,
-    bgQty,bgTheme,
-    state,
-    couponCode,
-    discount
-  });
+  const total = subtotalAfterDiscount + tax;
+  const points = Math.floor(total*10);
 
-  window.location.href = `payment_step2.html?${params.toString()}`;
+  document.getElementById('totalSummary').innerText = `Total: $${total.toFixed(2)} (Tax: $${tax.toFixed(2)})`;
+  document.getElementById('pointsSummary').innerText = `Points Earned: ${points}`;
+}
+
+function openCouponPopup() {
+  document.getElementById('couponPopup').style.display='flex';
+}
+
+function applyCoupon() {
+  const code = document.getElementById('popupCode').value.trim().toUpperCase();
+  let discount = 0;
+
+  if(code === 'BLACKFRIDAY') discount = 0.20;
+  else if(code === 'THANKSGIVING') discount = 0.15;
+  else if(code === 'CHRISTMAS') discount = 0.25;
+  else alert('Invalid code');
+
+  document.getElementById('couponCode').value = code;
+  document.getElementById('discount').value = discount;
+  document.getElementById('couponPopup').style.display='none';
+  calculateTotal();
+}
+
+['imgQty','fontQty','bgQty','stateSelect'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',calculateTotal);
+});
+calculateTotal();
+
+function goToStep2(){
+  const params = new URLSearchParams();
+  params.set('imgQty', document.getElementById('imgQty').value);
+  params.set('imgService', document.getElementById('imgService').value);
+  params.set('fontQty', document.getElementById('fontQty').value);
+  params.set('fontSelect', document.getElementById('fontSelect').value);
+  params.set('bgQty', document.getElementById('bgQty').value);
+  params.set('bgTheme', document.getElementById('bgTheme').value);
+  params.set('state', document.getElementById('stateSelect').value);
+  params.set('couponCode', document.getElementById('couponCode').value);
+  params.set('discount', document.getElementById('discount').value);
+
+  window.location.href = 'payment_step2.html?' + params.toString();
 }
 </script>
 </body>
