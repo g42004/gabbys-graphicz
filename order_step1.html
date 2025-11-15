@@ -3,64 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Step 1: Order</title>
+<title>Gabby's Graphicz - Step 1</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Babaloo&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Roboto', sans-serif; background:#ffe6f0; padding:2rem; }
-  h1 { font-family:'Babaloo', cursive; font-size:2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
-  .container { max-width:900px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-  .section { margin-bottom:2rem; }
-  .summary { font-weight:bold; margin-top:1rem; }
-  .popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:50; }
-  .popup-content { background:#fff; padding:2rem; border-radius:12px; text-align:center; max-width:400px; }
-  .popup-content button { margin-top:1rem; background:#F472B6; color:#fff; padding:0.5rem 1rem; border:none; border-radius:8px; cursor:pointer; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    padding: 2rem;
+  }
+  h1 { font-family: 'Babaloo', cursive; font-size: 2.5rem; color: white; text-align: center; margin-bottom: 1rem; text-shadow: 1px 1px 4px #000; }
+  .container { max-width: 900px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+  .service-section { margin-bottom:1.5rem; }
+  label { font-weight:bold; display:block; margin-bottom:0.5rem; }
+  input[type="number"], select, input[type="text"] { width:100%; padding:0.5rem; border-radius:8px; border:1px solid #ccc; margin-bottom:0.5rem; }
+  button { background:#F472B6; color:white; font-weight:bold; padding:0.8rem 1.2rem; border:none; border-radius:8px; cursor:pointer; }
+  button:hover { background:#EC4899; }
+  iframe { border-radius:8px; margin-bottom:1rem; width:100%; height:300px; }
+  .popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; }
+  .popup-content { background:white; padding:2rem; border-radius:12px; text-align:center; }
+  .close-btn { margin-top:1rem; padding:0.5rem 1rem; background:#F472B6; color:white; border:none; border-radius:8px; cursor:pointer; }
 </style>
 </head>
 <body>
+
+<h1>Gabby's Graphicz - Design Services</h1>
+
 <div class="container">
-<h1>Step 1: Order Your Design</h1>
 
-<form id="orderForm">
-
-  <!-- Images & Illustrations -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Images & Illustrations ($0.75 - $1.00 per image)</h2>
-    <label>Quantity: <input type="number" id="imgQty" min="0" value="0" class="border rounded px-2 py-1"></label>
-    <label>Type of design: <input type="text" id="imgService" placeholder="Poster, Logo, Flyer..." class="border rounded px-2 py-1"></label>
-    <div class="mt-2" id="imgSamples">
-      <!-- Sample embeds -->
-      <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; overflow:hidden; border-radius:8px; margin-top:0.5rem;">
-        <iframe src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed" style="position:absolute; width:100%; height:100%; border:none;"></iframe>
-      </div>
-    </div>
+  <!-- Sample Images & Illustrations -->
+  <div class="service-section">
+    <label>Sample Images & Illustrations</label>
+    <iframe src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"></iframe>
+    <iframe src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"></iframe>
+    <iframe src="https://www.canva.com/design/DAFdwrre3oU/r19HnMhEn9r0LaqH4LJmVQ/view?embed"></iframe>
+    <input type="number" id="imgQty" min="0" value="0" placeholder="Quantity ($0.75 - $1.00 each)">
+    <input type="text" id="imgType" placeholder="What type (poster, flyer, logo, birthday, etc.)">
   </div>
 
   <!-- Fonts & Typography -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Fonts & Typography ($1.50 - $3.50 per font)</h2>
-    <label>Quantity: <input type="number" id="fontQty" min="0" value="0" class="border rounded px-2 py-1"></label>
-    <label>Font choice: 
-      <select id="fontSelect" class="border rounded px-2 py-1">
-        <option value="Babaloo">Babaloo</option>
-        <option value="Anton">Anton</option>
-        <option value="Poppins">Poppins</option>
-        <option value="Montserrat">Montserrat</option>
-        <option value="Roboto">Roboto</option>
-      </select>
-    </label>
+  <div class="service-section">
+    <label>Fonts & Typography</label>
+    <select id="fontSelect">
+      <option value="Babaloo">Babaloo</option>
+      <option value="Montserrat">Montserrat</option>
+      <option value="Lobster">Lobster</option>
+      <option value="Poppins">Poppins</option>
+      <option value="Pacifico">Pacifico</option>
+    </select>
+    <input type="number" id="fontQty" min="0" value="0" placeholder="Quantity ($1.50 - $3.50 each)">
   </div>
 
   <!-- Backgrounds & Textures -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Backgrounds & Textures ($1.50 - $3.50 per design)</h2>
-    <label>Quantity: <input type="number" id="bgQty" min="0" value="0" class="border rounded px-2 py-1"></label>
-    <label>Theme / Color: <input type="text" id="bgTheme" placeholder="Cheetah, Pastel, Minimal..." class="border rounded px-2 py-1"></label>
+  <div class="service-section">
+    <label>Backgrounds & Textures</label>
+    <select id="bgSelect">
+      <option value="Cheetah">Cheetah</option>
+      <option value="Rainbow">Rainbow</option>
+      <option value="Minimal">Minimal</option>
+      <option value="Retro">Retro</option>
+    </select>
+    <input type="number" id="bgQty" min="0" value="0" placeholder="Quantity ($1.50 - $3.50 each)">
   </div>
 
-  <!-- State Selection -->
-  <div class="section">
-    <h2 class="text-xl font-bold mb-2">Select your state</h2>
-    <select id="stateSelect" class="border rounded px-2 py-1">
+  <!-- State selection -->
+  <div class="service-section">
+    <label>Select Your State</label>
+    <select id="stateSelect">
+      <option value="NC">North Carolina</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
@@ -93,7 +103,6 @@
       <option value="NJ">New Jersey</option>
       <option value="NM">New Mexico</option>
       <option value="NY">New York</option>
-      <option value="NC" selected>North Carolina</option>
       <option value="ND">North Dakota</option>
       <option value="OH">Ohio</option>
       <option value="OK">Oklahoma</option>
@@ -114,96 +123,65 @@
     </select>
   </div>
 
-  <!-- Coupon code -->
-  <div class="section">
-    <button type="button" onclick="openCouponPopup()" class="bg-pink-400 text-white px-4 py-2 rounded">Enter Coupon Code</button>
-    <input type="hidden" id="couponCode" value="">
-    <input type="hidden" id="discount" value="0">
+  <!-- Coupon popup button -->
+  <button onclick="showCouponPopup()">Apply Coupon</button>
+
+  <!-- SMS signup -->
+  <div class="service-section">
+    <label>Sign up for SMS notifications:</label>
+    <input type="text" id="phoneNumber" placeholder="Enter your phone number">
   </div>
 
-  <!-- Summary & Proceed -->
-  <div class="section summary">
-    <p id="totalSummary">Total: $0.00</p>
-    <p id="pointsSummary">Points Earned: 0</p>
-  </div>
-
-  <button type="button" onclick="goToStep2()" class="bg-pink-500 text-white px-6 py-3 rounded w-full">Proceed to Payment</button>
-</form>
+  <!-- Checkout button -->
+  <button onclick="goToStep2()">Proceed to Payment</button>
 </div>
 
-<!-- Popup Coupon -->
+<!-- Coupon Popup -->
 <div class="popup" id="couponPopup">
   <div class="popup-content">
-    <h2>Enter Coupon Code</h2>
-    <input type="text" id="popupCode" placeholder="Enter code" class="border rounded px-2 py-1">
-    <br>
-    <button onclick="applyCoupon()">Apply</button>
+    <h2>Available Coupons</h2>
+    <p>Black Friday: BF2025 (15% off)</p>
+    <p>Thanksgiving: TG2025 (10% off)</p>
+    <p>Christmas: XMAS2025 (20% off)</p>
+    <input type="text" id="couponInput" placeholder="Enter coupon code">
+    <button class="close-btn" onclick="applyCoupon()">Apply</button>
+    <button class="close-btn" onclick="closeCoupon()">Close</button>
   </div>
 </div>
 
 <script>
-const imgPrice = 0.75;
-const fontPrice = 1.50;
-const bgPrice = 1.50;
-const stateTaxRates = { "NC":0.0675 }; // simplified for example
-
-function calculateTotal() {
-  const imgQty = parseInt(document.getElementById('imgQty').value) || 0;
-  const fontQty = parseInt(document.getElementById('fontQty').value) || 0;
-  const bgQty = parseInt(document.getElementById('bgQty').value) || 0;
-  const subtotal = imgQty*imgPrice + fontQty*fontPrice + bgQty*bgPrice;
-
-  const discount = parseFloat(document.getElementById('discount').value) || 0;
-  const subtotalAfterDiscount = subtotal*(1-discount);
-
-  const state = document.getElementById('stateSelect').value;
-  const tax = subtotalAfterDiscount*(stateTaxRates[state] || 0.0675);
-
-  const total = subtotalAfterDiscount + tax;
-  const points = Math.floor(total*10);
-
-  document.getElementById('totalSummary').innerText = `Total: $${total.toFixed(2)} (Tax: $${tax.toFixed(2)})`;
-  document.getElementById('pointsSummary').innerText = `Points Earned: ${points}`;
+function showCouponPopup(){
+  document.getElementById('couponPopup').style.display = 'flex';
 }
-
-function openCouponPopup() {
-  document.getElementById('couponPopup').style.display='flex';
+function closeCoupon(){
+  document.getElementById('couponPopup').style.display = 'none';
 }
-
-function applyCoupon() {
-  const code = document.getElementById('popupCode').value.trim().toUpperCase();
-  let discount = 0;
-
-  if(code === 'BLACKFRIDAY') discount = 0.20;
-  else if(code === 'THANKSGIVING') discount = 0.15;
-  else if(code === 'CHRISTMAS') discount = 0.25;
-  else alert('Invalid code');
-
-  document.getElementById('couponCode').value = code;
-  document.getElementById('discount').value = discount;
-  document.getElementById('couponPopup').style.display='none';
-  calculateTotal();
+function applyCoupon(){
+  const code = document.getElementById('couponInput').value.toUpperCase();
+  if(code === 'BF2025') { alert('Black Friday 15% discount applied!'); } 
+  else if(code === 'TG2025') { alert('Thanksgiving 10% discount applied!'); } 
+  else if(code === 'XMAS2025') { alert('Christmas 20% discount applied!'); } 
+  else { alert('Invalid coupon code'); return; }
+  closeCoupon();
 }
-
-['imgQty','fontQty','bgQty','stateSelect'].forEach(id=>{
-  document.getElementById(id).addEventListener('input',calculateTotal);
-});
-calculateTotal();
 
 function goToStep2(){
-  const params = new URLSearchParams();
-  params.set('imgQty', document.getElementById('imgQty').value);
-  params.set('imgService', document.getElementById('imgService').value);
-  params.set('fontQty', document.getElementById('fontQty').value);
-  params.set('fontSelect', document.getElementById('fontSelect').value);
-  params.set('bgQty', document.getElementById('bgQty').value);
-  params.set('bgTheme', document.getElementById('bgTheme').value);
-  params.set('state', document.getElementById('stateSelect').value);
-  params.set('couponCode', document.getElementById('couponCode').value);
-  params.set('discount', document.getElementById('discount').value);
+  const imgQty = document.getElementById('imgQty').value;
+  const imgType = document.getElementById('imgType').value;
+  const fontQty = document.getElementById('fontQty').value;
+  const fontSelect = document.getElementById('fontSelect').value;
+  const bgQty = document.getElementById('bgQty').value;
+  const bgSelect = document.getElementById('bgSelect').value;
+  const state = document.getElementById('stateSelect').value;
+  const couponCode = document.getElementById('couponInput').value.toUpperCase();
+  const phoneNumber = document.getElementById('phoneNumber').value;
 
-  window.location.href = 'payment_step2.html?' + params.toString();
+  const urlParams = new URLSearchParams({
+    imgQty, imgService: imgType, fontQty, fontSelect, bgQty, bgTheme: bgSelect, state, couponCode, phoneNumber
+  });
+  window.location.href = `payment_step2.html?${urlParams.toString()}`;
 }
 </script>
+
 </body>
 </html>
