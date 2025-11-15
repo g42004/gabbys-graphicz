@@ -1,57 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gabby's Graphicz - Step 3: Confirmation</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabby's Graphicz - Step 3: Confirmation</title>
+<link href="https://fonts.googleapis.com/css2?family=Babaloo&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f7f7f9;
+        font-family: 'Inter', Arial, sans-serif;
+        background-color: #fff0f5; /* soft pink */
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
     }
-  </style>
+    h1 { font-family: 'Babaloo', cursive; text-align: center; color: #F472B6; font-size: 3rem; }
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    section { margin-top: 1.5rem; padding:1rem; border-radius:8px; border:1px solid #ddd; }
+    .order-summary { font-size: 1rem; color: #333; margin-bottom: 1rem; }
+    .warning { color: #b91c1c; font-weight: bold; margin-top: 1rem; text-align:center; }
+    .policy h3 { margin-top:1rem; color:#5A3E36; }
+    .policy p { font-size:0.95rem; line-height:1.5; }
+    .button-base {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background: #F472B6;
+        color: white;
+        border: none;
+        font-weight: bold;
+        border-radius:8px;
+        margin-top: 2rem;
+        cursor:pointer;
+        box-shadow: 0 4px #D97706;
+        transition: 0.2s;
+        text-align:center;
+    }
+    .button-base:hover { background:#EC4899; }
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
+<body>
+<div class="container">
+    <h1>Confirm Your Order</h1>
+    <p class="warning">⚠️ Please double-check your order details before proceeding! Once payment is processed, it cannot be reversed without following our refund policy.</p>
 
-  <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-8 text-center space-y-6">
-    <h1 class="text-3xl font-extrabold text-green-600">🎉 Thank You!</h1>
-    <p class="text-gray-700 text-lg">Your payment has been processed successfully.</p>
+    <section class="order-summary">
+        <h2 class="text-lg font-semibold mb-2">Order Summary</h2>
+        <div id="summaryDetails"></div>
+    </section>
 
-    <div id="order-summary" class="bg-gray-100 rounded-lg p-4 text-left text-gray-800">
-      Loading order details...
-    </div>
+    <section class="policy">
+        <h3>Terms & Services</h3>
+        <p>By completing this purchase, you agree to Gabby's Graphicz terms and services. All digital products delivered are licensed for personal or commercial use as specified at checkout. Redistribution or resale without permission is prohibited.</p>
 
-    <button onclick="window.location.href='order_step1.html'"
-            class="mt-6 w-full py-3 px-4 rounded-lg shadow-md text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-      Start a New Order
-    </button>
-  </div>
+        <h3>Refund Policy</h3>
+        <p>Refunds are only available if the digital product was not delivered, or if there is a significant error in the design not caused by customer input. Once the product is downloaded, no refunds will be issued. All refund requests must be submitted within 7 days of delivery.</p>
+    </section>
 
-  <script>
-    // Read URL params passed from Step 2
+    <button class="button-base" onclick="completeOrder()">Proceed to Payment</button>
+</div>
+
+<script>
+    // Grab parameters from URL
     const params = new URLSearchParams(window.location.search);
-    const amount = params.get('amount');
-    const img = params.get('img');
-    const font = params.get('font');
-    const bg = params.get('bg');
-    const coupon = params.get('coupon');
-    const discount = params.get('discount');
-    const couponCode = params.get('couponCode');
-    const method = params.get('method');
+    const imgQty = params.get('imgQty') || 0;
+    const fontQty = params.get('fontQty') || 0;
+    const bgQty = params.get('bgQty') || 0;
+    const imgService = params.get('imgService') || 'N/A';
+    const fontSelect = params.get('fontSelect') || 'N/A';
+    const isStudent = params.get('isStudent') || 'no';
+    const state = params.get('state') || 'Other';
+    const amount = params.get('amount') || 0;
+    const couponCode = params.get('couponCode') || 'None';
+    const discount = parseFloat(params.get('discount')) || 0;
 
-    const summary = `
-      <h2 class="text-xl font-bold mb-2">Order Summary</h2>
-      <ul class="list-disc pl-5 space-y-1">
-        <li>Images: ${img}</li>
-        <li>Fonts: ${font}</li>
-        <li>Backgrounds: ${bg}</li>
-        ${coupon === 'true' ? `<li>Coupon Applied: ${couponCode} (${(discount*100).toFixed(0)}% off)</li>` : ''}
-        <li>Payment Method: ${method ? method.toUpperCase() : 'CARD'}</li>
-        <li><strong>Total Paid: $${amount}</strong></li>
-      </ul>
+    const summaryDiv = document.getElementById('summaryDetails');
+    summaryDiv.innerHTML = `
+        <p><strong>Images & Illustrations:</strong> ${imgQty} (${imgService})</p>
+        <p><strong>Fonts & Typography:</strong> ${fontQty} (${fontSelect})</p>
+        <p><strong>Backgrounds & Textures:</strong> ${bgQty}</p>
+        <p><strong>College Discount:</strong> ${isStudent==='yes' ? 'Applied (10–20% off)' : 'Not Applied'}</p>
+        <p><strong>Coupon Code:</strong> ${couponCode} (${discount*100}%)</p>
+        <p><strong>State Tax:</strong> ${state}</p>
+        <p style="margin-top:1rem; font-size:1.2rem;"><strong>Total:</strong> $${parseFloat(amount).toFixed(2)}</p>
     `;
-    document.getElementById('order-summary').innerHTML = summary;
+
+    function completeOrder(){
+        // This is where you can integrate with PayPal or other payment gateways
+        alert("Redirecting to payment gateway...");
+        // Example redirect:
+        // window.location.href = "https://www.paypal.com/paypalme/youraccount?amount=" + amount;
+    }
+</script>
+</body>
+</html>
+
   </script>
 </body>
 </html>
