@@ -1,352 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Step 2 Payment</title>
+<!-- PAYMENT OPTIONS SECTION -->
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+<div class="card mt-6">
 
-<style>
-  body{
-    font-family:'Roboto',sans-serif;
-    background:#ffe4f2;
-    min-height:100vh;
-    padding:2rem;
-  }
-
-  .main-box{
-    max-width:900px;
-    margin:auto;
-    background:white;
-    border-radius:20px;
-    padding:2rem;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
-  }
-
-  .title{
-    font-family:'Baloo 2',cursive;
-    color:#ff4fa3;
-    font-size:3rem;
-    text-align:center;
-    margin-bottom:1rem;
-  }
-
-  .summary-box{
-    background:#fff0f7;
-    border:2px solid #ffb6d9;
-    border-radius:15px;
-    padding:1rem;
-    margin-bottom:1.5rem;
-  }
-
-  .payment-option{
-    border:2px solid #ddd;
-    border-radius:15px;
-    padding:1rem;
-    margin-bottom:1rem;
-    cursor:pointer;
-    transition:0.3s;
-  }
-
-  .payment-option:hover{
-    border-color:#ff4fa3;
-    background:#fff4fa;
-  }
-
-  .payment-option.active{
-    border-color:#ff4fa3;
-    background:#fff0f7;
-  }
-
-  .pay-btn{
-    width:100%;
-    background:#ff4fa3;
-    color:white;
-    padding:1rem;
-    border:none;
-    border-radius:12px;
-    font-size:1.1rem;
-    font-weight:bold;
-    margin-top:1.5rem;
-    cursor:pointer;
-    transition:0.3s;
-  }
-
-  .pay-btn:hover{
-    background:#e63d90;
-  }
-
-  .cart-icon{
-    position:absolute;
-    top:20px;
-    right:20px;
-    background:white;
-    border-radius:50%;
-    padding:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
-    font-size:1.4rem;
-  }
-
-  .card-form input{
-    width:100%;
-    padding:0.75rem;
-    border:1px solid #ccc;
-    border-radius:10px;
-    margin-top:0.5rem;
-    margin-bottom:1rem;
-  }
-
-  .total-line{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:0.5rem;
-  }
-
-  .grand-total{
-    font-size:1.5rem;
-    font-weight:bold;
-    color:#ff4fa3;
-  }
-
-</style>
-</head>
-<body>
-
-<div class="cart-icon">
-🛍️
-</div>
-
-<div class="main-box">
-
-<div class="title">
-Gabby's Graphicz
-</div>
-
-<h2 class="text-2xl font-bold text-center mb-6">
-Step 2: Payment
+<h2 class="section-title">
+💳 Choose Payment Method
 </h2>
 
-<!-- ORDER SUMMARY -->
-<div class="summary-box">
+<p class="text-gray-500 mb-6">
+Secure checkout powered by trusted payment providers.
+</p>
 
-<h3 class="text-xl font-bold mb-3">
-Order Summary
+<!-- PAYPAL -->
+<a
+href="https://www.paypal.com/signin"
+target="_blank"
+class="payment-option flex items-center justify-between">
+
+<div class="flex items-center gap-4">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+class="h-10"
+alt="PayPal Logo">
+
+<div>
+<h3 class="font-bold text-lg">
+PayPal
 </h3>
 
-<div id="orderSummary"></div>
-
-<hr class="my-4">
-
-<div class="total-line">
-<span>Subtotal:</span>
-<span id="subtotalText">$0.00</span>
-</div>
-
-<div class="total-line">
-<span>Discount:</span>
-<span id="discountText">-$0.00</span>
-</div>
-
-<div class="total-line">
-<span>Tax:</span>
-<span id="taxText">$0.00</span>
-</div>
-
-<div class="total-line grand-total">
-<span>Total:</span>
-<span id="totalText">$0.00</span>
+<p class="text-sm text-gray-500">
+Pay now or Pay in 4
+</p>
 </div>
 
 </div>
 
-<!-- PAYMENT OPTIONS -->
-<h3 class="text-xl font-bold mb-4">
-Choose Payment Method
+<span class="text-pink-500 font-bold">
+Login →
+</span>
+
+</a>
+
+<!-- KLARNA -->
+<a
+href="https://www.klarna.com/us/"
+target="_blank"
+class="payment-option flex items-center justify-between mt-4">
+
+<div class="flex items-center gap-4">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/4/40/Klarna_Payment_Badge.svg"
+class="h-10"
+alt="Klarna Logo">
+
+<div>
+
+<h3 class="font-bold text-lg">
+Klarna
 </h3>
 
-<div class="payment-option active" onclick="selectPayment('card',this)">
-💳 Credit / Debit Card
-</div>
+<p class="text-sm text-gray-500">
+Pay Later in installments
+</p>
 
-<div class="payment-option" onclick="selectPayment('paypal',this)">
-🟦 PayPal
-</div>
-
-<div class="payment-option" onclick="selectPayment('cashapp',this)">
-💵 Cash App
-</div>
-
-<div class="payment-option" onclick="selectPayment('applepay',this)">
-🍎 Apple Pay
-</div>
-
-<div class="payment-option" onclick="selectPayment('googlepay',this)">
-🌐 Google Pay
-</div>
-
-<!-- CARD FORM -->
-<div id="cardForm" class="card-form mt-6">
-
-<input type="text" placeholder="Cardholder Name">
-
-<input type="text" placeholder="Card Number">
-
-<div class="grid grid-cols-2 gap-4">
-  <input type="text" placeholder="MM/YY">
-  <input type="text" placeholder="CVV">
 </div>
 
 </div>
 
-<!-- PAY BUTTON -->
-<button class="pay-btn" onclick="completePayment()">
-Complete Payment
-</button>
+<span class="text-pink-500 font-bold">
+Open →
+</span>
+
+</a>
+
+<!-- AFFIRM -->
+<a
+href="https://www.affirm.com/"
+target="_blank"
+class="payment-option flex items-center justify-between mt-4">
+
+<div class="flex items-center gap-4">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Affirm_logo.svg"
+class="h-10"
+alt="Affirm Logo">
+
+<div>
+
+<h3 class="font-bold text-lg">
+Affirm
+</h3>
+
+<p class="text-sm text-gray-500">
+Split payments over time
+</p>
 
 </div>
 
-<script>
-
-// GET URL DATA
-const params = new URLSearchParams(window.location.search);
-
-const imgQty = parseInt(params.get('imgQty')) || 0;
-const fontQty = parseInt(params.get('fontQty')) || 0;
-const bgQty = parseInt(params.get('bgQty')) || 0;
-
-const imgService = params.get('imgService') || 'None';
-const fontSelect = params.get('fontSelect') || 'None';
-const bgTheme = params.get('bgTheme') || 'None';
-
-const state = params.get('state') || 'NC';
-
-const couponCode = params.get('couponCode') || '';
-const discountPercent = parseFloat(params.get('discount')) || 0;
-
-// PRICES
-const imgPrice = 1.00;
-const fontPrice = 3.50;
-const bgPrice = 3.50;
-
-// TAXES
-const stateTax = {
-  NC:0.0475, AL:0.04, AK:0, AZ:0.056, AR:0.065, CA:0.0725,
-  CO:0.029, CT:0.0635, DE:0, FL:0.06, GA:0.04,
-  HI:0.04, ID:0.06, IL:0.0625, IN:0.07, IA:0.06,
-  KS:0.065, KY:0.06, LA:0.0445, ME:0.055, MD:0.06,
-  MA:0.0625, MI:0.06, MN:0.06875, MS:0.07, MO:0.04225,
-  MT:0, NE:0.055, NV:0.0685, NH:0, NJ:0.06625,
-  NM:0.05125, NY:0.04, ND:0.05, OH:0.0575,
-  OK:0.045, OR:0, PA:0.06, RI:0.07, SC:0.06,
-  SD:0.045, TN:0.07, TX:0.0625, UT:0.0485,
-  VT:0.06, VA:0.053, WA:0.065, WV:0.06,
-  WI:0.05, WY:0.04
-};
-
-// CALCULATIONS
-let subtotal =
-(imgQty * imgPrice) +
-(fontQty * fontPrice) +
-(bgQty * bgPrice);
-
-let discountAmount = subtotal * discountPercent;
-
-let discountedSubtotal = subtotal - discountAmount;
-
-let taxRate = stateTax[state] || 0.05;
-
-let taxAmount = discountedSubtotal * taxRate;
-
-let total = discountedSubtotal + taxAmount;
-
-// DISPLAY ORDER
-document.getElementById('orderSummary').innerHTML = `
-<div class="mb-2">
-<strong>Images:</strong> ${imgQty} (${imgService})
 </div>
 
-<div class="mb-2">
-<strong>Fonts:</strong> ${fontQty} (${fontSelect})
+<span class="text-pink-500 font-bold">
+Open →
+</span>
+
+</a>
+
+<!-- AFTERPAY -->
+<a
+href="https://www.afterpay.com/en-US"
+target="_blank"
+class="payment-option flex items-center justify-between mt-4">
+
+<div class="flex items-center gap-4">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Afterpay_logo.svg"
+class="h-10"
+alt="Afterpay Logo">
+
+<div>
+
+<h3 class="font-bold text-lg">
+Afterpay
+</h3>
+
+<p class="text-sm text-gray-500">
+Buy now, pay later
+</p>
+
 </div>
 
-<div class="mb-2">
-<strong>Backgrounds:</strong> ${bgQty} (${bgTheme})
 </div>
 
-<div class="mb-2">
-<strong>State:</strong> ${state}
+<span class="text-pink-500 font-bold">
+Open →
+</span>
+
+</a>
+
+<!-- CASH APP -->
+<a
+href="https://cash.app/"
+target="_blank"
+class="payment-option flex items-center justify-between mt-4">
+
+<div class="flex items-center gap-4">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/3/30/Cash_App-Logo.wine.svg"
+class="h-10"
+alt="Cash App Logo">
+
+<div>
+
+<h3 class="font-bold text-lg">
+Cash App Pay
+</h3>
+
+<p class="text-sm text-gray-500">
+Cash App & Afterpay available
+</p>
+
 </div>
 
-<div class="mb-2">
-<strong>Coupon:</strong> ${couponCode || 'None'}
 </div>
-`;
 
-document.getElementById('subtotalText').innerText =
-"$" + subtotal.toFixed(2);
+<span class="text-pink-500 font-bold">
+Open →
+</span>
 
-document.getElementById('discountText').innerText =
-"-$" + discountAmount.toFixed(2);
+</a>
 
-document.getElementById('taxText').innerText =
-"$" + taxAmount.toFixed(2);
+<!-- APPLE PAY -->
+<div
+class="payment-option flex items-center justify-between mt-4 cursor-pointer"
+onclick="selectPayment('Apple Pay')">
 
-document.getElementById('totalText').innerText =
-"$" + total.toFixed(2);
+<div class="flex items-center gap-4">
 
-// PAYMENT METHOD
-let selectedPayment = 'card';
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg"
+class="h-10"
+alt="Apple Pay Logo">
 
-function selectPayment(method, element){
+<div>
 
-  selectedPayment = method;
+<h3 class="font-bold text-lg">
+Apple Pay
+</h3>
 
-  document.querySelectorAll('.payment-option')
-  .forEach(option => option.classList.remove('active'));
+<p class="text-sm text-gray-500">
+Fast checkout with Face ID
+</p>
 
-  element.classList.add('active');
+</div>
 
-  // SHOW/HIDE CARD FORM
-  if(method === 'card'){
-    document.getElementById('cardForm').style.display = 'block';
-  } else {
-    document.getElementById('cardForm').style.display = 'none';
-  }
+</div>
+
+<span class="text-pink-500 font-bold">
+Select →
+</span>
+
+</div>
+
+<!-- GOOGLE PAY -->
+<div
+class="payment-option flex items-center justify-between mt-4 cursor-pointer"
+onclick="selectPayment('Google Pay')">
+
+<div class="flex items-center gap-4">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg"
+class="h-10"
+alt="Google Pay Logo">
+
+<div>
+
+<h3 class="font-bold text-lg">
+Google Pay
+</h3>
+
+<p class="text-sm text-gray-500">
+Secure Android checkout
+</p>
+
+</div>
+
+</div>
+
+<span class="text-pink-500 font-bold">
+Select →
+</span>
+
+</div>
+
+</div>
+
+<style>
+
+.payment-option{
+
+  width:100%;
+
+  background:white;
+
+  border:2px solid #f3d0e2;
+
+  border-radius:22px;
+
+  padding:1.2rem;
+
+  transition:0.3s;
+
+  text-decoration:none;
 
 }
 
-// COMPLETE PAYMENT
-function completePayment(){
+.payment-option:hover{
 
-  const finalParams = new URLSearchParams();
+  border-color:#ff4fa3;
 
-  finalParams.set('imgQty', imgQty);
-  finalParams.set('fontQty', fontQty);
-  finalParams.set('bgQty', bgQty);
+  background:#fff0f7;
 
-  finalParams.set('imgService', imgService);
-  finalParams.set('fontSelect', fontSelect);
-  finalParams.set('bgTheme', bgTheme);
+  transform:translateY(-2px);
 
-  finalParams.set('state', state);
+  box-shadow:0 8px 18px rgba(255,79,163,0.15);
 
-  finalParams.set('couponCode', couponCode);
+}
 
-  finalParams.set('subtotal', subtotal.toFixed(2));
-  finalParams.set('discountAmount', discountAmount.toFixed(2));
-  finalParams.set('taxAmount', taxAmount.toFixed(2));
-  finalParams.set('total', total.toFixed(2));
+</style>
 
-  finalParams.set('paymentMethod', selectedPayment);
+<script>
 
-  window.location.href =
-  `confirmation_step3.html?${finalParams.toString()}`;
+// PAYMENT SELECT FUNCTION
+function selectPayment(method){
+
+  alert(method + " selected successfully!");
 
 }
 
 </script>
-
-</body>
-</html>
