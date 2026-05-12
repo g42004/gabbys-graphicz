@@ -804,3 +804,761 @@ calculateTotal();
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gabby's Graphicz - Step 1: Order</title>
+
+<!-- HEART ICON -->
+<link rel="icon"
+type="image/png"
+href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+body{
+
+  font-family:'Roboto',sans-serif;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ffe4f2,
+  #ffd2ea,
+  #ffc4e3,
+  #ffb5db
+  );
+
+  padding:2rem;
+
+  min-height:100vh;
+
+}
+
+h1{
+
+  font-family:'Baloo 2',cursive;
+
+  font-size:3rem;
+
+  text-align:center;
+
+  color:#F472B6;
+
+  margin-bottom:2rem;
+
+}
+
+.service-section{
+
+  background:white;
+
+  padding:1.5rem;
+
+  border-radius:20px;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+  margin-bottom:2rem;
+
+}
+
+.service-section h2{
+
+  font-size:2rem;
+
+  font-weight:bold;
+
+  color:#F472B6;
+
+  margin-bottom:0.5rem;
+
+}
+
+label{
+
+  display:block;
+
+  margin-top:1rem;
+
+  font-weight:600;
+
+}
+
+input,
+select{
+
+  width:100%;
+
+  padding:0.9rem;
+
+  margin-top:0.5rem;
+
+  border-radius:12px;
+
+  border:2px solid #f3d0e2;
+
+}
+
+.samples{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+  gap:1rem;
+
+  margin-top:2rem;
+
+}
+
+.samples iframe{
+
+  width:100%;
+
+  height:320px;
+
+  border:none;
+
+  border-radius:16px;
+
+}
+
+.sms-signup{
+
+  background:
+  linear-gradient(
+  90deg,
+  red,
+  orange,
+  yellow,
+  green,
+  blue,
+  indigo,
+  violet
+  );
+
+  padding:2rem;
+
+  border-radius:20px;
+
+  margin-top:2rem;
+
+  color:white;
+
+  text-align:center;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+}
+
+.sms-signup input{
+
+  color:black;
+
+  margin-top:1rem;
+
+}
+
+.coupon-popup{
+
+  display:none;
+
+  position:fixed;
+
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  height:100%;
+
+  background:rgba(0,0,0,0.65);
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:100;
+
+}
+
+.coupon-content{
+
+  background:white;
+
+  padding:2rem;
+
+  border-radius:25px;
+
+  max-width:500px;
+
+  width:90%;
+
+  text-align:center;
+
+}
+
+.close-popup{
+
+  cursor:pointer;
+
+  margin-top:1rem;
+
+  background:#F472B6;
+
+  color:white;
+
+  padding:0.8rem 1rem;
+
+  border-radius:12px;
+
+  font-weight:bold;
+
+}
+
+.total-box{
+
+  background:white;
+
+  padding:2rem;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+  margin-top:2rem;
+
+}
+
+.proceed-btn{
+
+  background:#9333EA;
+
+  color:white;
+
+  padding:1rem 2rem;
+
+  border-radius:15px;
+
+  font-size:1.1rem;
+
+  font-weight:bold;
+
+  margin-top:2rem;
+
+  transition:0.3s;
+
+}
+
+.proceed-btn:hover{
+
+  background:#7E22CE;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+💖 Gabby's Graphicz - Step 1
+</h1>
+
+<!-- IMAGES -->
+<div class="service-section">
+
+<h2>
+🖼 Images & Illustrations
+</h2>
+
+<p>
+Price per image:
+<strong>
+$0.75 - $1.00
+</strong>
+</p>
+
+<label>
+Quantity
+</label>
+
+<input
+type="number"
+min="0"
+value="0"
+id="imgQty"
+oninput="calculateTotal()">
+
+<label>
+Service Type
+</label>
+
+<select id="imgType">
+
+<option>Poster</option>
+<option>Flyer</option>
+<option>Logo</option>
+<option>Birthday</option>
+<option>Graduation</option>
+<option>Business Card</option>
+<option>Social Media Graphic</option>
+
+</select>
+
+<!-- SAMPLES -->
+<div class="samples">
+
+<iframe
+src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"
+allowfullscreen>
+</iframe>
+
+<iframe
+src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+<!-- FONTS -->
+<div class="service-section">
+
+<h2>
+🔤 Fonts & Typography Design
+</h2>
+
+<p>
+Price per font:
+<strong>
+$1.50 - $3.50
+</strong>
+</p>
+
+<label>
+Quantity
+</label>
+
+<input
+type="number"
+min="0"
+value="0"
+id="fontQty"
+oninput="calculateTotal()">
+
+<label>
+Font Choice
+</label>
+
+<select id="fontSelect">
+
+<option>Babaloo</option>
+<option>Pacifico</option>
+<option>Roboto</option>
+<option>Montserrat</option>
+<option>Poppins</option>
+<option>Anton</option>
+
+</select>
+
+</div>
+
+<!-- BACKGROUNDS -->
+<div class="service-section">
+
+<h2>
+🎨 Backgrounds & Textures
+</h2>
+
+<p>
+Price per design:
+<strong>
+$1.50 - $3.50
+</strong>
+</p>
+
+<label>
+Quantity
+</label>
+
+<input
+type="number"
+min="0"
+value="0"
+id="bgQty"
+oninput="calculateTotal()">
+
+<label>
+Theme
+</label>
+
+<input
+type="text"
+id="bgTheme"
+placeholder="Cheetah, Rainbow, Pastel, Y2K...">
+
+</div>
+
+<!-- STATE -->
+<div class="service-section">
+
+<h2>
+📍 State Selection
+</h2>
+
+<label>
+Select Your State
+</label>
+
+<select id="stateSelect"
+onchange="calculateTotal()">
+
+<option value="NC">North Carolina</option>
+<option value="CA">California</option>
+<option value="TX">Texas</option>
+<option value="FL">Florida</option>
+<option value="NY">New York</option>
+<option value="GA">Georgia</option>
+<option value="VA">Virginia</option>
+
+</select>
+
+</div>
+
+<!-- TOTAL -->
+<div class="total-box">
+
+<button
+onclick="showCoupon()"
+class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl font-bold transition">
+
+🎟 Apply Coupon
+
+</button>
+
+<p class="mt-6 text-3xl font-bold text-pink-500">
+
+Total:
+$<span id="totalAmount">0.00</span>
+
+</p>
+
+</div>
+
+<!-- SMS -->
+<div class="sms-signup">
+
+<h2 class="text-3xl font-bold">
+📱 SMS Notifications
+</h2>
+
+<p class="mt-3">
+Sign up for discounts, coupons, and order updates!
+</p>
+
+<input
+type="text"
+id="phoneNumber"
+placeholder="Enter your phone number">
+
+</div>
+
+<!-- COUPON POPUP -->
+<div id="couponPopup"
+class="coupon-popup">
+
+<div class="coupon-content">
+
+<h2 class="text-3xl font-bold text-pink-500 mb-5">
+🎉 Upcoming Holiday Coupons
+</h2>
+
+<button
+onclick="applyCoupon('MEMORIAL20',0.20)"
+class="bg-blue-600 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🇺🇸 Memorial Day — 20% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('SUMMER15',0.15)"
+class="bg-yellow-400 text-black px-4 py-3 rounded-xl w-full mb-3">
+
+☀️ Summer Sale — 15% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('JULY4',0.15)"
+class="bg-red-500 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🎆 Fourth of July — 15% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('SCHOOL10',0.10)"
+class="bg-purple-500 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+📚 Back To School — 10% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('SPOOKY25',0.25)"
+class="bg-orange-500 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🎃 Halloween — 25% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('THANKS20',0.20)"
+class="bg-amber-700 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🦃 Thanksgiving — 20% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('BLACKFRIDAY30',0.30)"
+class="bg-black text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🖤 Black Friday — 30% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('XMAS25',0.25)"
+class="bg-red-600 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🎄 Christmas — 25% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('NEWYEAR26',0.26)"
+class="bg-green-500 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🎊 New Year — 26% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('GRAD26',0.26)"
+class="bg-pink-500 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🎓 Graduation — 26% OFF
+
+</button>
+
+<button
+onclick="applyCoupon('BDAY20',0.20)"
+class="bg-cyan-500 text-white px-4 py-3 rounded-xl w-full mb-3">
+
+🎂 Birthday Coupon — 20% OFF
+
+</button>
+
+<div
+class="close-popup"
+onclick="closeCoupon()">
+
+Close
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NEXT -->
+<div class="text-center">
+
+<button
+onclick="goToStep2()"
+class="proceed-btn">
+
+Continue To Payment →
+
+</button>
+
+</div>
+
+<script>
+
+const stateTax = {
+
+NC:0.0475,
+CA:0.0725,
+TX:0.0625,
+FL:0.06,
+NY:0.04,
+GA:0.04,
+VA:0.053
+
+};
+
+let couponCode = '';
+let discount = 0;
+
+// SHOW COUPONS
+function showCoupon(){
+
+  document.getElementById('couponPopup')
+  .style.display='flex';
+
+}
+
+// CLOSE POPUP
+function closeCoupon(){
+
+  document.getElementById('couponPopup')
+  .style.display='none';
+
+}
+
+// APPLY COUPON
+function applyCoupon(code,disc){
+
+  couponCode = code;
+
+  discount = disc;
+
+  closeCoupon();
+
+  calculateTotal();
+
+  alert(`🎉 Coupon ${code} applied successfully!`);
+
+}
+
+// TOTAL
+function calculateTotal(){
+
+  const imgQty =
+  parseInt(document.getElementById('imgQty').value)||0;
+
+  const fontQty =
+  parseInt(document.getElementById('fontQty').value)||0;
+
+  const bgQty =
+  parseInt(document.getElementById('bgQty').value)||0;
+
+  const state =
+  document.getElementById('stateSelect').value;
+
+  const imgPrice = 1.00;
+  const fontPrice = 3.50;
+  const bgPrice = 3.50;
+
+  let subtotal =
+  (imgQty * imgPrice) +
+  (fontQty * fontPrice) +
+  (bgQty * bgPrice);
+
+  subtotal =
+  subtotal * (1 - discount);
+
+  const taxRate =
+  stateTax[state] || 0.05;
+
+  const total =
+  subtotal + (subtotal * taxRate);
+
+  document.getElementById('totalAmount')
+  .innerText = total.toFixed(2);
+
+}
+
+// GO TO STEP 2
+function goToStep2(){
+
+  const params =
+  new URLSearchParams();
+
+  params.set(
+    'imgQty',
+    document.getElementById('imgQty').value
+  );
+
+  params.set(
+    'fontQty',
+    document.getElementById('fontQty').value
+  );
+
+  params.set(
+    'bgQty',
+    document.getElementById('bgQty').value
+  );
+
+  params.set(
+    'imgService',
+    document.getElementById('imgType').value
+  );
+
+  params.set(
+    'fontSelect',
+    document.getElementById('fontSelect').value
+  );
+
+  params.set(
+    'bgTheme',
+    document.getElementById('bgTheme').value
+  );
+
+  params.set(
+    'state',
+    document.getElementById('stateSelect').value
+  );
+
+  params.set(
+    'couponCode',
+    couponCode
+  );
+
+  params.set(
+    'discount',
+    discount
+  );
+
+  params.set(
+    'phone',
+    document.getElementById('phoneNumber').value
+  );
+
+  params.set(
+    'total',
+    document.getElementById('totalAmount').innerText
+  );
+
+  window.location.href =
+  `payment_step2.html?${params.toString()}`;
+
+}
+
+// INIT
+calculateTotal();
+
+</script>
+
+</body>
+</html>
