@@ -3,108 +3,350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Order Confirmation</title>
+<title>Gabby's Graphicz - Step 2 Payment</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  body { font-family: 'Roboto', sans-serif; background:#ffe6f0; padding:2rem; }
-  .container { max-width:800px; margin:auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-  h1 { font-family: 'Babaloo', cursive; font-size:2.5rem; color:#F472B6; text-align:center; margin-bottom:1rem; }
-  .summary { margin-top:1rem; font-size:1.1rem; }
-  .summary p { margin-bottom:0.5rem; }
-  .total { font-size:1.3rem; font-weight:bold; margin-top:1rem; }
-  .points { font-weight:bold; color:#F472B6; margin-top:1rem; font-size:1.2rem; }
-  .warning { margin-top:1.5rem; color:red; font-weight:bold; }
-  .terms { margin-top:2rem; font-size:0.95rem; color:#555; }
-  .terms h2 { font-weight:bold; margin-top:1rem; }
+  body{
+    font-family:'Roboto',sans-serif;
+    background:#ffe4f2;
+    min-height:100vh;
+    padding:2rem;
+  }
+
+  .main-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:2rem;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  .title{
+    font-family:'Baloo 2',cursive;
+    color:#ff4fa3;
+    font-size:3rem;
+    text-align:center;
+    margin-bottom:1rem;
+  }
+
+  .summary-box{
+    background:#fff0f7;
+    border:2px solid #ffb6d9;
+    border-radius:15px;
+    padding:1rem;
+    margin-bottom:1.5rem;
+  }
+
+  .payment-option{
+    border:2px solid #ddd;
+    border-radius:15px;
+    padding:1rem;
+    margin-bottom:1rem;
+    cursor:pointer;
+    transition:0.3s;
+  }
+
+  .payment-option:hover{
+    border-color:#ff4fa3;
+    background:#fff4fa;
+  }
+
+  .payment-option.active{
+    border-color:#ff4fa3;
+    background:#fff0f7;
+  }
+
+  .pay-btn{
+    width:100%;
+    background:#ff4fa3;
+    color:white;
+    padding:1rem;
+    border:none;
+    border-radius:12px;
+    font-size:1.1rem;
+    font-weight:bold;
+    margin-top:1.5rem;
+    cursor:pointer;
+    transition:0.3s;
+  }
+
+  .pay-btn:hover{
+    background:#e63d90;
+  }
+
+  .cart-icon{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:white;
+    border-radius:50%;
+    padding:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    font-size:1.4rem;
+  }
+
+  .card-form input{
+    width:100%;
+    padding:0.75rem;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-top:0.5rem;
+    margin-bottom:1rem;
+  }
+
+  .total-line{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:0.5rem;
+  }
+
+  .grand-total{
+    font-size:1.5rem;
+    font-weight:bold;
+    color:#ff4fa3;
+  }
+
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>Order Confirmation</h1>
 
-  <div class="summary" id="orderSummary">
-    Loading your order...
-  </div>
+<div class="cart-icon">
+🛍️
+</div>
 
-  <div class="total" id="totalAmount">
-    <!-- Total cost with tax will show here -->
-  </div>
+<div class="main-box">
 
-  <div class="points" id="pointsEarned">
-    <!-- Reward points will show here -->
-  </div>
+<div class="title">
+Gabby's Graphicz
+</div>
 
-  <div class="warning">
-    Please review your order carefully. Orders cannot be changed after submission. Refunds are only issued under our refund policy.
-  </div>
+<h2 class="text-2xl font-bold text-center mb-6">
+Step 2: Payment
+</h2>
 
-  <div class="terms">
-    <h2>Terms & Services</h2>
-    <p>By placing an order, you agree to our terms and conditions. All designs are for personal or commercial use depending on license purchased.</p>
+<!-- ORDER SUMMARY -->
+<div class="summary-box">
 
-    <h2>Refund Policy</h2>
-    <p>Refunds are available only if the service is not delivered or does not match the description. Digital items and custom designs are non-refundable after delivery.</p>
-  </div>
+<h3 class="text-xl font-bold mb-3">
+Order Summary
+</h3>
+
+<div id="orderSummary"></div>
+
+<hr class="my-4">
+
+<div class="total-line">
+<span>Subtotal:</span>
+<span id="subtotalText">$0.00</span>
+</div>
+
+<div class="total-line">
+<span>Discount:</span>
+<span id="discountText">-$0.00</span>
+</div>
+
+<div class="total-line">
+<span>Tax:</span>
+<span id="taxText">$0.00</span>
+</div>
+
+<div class="total-line grand-total">
+<span>Total:</span>
+<span id="totalText">$0.00</span>
+</div>
+
+</div>
+
+<!-- PAYMENT OPTIONS -->
+<h3 class="text-xl font-bold mb-4">
+Choose Payment Method
+</h3>
+
+<div class="payment-option active" onclick="selectPayment('card',this)">
+💳 Credit / Debit Card
+</div>
+
+<div class="payment-option" onclick="selectPayment('paypal',this)">
+🟦 PayPal
+</div>
+
+<div class="payment-option" onclick="selectPayment('cashapp',this)">
+💵 Cash App
+</div>
+
+<div class="payment-option" onclick="selectPayment('applepay',this)">
+🍎 Apple Pay
+</div>
+
+<div class="payment-option" onclick="selectPayment('googlepay',this)">
+🌐 Google Pay
+</div>
+
+<!-- CARD FORM -->
+<div id="cardForm" class="card-form mt-6">
+
+<input type="text" placeholder="Cardholder Name">
+
+<input type="text" placeholder="Card Number">
+
+<div class="grid grid-cols-2 gap-4">
+  <input type="text" placeholder="MM/YY">
+  <input type="text" placeholder="CVV">
+</div>
+
+</div>
+
+<!-- PAY BUTTON -->
+<button class="pay-btn" onclick="completePayment()">
+Complete Payment
+</button>
+
 </div>
 
 <script>
-// Read URL parameters from Step 2
+
+// GET URL DATA
 const params = new URLSearchParams(window.location.search);
+
 const imgQty = parseInt(params.get('imgQty')) || 0;
 const fontQty = parseInt(params.get('fontQty')) || 0;
 const bgQty = parseInt(params.get('bgQty')) || 0;
-const imgService = params.get('imgService') || 'N/A';
-const fontSelect = params.get('fontSelect') || 'N/A';
-const bgTheme = params.get('bgTheme') || 'N/A';
+
+const imgService = params.get('imgService') || 'None';
+const fontSelect = params.get('fontSelect') || 'None';
+const bgTheme = params.get('bgTheme') || 'None';
+
 const state = params.get('state') || 'NC';
+
 const couponCode = params.get('couponCode') || '';
-const couponDiscount = parseFloat(params.get('discount')) || 0;
+const discountPercent = parseFloat(params.get('discount')) || 0;
 
-// Prices
-const imgPrice = 0.75; // minimum
-const fontPrice = 1.50; // minimum
-const bgPrice = 1.50; // minimum
+// PRICES
+const imgPrice = 1.00;
+const fontPrice = 3.50;
+const bgPrice = 3.50;
 
-// Calculate subtotal
-let subtotal = (imgQty * imgPrice) + (fontQty * fontPrice) + (bgQty * bgPrice);
-
-// Apply coupon discount
-let discountAmount = 0;
-if(couponDiscount > 0) {
-  discountAmount = subtotal * couponDiscount;
-  subtotal -= discountAmount;
-}
-
-// State tax rates (default NC 6.75%)
-const stateTaxRates = {
-  "AL":0.04,"AK":0,"AZ":0.056,"AR":0.065,"CA":0.0725,"CO":0.029,"CT":0.0635,"DE":0,
-  "FL":0.06,"GA":0.04,"HI":0.04,"ID":0.06,"IL":0.0625,"IN":0.07,"IA":0.06,"KS":0.065,
-  "KY":0.06,"LA":0.0445,"ME":0.055,"MD":0.06,"MA":0.0625,"MI":0.06,"MN":0.06875,"MS":0.07,
-  "MO":0.04225,"MT":0,"NE":0.055,"NV":0.0685,"NH":0,"NJ":0.06625,"NM":0.05125,"NY":0.04,
-  "NC":0.0675,"ND":0.05,"OH":0.0575,"OK":0.045,"OR":0,"PA":0.06,"RI":0.07,"SC":0.06,
-  "SD":0.045,"TN":0.07,"TX":0.0625,"UT":0.0485,"VT":0.06,"VA":0.053,"WA":0.065,"WV":0.06,
-  "WI":0.05,"WY":0.04
+// TAXES
+const stateTax = {
+  NC:0.0475, AL:0.04, AK:0, AZ:0.056, AR:0.065, CA:0.0725,
+  CO:0.029, CT:0.0635, DE:0, FL:0.06, GA:0.04,
+  HI:0.04, ID:0.06, IL:0.0625, IN:0.07, IA:0.06,
+  KS:0.065, KY:0.06, LA:0.0445, ME:0.055, MD:0.06,
+  MA:0.0625, MI:0.06, MN:0.06875, MS:0.07, MO:0.04225,
+  MT:0, NE:0.055, NV:0.0685, NH:0, NJ:0.06625,
+  NM:0.05125, NY:0.04, ND:0.05, OH:0.0575,
+  OK:0.045, OR:0, PA:0.06, RI:0.07, SC:0.06,
+  SD:0.045, TN:0.07, TX:0.0625, UT:0.0485,
+  VT:0.06, VA:0.053, WA:0.065, WV:0.06,
+  WI:0.05, WY:0.04
 };
-const taxRate = stateTaxRates[state] || 0.0675; // default NC
-const taxAmount = subtotal * taxRate;
-const total = subtotal + taxAmount;
 
-// Display order summary
+// CALCULATIONS
+let subtotal =
+(imgQty * imgPrice) +
+(fontQty * fontPrice) +
+(bgQty * bgPrice);
+
+let discountAmount = subtotal * discountPercent;
+
+let discountedSubtotal = subtotal - discountAmount;
+
+let taxRate = stateTax[state] || 0.05;
+
+let taxAmount = discountedSubtotal * taxRate;
+
+let total = discountedSubtotal + taxAmount;
+
+// DISPLAY ORDER
 document.getElementById('orderSummary').innerHTML = `
-  <p>Images & Illustrations: ${imgQty} (${imgService}) - $${(imgQty * imgPrice).toFixed(2)}</p>
-  <p>Fonts & Typography: ${fontQty} (${fontSelect}) - $${(fontQty * fontPrice).toFixed(2)}</p>
-  <p>Backgrounds & Textures: ${bgQty} (${bgTheme}) - $${(bgQty * bgPrice).toFixed(2)}</p>
-  ${couponCode ? `<p>Coupon (${couponCode}) Discount: -$${discountAmount.toFixed(2)}</p>` : ''}
-  <p>State: ${state} (Tax: $${taxAmount.toFixed(2)})</p>
+<div class="mb-2">
+<strong>Images:</strong> ${imgQty} (${imgService})
+</div>
+
+<div class="mb-2">
+<strong>Fonts:</strong> ${fontQty} (${fontSelect})
+</div>
+
+<div class="mb-2">
+<strong>Backgrounds:</strong> ${bgQty} (${bgTheme})
+</div>
+
+<div class="mb-2">
+<strong>State:</strong> ${state}
+</div>
+
+<div class="mb-2">
+<strong>Coupon:</strong> ${couponCode || 'None'}
+</div>
 `;
 
-// Display total
-document.getElementById('totalAmount').innerHTML = `Total Paid: $${total.toFixed(2)}`;
+document.getElementById('subtotalText').innerText =
+"$" + subtotal.toFixed(2);
 
-// Calculate points: 10 points per $1 spent
-const points = Math.floor(total * 10);
-document.getElementById('pointsEarned').innerHTML = `You earned ${points} reward points for this purchase!`;
+document.getElementById('discountText').innerText =
+"-$" + discountAmount.toFixed(2);
+
+document.getElementById('taxText').innerText =
+"$" + taxAmount.toFixed(2);
+
+document.getElementById('totalText').innerText =
+"$" + total.toFixed(2);
+
+// PAYMENT METHOD
+let selectedPayment = 'card';
+
+function selectPayment(method, element){
+
+  selectedPayment = method;
+
+  document.querySelectorAll('.payment-option')
+  .forEach(option => option.classList.remove('active'));
+
+  element.classList.add('active');
+
+  // SHOW/HIDE CARD FORM
+  if(method === 'card'){
+    document.getElementById('cardForm').style.display = 'block';
+  } else {
+    document.getElementById('cardForm').style.display = 'none';
+  }
+
+}
+
+// COMPLETE PAYMENT
+function completePayment(){
+
+  const finalParams = new URLSearchParams();
+
+  finalParams.set('imgQty', imgQty);
+  finalParams.set('fontQty', fontQty);
+  finalParams.set('bgQty', bgQty);
+
+  finalParams.set('imgService', imgService);
+  finalParams.set('fontSelect', fontSelect);
+  finalParams.set('bgTheme', bgTheme);
+
+  finalParams.set('state', state);
+
+  finalParams.set('couponCode', couponCode);
+
+  finalParams.set('subtotal', subtotal.toFixed(2));
+  finalParams.set('discountAmount', discountAmount.toFixed(2));
+  finalParams.set('taxAmount', taxAmount.toFixed(2));
+  finalParams.set('total', total.toFixed(2));
+
+  finalParams.set('paymentMethod', selectedPayment);
+
+  window.location.href =
+  `confirmation_step3.html?${finalParams.toString()}`;
+
+}
 
 </script>
+
 </body>
 </html>
