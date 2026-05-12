@@ -1,331 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ORDER SUBMITTED POPUP -->
+<div id="submittedPopup"
+class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50">
 
-<title>Gabby's Graphicz - Step 4</title>
+  <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl border-4 border-pink-300">
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <h2 class="text-4xl font-bold text-pink-500 mb-4">
+      🎉 Order Submitted!
+    </h2>
 
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+    <p class="text-lg text-gray-700 mb-4">
+      Thank you for choosing
+      <strong>Gabby's Graphicz</strong> 💖
+    </p>
 
-<style>
+    <p class="text-gray-600 mb-6">
+      Your order was successfully submitted and sent for processing.
+      You will receive updates through email or SMS notifications.
+    </p>
 
-body{
-  font-family:'Roboto',sans-serif;
-  background:#ffe4f2;
-  min-height:100vh;
-  padding:2rem;
-}
+    <div class="bg-pink-100 rounded-2xl p-4 mb-6">
 
-.main-box{
-  max-width:950px;
-  margin:auto;
-  background:white;
-  border-radius:20px;
-  padding:2rem;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
+      <p class="font-bold text-pink-600 text-xl">
+        Reward Points Earned:
+      </p>
 
-.title{
-  font-family:'Baloo 2',cursive;
-  color:#ff4fa3;
-  font-size:3rem;
-  text-align:center;
-  margin-bottom:1rem;
-}
+      <p id="popupPoints"
+      class="text-3xl font-extrabold text-pink-500 mt-2">
+        0 Points
+      </p>
 
-.completed-box{
-  background:linear-gradient(90deg,#ff0080,#ff8c00,#40e0d0,#7b68ee);
-  color:white;
-  padding:1.5rem;
-  border-radius:18px;
-  text-align:center;
-  margin-bottom:2rem;
-}
+    </div>
 
-.section-box{
-  background:#fff0f7;
-  border:2px solid #ffb6d9;
-  border-radius:15px;
-  padding:1.5rem;
-  margin-bottom:1.5rem;
-}
+    <button
+    onclick="continueToStep4()"
+    class="w-full bg-pink-500 hover:bg-pink-600 transition text-white font-bold py-3 rounded-2xl text-lg">
 
-.download-btn{
-  width:100%;
-  background:#ff4fa3;
-  color:white;
-  padding:1rem;
-  border:none;
-  border-radius:12px;
-  font-size:1rem;
-  font-weight:bold;
-  margin-top:1rem;
-  cursor:pointer;
-  transition:0.3s;
-}
+      Continue
 
-.download-btn:hover{
-  background:#e63d90;
-}
+    </button>
 
-.points-box{
-  background:#f0fdf4;
-  border:2px solid #22c55e;
-  color:#166534;
-  padding:1rem;
-  border-radius:15px;
-  margin-top:1rem;
-  text-align:center;
-  font-weight:bold;
-}
-
-.status-box{
-  background:#eff6ff;
-  border:2px solid #60a5fa;
-  color:#1e3a8a;
-  padding:1rem;
-  border-radius:15px;
-  margin-top:1rem;
-}
-
-.copyright{
-  text-align:center;
-  margin-top:2rem;
-  color:#777;
-  font-size:0.9rem;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="main-box">
-
-<div class="title">
-Gabby's Graphicz
-</div>
-
-<!-- ORDER COMPLETED -->
-<div class="completed-box">
-
-<h1 class="text-4xl font-bold mb-3">
-✨ Order Completed ✨
-</h1>
-
-<p class="text-lg">
-Thank you for supporting Gabby's Graphicz!
-Your order has officially been placed and is now in production.
-</p>
-
-</div>
-
-<!-- CUSTOMER DETAILS -->
-<div class="section-box">
-
-<h2 class="text-2xl font-bold mb-4">
-Customer Receipt
-</h2>
-
-<div id="receiptInfo"></div>
-
-</div>
-
-<!-- REWARD POINTS -->
-<div class="points-box" id="rewardPointsBox">
-Loading reward points...
-</div>
-
-<!-- ORDER STATUS -->
-<div class="status-box">
-
-<h2 class="text-xl font-bold mb-2">
-📦 Order Status
-</h2>
-
-<p>
-Status: <strong>Processing Design Request</strong>
-</p>
-
-<p class="mt-2">
-Estimated turnaround time:
-<strong>24–72 hours</strong>
-</p>
-
-</div>
-
-<!-- DOWNLOAD SECTION -->
-<div class="section-box">
-
-<h2 class="text-2xl font-bold mb-4">
-Downloads & Next Steps
-</h2>
-
-<p class="mb-3">
-Your invoice and order details can be downloaded below.
-</p>
-
-<button class="download-btn" onclick="downloadReceipt()">
-⬇️ Download Receipt
-</button>
-
-<button class="download-btn mt-4"
-onclick="window.location.href='index.html'">
-🛍️ Create Another Order
-</button>
-
-</div>
-
-<!-- CONTACT -->
-<div class="section-box">
-
-<h2 class="text-2xl font-bold mb-4">
-Contact Information
-</h2>
-
-<p>
-📧 Email:
-<strong>gmonroe04@gmail.com</strong>
-</p>
-
-<p class="mt-2">
-📱 Phone:
-<strong>252-413-8199</strong>
-</p>
-
-<p class="mt-2">
-💖 Thank you for supporting a college student-owned business.
-</p>
-
-</div>
-
-<div class="copyright">
-© Gabrielle Monroe 2025 — Gabby's Graphicz
-</div>
+  </div>
 
 </div>
 
 <script>
 
-// GET URL PARAMETERS
-const params = new URLSearchParams(window.location.search);
+// SHOW ORDER SUBMITTED POPUP
+function showOrderSubmitted(){
 
-const imgQty = params.get('imgQty') || 0;
-const fontQty = params.get('fontQty') || 0;
-const bgQty = params.get('bgQty') || 0;
+  // GET TOTAL
+  const totalText =
+  document.getElementById('grandTotal').innerText
+  .replace('$','');
 
-const imgService = params.get('imgService') || 'None';
-const fontSelect = params.get('fontSelect') || 'None';
-const bgTheme = params.get('bgTheme') || 'None';
+  const total =
+  parseFloat(totalText) || 0;
 
-const total = params.get('total') || '0.00';
+  // POINT SYSTEM
+  const rewardPoints =
+  Math.floor(total * 10);
 
-const paymentMethod =
-params.get('paymentMethod') || 'Card';
+  // UPDATE POPUP
+  document.getElementById('popupPoints').innerText =
+  rewardPoints + " Points";
 
-const state =
-params.get('state') || 'NC';
+  // SHOW POPUP
+  document.getElementById('submittedPopup')
+  .classList.remove('hidden');
 
-const coupon =
-params.get('couponCode') || 'None';
+  document.getElementById('submittedPopup')
+  .classList.add('flex');
 
-// POINT SYSTEM
-const rewardPoints = Math.floor(parseFloat(total) * 10);
+}
 
-// DISPLAY RECEIPT
-document.getElementById('receiptInfo').innerHTML = `
+// CONTINUE TO STEP 4
+function continueToStep4(){
 
-<p class="mb-2">
-<strong>Images & Illustrations:</strong>
-${imgQty} (${imgService})
-</p>
+  const params = new URLSearchParams();
 
-<p class="mb-2">
-<strong>Fonts & Typography:</strong>
-${fontQty} (${fontSelect})
-</p>
+  // QUANTITIES
+  params.set(
+    'imgQty',
+    document.getElementById('imgQty').value
+  );
 
-<p class="mb-2">
-<strong>Backgrounds & Textures:</strong>
-${bgQty} (${bgTheme})
-</p>
+  params.set(
+    'fontQty',
+    document.getElementById('fontQty').value
+  );
 
-<p class="mb-2">
-<strong>State:</strong>
-${state}
-</p>
+  params.set(
+    'bgQty',
+    document.getElementById('bgQty').value
+  );
 
-<p class="mb-2">
-<strong>Coupon Used:</strong>
-${coupon}
-</p>
+  // SERVICES
+  params.set(
+    'imgService',
+    document.getElementById('imgType').value
+  );
 
-<p class="mb-2">
-<strong>Payment Method:</strong>
-${paymentMethod}
-</p>
+  params.set(
+    'fontSelect',
+    document.getElementById('fontSelect').value
+  );
 
-<p class="mt-4 text-2xl font-bold text-pink-500">
-Total Paid: $${parseFloat(total).toFixed(2)}
-</p>
+  params.set(
+    'bgTheme',
+    document.getElementById('bgTheme').value
+  );
 
-`;
+  // STATE
+  params.set(
+    'state',
+    document.getElementById('stateSelect').value
+  );
 
-// DISPLAY POINTS
-document.getElementById('rewardPointsBox').innerHTML =
-`🎁 You now have <strong>${rewardPoints}</strong> reward points available for future discounts!`;
+  // TOTAL
+  params.set(
+    'total',
+    document.getElementById('grandTotal')
+    .innerText.replace('$','')
+  );
 
-// DOWNLOAD RECEIPT
-function downloadReceipt(){
-
-  const receiptText = `
-Gabby's Graphicz Receipt
-
-Images:
-${imgQty} (${imgService})
-
-Fonts:
-${fontQty} (${fontSelect})
-
-Backgrounds:
-${bgQty} (${bgTheme})
-
-State:
-${state}
-
-Coupon:
-${coupon}
-
-Payment Method:
-${paymentMethod}
-
-Total Paid:
-$${parseFloat(total).toFixed(2)}
-
-Reward Points:
-${rewardPoints}
-
-© Gabrielle Monroe 2026
-`;
-
-  const blob = new Blob([receiptText],
-  { type: 'text/plain' });
-
-  const link = document.createElement('a');
-
-  link.href = URL.createObjectURL(blob);
-
-  link.download = 'GabbysGraphiczReceipt.txt';
-
-  link.click();
+  // REDIRECT
+  window.location.href =
+  `step4.html?${params.toString()}`;
 
 }
 
 </script>
 
-</body>
-</html>
+<!-- SUBMIT ORDER BUTTON -->
+<button
+onclick="showOrderSubmitted()"
+class="w-full mt-8 bg-pink-500 hover:bg-pink-600 transition text-white font-bold py-4 rounded-2xl text-xl shadow-lg">
+
+✨ Submit Order
+
+</button>
 
