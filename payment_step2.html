@@ -1,32 +1,493 @@
-<!-- COMPLETE PAYMENT BUTTON -->
-<button
-id="completePaymentBtn"
-onclick="completePayment()"
-class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 rounded-2xl mt-6 transition">
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-Complete Payment →
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- HEART WEBSITE ICON -->
+<link rel="icon"
+type="image/png"
+href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+
+<title>Gabby's Graphicz • Step 2 Payment</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+body{
+
+  font-family:'Poppins',sans-serif;
+
+  /* PINK BACKGROUND */
+
+  background:
+  linear-gradient(
+  135deg,
+  #ffd6ea,
+  #ffc2df,
+  #ffb1d7,
+  #ff9ccc
+  );
+
+  min-height:100vh;
+
+  padding:2rem;
+
+}
+
+.main-container{
+
+  max-width:1100px;
+
+  margin:auto;
+
+  background:white;
+
+  border-radius:32px;
+
+  overflow:hidden;
+
+  box-shadow:0 20px 45px rgba(0,0,0,0.15);
+
+}
+
+.top-banner{
+
+  background:
+  linear-gradient(135deg,#ff4fa3,#ff8ec7);
+
+  color:white;
+
+  text-align:center;
+
+  padding:3rem;
+
+}
+
+.logo{
+
+  font-family:'Baloo 2',cursive;
+
+  font-size:4rem;
+
+}
+
+.order-submitted{
+
+  display:inline-block;
+
+  background:white;
+
+  color:#ff4fa3;
+
+  padding:0.9rem 1.5rem;
+
+  border-radius:999px;
+
+  margin-top:1.5rem;
+
+  font-weight:bold;
+
+}
+
+.content{
+
+  padding:3rem;
+
+}
+
+.payment-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+  gap:1.5rem;
+
+}
+
+.payment-card{
+
+  border:2px solid #f5d3e5;
+
+  border-radius:28px;
+
+  padding:1.5rem;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  background:white;
+
+}
+
+.payment-card:hover{
+
+  border-color:#ff4fa3;
+
+  transform:translateY(-3px);
+
+  box-shadow:0 10px 20px rgba(0,0,0,0.08);
+
+}
+
+.payment-card.active{
+
+  border-color:#ff4fa3;
+
+  background:#fff0f7;
+
+}
+
+.payment-logo{
+
+  height:42px;
+
+  object-fit:contain;
+
+  margin-bottom:1rem;
+
+}
+
+.payment-title{
+
+  font-size:1.3rem;
+
+  font-weight:700;
+
+  color:#222;
+
+}
+
+.payment-sub{
+
+  color:#666;
+
+  margin-top:0.5rem;
+
+}
+
+.button{
+
+  width:100%;
+
+  background:#ff4fa3;
+
+  color:white;
+
+  border:none;
+
+  padding:1rem;
+
+  border-radius:18px;
+
+  font-weight:700;
+
+  font-size:1rem;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  margin-top:2rem;
+
+}
+
+.button:hover{
+
+  background:#e63d90;
+
+}
+
+.summary-box{
+
+  background:#fff0f7;
+
+  border:2px solid #ffb6d9;
+
+  border-radius:28px;
+
+  padding:2rem;
+
+  margin-bottom:2rem;
+
+}
+
+.total-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:1rem;
+
+}
+
+.final-total{
+
+  font-size:2rem;
+
+  font-weight:bold;
+
+  color:#ff4fa3;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+<!-- TOP -->
+<div class="top-banner">
+
+<div class="logo">
+💖 Gabby's Graphicz
+</div>
+
+<p class="text-xl mt-3">
+Choose your payment option below
+</p>
+
+<div class="order-submitted">
+✅ ORDER SUBMITTED
+</div>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- ORDER SUMMARY -->
+<div class="summary-box">
+
+<h2 class="text-3xl font-bold text-pink-500 mb-5">
+🧾 Order Summary
+</h2>
+
+<div id="summaryContent"></div>
+
+<hr class="my-5">
+
+<div class="total-row">
+<span>Subtotal</span>
+<span id="subtotalText">$0.00</span>
+</div>
+
+<div class="total-row">
+<span>Tax</span>
+<span id="taxText">$0.00</span>
+</div>
+
+<div class="total-row final-total">
+<span>Total</span>
+<span id="totalText">$0.00</span>
+</div>
+
+</div>
+
+<!-- PAYMENT OPTIONS -->
+<h2 class="text-3xl font-bold text-pink-500 mb-6">
+💳 Payment Options
+</h2>
+
+<div class="payment-grid">
+
+<!-- PAYPAL -->
+<div class="payment-card active"
+onclick="selectPayment('PayPal', this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+class="payment-logo">
+
+<div class="payment-title">
+PayPal
+</div>
+
+<div class="payment-sub">
+Login securely with your PayPal account.
+</div>
+
+</div>
+
+<!-- KLARNA -->
+<div class="payment-card"
+onclick="selectPayment('Klarna', this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/4/40/Klarna_Payment_Badge.svg"
+class="payment-logo">
+
+<div class="payment-title">
+Klarna
+</div>
+
+<div class="payment-sub">
+Split payments into installments.
+</div>
+
+</div>
+
+<!-- AFFIRM -->
+<div class="payment-card"
+onclick="selectPayment('Affirm', this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Affirm_logo.svg"
+class="payment-logo">
+
+<div class="payment-title">
+Affirm
+</div>
+
+<div class="payment-sub">
+Monthly payment financing.
+</div>
+
+</div>
+
+<!-- AFTERPAY -->
+<div class="payment-card"
+onclick="selectPayment('Afterpay', this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Afterpay_logo_black.svg"
+class="payment-logo">
+
+<div class="payment-title">
+Afterpay
+</div>
+
+<div class="payment-sub">
+Pay in 4 interest-free payments.
+</div>
+
+</div>
+
+<!-- CASH APP -->
+<div class="payment-card"
+onclick="selectPayment('Cash App Afterpay', this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Cash_App_logo.svg"
+class="payment-logo">
+
+<div class="payment-title">
+Cash App Afterpay
+</div>
+
+<div class="payment-sub">
+Buy now and pay over time.
+</div>
+
+</div>
+
+<!-- CARD -->
+<div class="payment-card"
+onclick="selectPayment('Credit Card', this)">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/179/179457.png"
+class="payment-logo">
+
+<div class="payment-title">
+Credit / Debit Card
+</div>
+
+<div class="payment-sub">
+Visa, Mastercard, Discover & AMEX.
+</div>
+
+</div>
+
+</div>
+
+<!-- BUTTON -->
+<button class="button"
+onclick="completePayment()">
+Continue To Confirmation →
 </button>
+
+</div>
+
+</div>
 
 <script>
 
-// SELECTED PAYMENT
-let selectedPayment = 'paypal';
+// URL PARAMETERS
+const params =
+new URLSearchParams(window.location.search);
 
-// SELECT PAYMENT METHOD
+// DATA
+const subtotal =
+parseFloat(params.get('subtotal')) || 0;
+
+const tax =
+parseFloat(params.get('taxAmount')) || 0;
+
+const total =
+parseFloat(params.get('total')) || 0;
+
+const imgQty =
+params.get('imgQty') || 0;
+
+const fontQty =
+params.get('fontQty') || 0;
+
+const bgQty =
+params.get('bgQty') || 0;
+
+// DISPLAY SUMMARY
+document.getElementById('summaryContent').innerHTML = `
+
+<div class="total-row">
+<span>🖼 Images & Illustrations</span>
+<span>${imgQty}</span>
+</div>
+
+<div class="total-row">
+<span>🔤 Fonts & Typography</span>
+<span>${fontQty}</span>
+</div>
+
+<div class="total-row">
+<span>🎨 Backgrounds & Textures</span>
+<span>${bgQty}</span>
+</div>
+
+`;
+
+document.getElementById('subtotalText').innerText =
+"$" + subtotal.toFixed(2);
+
+document.getElementById('taxText').innerText =
+"$" + tax.toFixed(2);
+
+document.getElementById('totalText').innerText =
+"$" + total.toFixed(2);
+
+// SELECT PAYMENT
+let selectedPayment = "PayPal";
+
 function selectPayment(method, element){
 
   selectedPayment = method;
 
-  // REMOVE ACTIVE CLASS
   document.querySelectorAll('.payment-card')
   .forEach(card => {
-
     card.classList.remove('active');
-
   });
 
-  // ADD ACTIVE CLASS
   element.classList.add('active');
 
 }
@@ -34,18 +495,14 @@ function selectPayment(method, element){
 // COMPLETE PAYMENT
 function completePayment(){
 
-  // GET CURRENT URL PARAMETERS
-  const currentParams =
-  new URLSearchParams(window.location.search);
-
   // SAVE PAYMENT METHOD
-  currentParams.set(
+  params.set(
     'paymentMethod',
     selectedPayment
   );
 
-  // OPTIONAL PAYPAL LOGIN
-  if(selectedPayment === 'paypal'){
+  // OPEN REAL LOGIN LINKS
+  if(selectedPayment === 'PayPal'){
 
     window.open(
       'https://www.paypal.com/signin',
@@ -54,8 +511,7 @@ function completePayment(){
 
   }
 
-  // OPTIONAL KLARNA
-  if(selectedPayment === 'klarna'){
+  else if(selectedPayment === 'Klarna'){
 
     window.open(
       'https://www.klarna.com/us/',
@@ -64,8 +520,7 @@ function completePayment(){
 
   }
 
-  // OPTIONAL AFFIRM
-  if(selectedPayment === 'affirm'){
+  else if(selectedPayment === 'Affirm'){
 
     window.open(
       'https://www.affirm.com/',
@@ -74,18 +529,16 @@ function completePayment(){
 
   }
 
-  // OPTIONAL AFTERPAY
-  if(selectedPayment === 'afterpay'){
+  else if(selectedPayment === 'Afterpay'){
 
     window.open(
-      'https://www.afterpay.com/',
+      'https://www.afterpay.com/en-US',
       '_blank'
     );
 
   }
 
-  // OPTIONAL CASH APP
-  if(selectedPayment === 'cashappafterpay'){
+  else if(selectedPayment === 'Cash App Afterpay'){
 
     window.open(
       'https://cash.app/',
@@ -95,9 +548,16 @@ function completePayment(){
   }
 
   // GO TO STEP 3
-  window.location.href =
-  `confirmation_step3.html?${currentParams.toString()}`;
+  setTimeout(() => {
+
+    window.location.href =
+    `confirmation_step3.html?${params.toString()}`;
+
+  }, 1200);
 
 }
 
 </script>
+
+</body>
+</html>
