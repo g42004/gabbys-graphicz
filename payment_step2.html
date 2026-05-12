@@ -1,284 +1,450 @@
 <!-- PAYMENT OPTIONS SECTION -->
 
-<div class="card mt-6">
-
-<h2 class="section-title">
-💳 Choose Payment Method
-</h2>
-
-<p class="text-gray-500 mb-6">
-Secure checkout powered by trusted payment providers.
-</p>
-
-<!-- PAYPAL -->
-<a
-href="https://www.paypal.com/signin"
-target="_blank"
-class="payment-option flex items-center justify-between">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
-class="h-10"
-alt="PayPal Logo">
-
-<div>
-<h3 class="font-bold text-lg">
-PayPal
-</h3>
-
-<p class="text-sm text-gray-500">
-Pay now or Pay in 4
-</p>
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Login →
-</span>
-
-</a>
-
-<!-- KLARNA -->
-<a
-href="https://www.klarna.com/us/"
-target="_blank"
-class="payment-option flex items-center justify-between mt-4">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/4/40/Klarna_Payment_Badge.svg"
-class="h-10"
-alt="Klarna Logo">
-
-<div>
-
-<h3 class="font-bold text-lg">
-Klarna
-</h3>
-
-<p class="text-sm text-gray-500">
-Pay Later in installments
-</p>
-
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Open →
-</span>
-
-</a>
-
-<!-- AFFIRM -->
-<a
-href="https://www.affirm.com/"
-target="_blank"
-class="payment-option flex items-center justify-between mt-4">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Affirm_logo.svg"
-class="h-10"
-alt="Affirm Logo">
-
-<div>
-
-<h3 class="font-bold text-lg">
-Affirm
-</h3>
-
-<p class="text-sm text-gray-500">
-Split payments over time
-</p>
-
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Open →
-</span>
-
-</a>
-
-<!-- AFTERPAY -->
-<a
-href="https://www.afterpay.com/en-US"
-target="_blank"
-class="payment-option flex items-center justify-between mt-4">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Afterpay_logo.svg"
-class="h-10"
-alt="Afterpay Logo">
-
-<div>
-
-<h3 class="font-bold text-lg">
-Afterpay
-</h3>
-
-<p class="text-sm text-gray-500">
-Buy now, pay later
-</p>
-
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Open →
-</span>
-
-</a>
-
-<!-- CASH APP -->
-<a
-href="https://cash.app/"
-target="_blank"
-class="payment-option flex items-center justify-between mt-4">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/3/30/Cash_App-Logo.wine.svg"
-class="h-10"
-alt="Cash App Logo">
-
-<div>
-
-<h3 class="font-bold text-lg">
-Cash App Pay
-</h3>
-
-<p class="text-sm text-gray-500">
-Cash App & Afterpay available
-</p>
-
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Open →
-</span>
-
-</a>
-
-<!-- APPLE PAY -->
-<div
-class="payment-option flex items-center justify-between mt-4 cursor-pointer"
-onclick="selectPayment('Apple Pay')">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg"
-class="h-10"
-alt="Apple Pay Logo">
-
-<div>
-
-<h3 class="font-bold text-lg">
-Apple Pay
-</h3>
-
-<p class="text-sm text-gray-500">
-Fast checkout with Face ID
-</p>
-
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Select →
-</span>
-
-</div>
-
-<!-- GOOGLE PAY -->
-<div
-class="payment-option flex items-center justify-between mt-4 cursor-pointer"
-onclick="selectPayment('Google Pay')">
-
-<div class="flex items-center gap-4">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg"
-class="h-10"
-alt="Google Pay Logo">
-
-<div>
-
-<h3 class="font-bold text-lg">
-Google Pay
-</h3>
-
-<p class="text-sm text-gray-500">
-Secure Android checkout
-</p>
-
-</div>
-
-</div>
-
-<span class="text-pink-500 font-bold">
-Select →
-</span>
-
-</div>
-
-</div>
+<!-- WEBSITE HEART ICON -->
+<link rel="icon"
+type="image/png"
+href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 
 <style>
 
-.payment-option{
+body{
 
-  width:100%;
+  /* CHEETAH BACKGROUND */
+
+  background:
+  radial-gradient(circle at 20% 20%, #2f1b12 8%, transparent 8%),
+  radial-gradient(circle at 70% 30%, #2f1b12 10%, transparent 10%),
+  radial-gradient(circle at 40% 75%, #2f1b12 7%, transparent 7%),
+  radial-gradient(circle at 80% 85%, #2f1b12 8%, transparent 8%),
+  #d6a161;
+
+  background-size:140px 140px;
+
+}
+
+/* PAYMENT CARD */
+
+.payment-card{
 
   background:white;
 
   border:2px solid #f3d0e2;
 
-  border-radius:22px;
+  border-radius:25px;
 
-  padding:1.2rem;
+  padding:1.3rem;
+
+  cursor:pointer;
 
   transition:0.3s;
 
-  text-decoration:none;
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  margin-bottom:1rem;
 
 }
 
-.payment-option:hover{
+.payment-card:hover{
+
+  border-color:#ff4fa3;
+
+  transform:translateY(-2px);
+
+  box-shadow:0 10px 20px rgba(0,0,0,0.08);
+
+}
+
+.payment-card.active{
 
   border-color:#ff4fa3;
 
   background:#fff0f7;
 
-  transform:translateY(-2px);
+}
 
-  box-shadow:0 8px 18px rgba(255,79,163,0.15);
+.payment-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:1rem;
+
+}
+
+.payment-logo{
+
+  width:50px;
+
+  height:50px;
+
+  object-fit:contain;
+
+}
+
+.payment-title{
+
+  font-weight:700;
+
+  font-size:1.1rem;
+
+}
+
+.payment-sub{
+
+  color:#777;
+
+  font-size:0.9rem;
+
+}
+
+.submit-banner{
+
+  background:
+  linear-gradient(135deg,#ff4fa3,#ff8ec7);
+
+  color:white;
+
+  padding:1rem;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  font-weight:bold;
+
+  margin-bottom:1.5rem;
+
+  font-size:1.1rem;
 
 }
 
 </style>
 
+<!-- ORDER SUBMITTED -->
+<div class="submit-banner">
+💖 Order Submitted Successfully — Choose Your Payment Option
+</div>
+
+<!-- PAYPAL -->
+<div class="payment-card active"
+onclick="selectPayment('paypal', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+PayPal
+</div>
+
+<div class="payment-sub">
+Login securely with your PayPal account
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- KLARNA -->
+<div class="payment-card"
+onclick="selectPayment('klarna', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/4/40/Klarna_Payment_Badge.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Klarna
+</div>
+
+<div class="payment-sub">
+Pay later in installments
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AFFIRM -->
+<div class="payment-card"
+onclick="selectPayment('affirm', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Affirm_logo.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Affirm
+</div>
+
+<div class="payment-sub">
+Flexible monthly payments
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AFTERPAY -->
+<div class="payment-card"
+onclick="selectPayment('afterpay', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Afterpay_logo_black.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Afterpay
+</div>
+
+<div class="payment-sub">
+Split your payment into 4 installments
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CASH APP AFTERPAY -->
+<div class="payment-card"
+onclick="selectPayment('cashappafterpay', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Cash_App_logo.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Cash App Afterpay
+</div>
+
+<div class="payment-sub">
+Pay over time through Cash App
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- APPLE PAY -->
+<div class="payment-card"
+onclick="selectPayment('applepay', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Apple Pay
+</div>
+
+<div class="payment-sub">
+Fast checkout using Apple Wallet
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- GOOGLE PAY -->
+<div class="payment-card"
+onclick="selectPayment('googlepay', this)">
+
+<div class="payment-left">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Google Pay
+</div>
+
+<div class="payment-sub">
+Pay quickly with Google Wallet
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+<div class="payment-card"
+onclick="selectPayment('card', this)">
+
+<div class="payment-left">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/179/179457.png"
+class="payment-logo">
+
+<div>
+
+<div class="payment-title">
+Credit / Debit Card
+</div>
+
+<div class="payment-sub">
+Visa, Mastercard, Discover & American Express
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- COMPLETE BUTTON -->
+<button
+onclick="completePayment()"
+class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 rounded-2xl mt-6 transition">
+
+Complete Payment →
+
+</button>
+
 <script>
 
-// PAYMENT SELECT FUNCTION
-function selectPayment(method){
+let selectedPayment = 'paypal';
 
-  alert(method + " selected successfully!");
+// SELECT PAYMENT
+function selectPayment(method, element){
+
+  selectedPayment = method;
+
+  document.querySelectorAll('.payment-card')
+  .forEach(card => {
+    card.classList.remove('active');
+  });
+
+  element.classList.add('active');
+
+}
+
+// COMPLETE PAYMENT
+function completePayment(){
+
+  // PAYPAL LOGIN
+  if(selectedPayment === 'paypal'){
+
+    window.open(
+      'https://www.paypal.com/signin',
+      '_blank'
+    );
+
+  }
+
+  // KLARNA
+  else if(selectedPayment === 'klarna'){
+
+    window.open(
+      'https://www.klarna.com/us/',
+      '_blank'
+    );
+
+  }
+
+  // AFFIRM
+  else if(selectedPayment === 'affirm'){
+
+    window.open(
+      'https://www.affirm.com/',
+      '_blank'
+    );
+
+  }
+
+  // AFTERPAY
+  else if(selectedPayment === 'afterpay'){
+
+    window.open(
+      'https://www.afterpay.com/',
+      '_blank'
+    );
+
+  }
+
+  // CASH APP AFTERPAY
+  else if(selectedPayment === 'cashappafterpay'){
+
+    window.open(
+      'https://cash.app/',
+      '_blank'
+    );
+
+  }
+
+  // APPLE PAY
+  else if(selectedPayment === 'applepay'){
+
+    window.open(
+      'https://www.apple.com/apple-pay/',
+      '_blank'
+    );
+
+  }
+
+  // GOOGLE PAY
+  else if(selectedPayment === 'googlepay'){
+
+    window.open(
+      'https://pay.google.com/',
+      '_blank'
+    );
+
+  }
+
+  // GO TO NEXT PAGE
+  setTimeout(() => {
+
+    window.location.href =
+    "step4.html";
+
+  }, 1200);
 
 }
 
