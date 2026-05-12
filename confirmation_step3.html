@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- WEBSITE HEART ICON -->
+<!-- HEART WEBSITE ICON -->
 <link rel="icon" type="image/png"
 href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 
-<title>Gabby's Graphicz - Step 2 Payment</title>
+<title>Gabby's Graphicz - Step 4 Submitted</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -17,125 +18,194 @@ href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 <style>
 
 body{
+
   font-family:'Roboto',sans-serif;
 
   /* CHEETAH BACKGROUND */
   background:
-  radial-gradient(circle at 20% 20%, #3b2a1d 8%, transparent 8%),
-  radial-gradient(circle at 80% 30%, #3b2a1d 8%, transparent 8%),
-  radial-gradient(circle at 40% 70%, #3b2a1d 10%, transparent 10%),
-  radial-gradient(circle at 70% 80%, #3b2a1d 7%, transparent 7%),
+  radial-gradient(circle at 20% 20%, #2e1b0f 8%, transparent 8%),
+  radial-gradient(circle at 70% 30%, #2e1b0f 10%, transparent 10%),
+  radial-gradient(circle at 40% 70%, #2e1b0f 7%, transparent 7%),
+  radial-gradient(circle at 80% 80%, #2e1b0f 9%, transparent 9%),
   #d8a15d;
 
-  background-size:120px 120px;
+  background-size:140px 140px;
 
   min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
   padding:2rem;
+
 }
 
 .main-box{
-  max-width:900px;
-  margin:auto;
+
+  max-width:850px;
+  width:100%;
+
   background:rgba(255,255,255,0.96);
-  border-radius:25px;
-  padding:2rem;
-  box-shadow:0 15px 35px rgba(0,0,0,0.2);
+
+  border-radius:30px;
+
+  padding:3rem;
+
+  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+
 }
 
 .title{
+
   font-family:'Baloo 2',cursive;
+
   color:#ff4fa3;
-  font-size:3rem;
+
+  font-size:3.5rem;
+
   text-align:center;
+
   margin-bottom:1rem;
+
 }
 
-.order-submitted{
-  background:linear-gradient(90deg,#ff4fa3,#ff8ccf);
+.submitted-box{
+
+  background:linear-gradient(90deg,#ff4fa3,#ff91c8);
+
   color:white;
+
   text-align:center;
-  padding:1rem;
-  border-radius:15px;
-  font-size:1.3rem;
-  font-weight:bold;
-  margin-bottom:1.5rem;
+
+  padding:1.5rem;
+
+  border-radius:20px;
+
+  margin-bottom:2rem;
+
   animation:pulse 2s infinite;
+
 }
 
 @keyframes pulse{
+
   0%{transform:scale(1);}
   50%{transform:scale(1.02);}
   100%{transform:scale(1);}
+
 }
 
-.summary-box{
+.receipt-box{
+
   background:#fff0f7;
+
   border:2px solid #ffb6d9;
-  border-radius:15px;
-  padding:1.5rem;
-  margin-bottom:1.5rem;
+
+  border-radius:20px;
+
+  padding:2rem;
+
+  margin-bottom:2rem;
+
 }
 
-.payment-option{
-  border:2px solid #ddd;
-  border-radius:15px;
-  padding:1rem;
-  margin-bottom:1rem;
-  cursor:pointer;
-  transition:0.3s;
-  background:white;
-}
+.total{
 
-.payment-option:hover{
-  border-color:#ff4fa3;
-  background:#fff0f7;
-}
-
-.payment-option.active{
-  border-color:#ff4fa3;
-  background:#ffe6f2;
-}
-
-.card-form input{
-  width:100%;
-  padding:0.9rem;
-  border:1px solid #ccc;
-  border-radius:12px;
-  margin-top:0.5rem;
-  margin-bottom:1rem;
-}
-
-.pay-btn{
-  width:100%;
-  background:#ff4fa3;
-  color:white;
-  padding:1rem;
-  border:none;
-  border-radius:14px;
-  font-size:1.1rem;
-  font-weight:bold;
-  margin-top:1.5rem;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.pay-btn:hover{
-  background:#e63d90;
-}
-
-.total-line{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:0.75rem;
-}
-
-.grand-total{
-  font-size:1.6rem;
-  font-weight:bold;
   color:#ff4fa3;
+
+  font-size:2rem;
+
+  font-weight:bold;
+
+}
+
+.points-box{
+
+  background:linear-gradient(
+  90deg,
+  #ff0080,
+  #ff8c00,
+  #40e0d0,
+  #7b68ee
+  );
+
+  color:white;
+
+  padding:1.5rem;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  font-size:1.3rem;
+
+  font-weight:bold;
+
+  margin-bottom:2rem;
+
+}
+
+.warning-box{
+
+  background:#fff7ed;
+
+  border:2px solid #fb923c;
+
+  color:#9a3412;
+
+  padding:1.5rem;
+
+  border-radius:20px;
+
+  margin-bottom:2rem;
+
+}
+
+.button{
+
+  width:100%;
+
+  background:#ff4fa3;
+
+  color:white;
+
+  padding:1rem;
+
+  border:none;
+
+  border-radius:15px;
+
+  font-size:1.1rem;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.button:hover{
+
+  background:#e63d90;
+
+}
+
+.footer{
+
+  text-align:center;
+
+  margin-top:2rem;
+
+  color:#777;
+
+  font-size:0.9rem;
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -147,116 +217,81 @@ body{
 </div>
 
 <!-- ORDER SUBMITTED -->
-<div class="order-submitted">
-✅ Order Submitted Successfully!
+<div class="submitted-box">
+
+<h1 class="text-4xl font-bold mb-3">
+✅ ORDER SUBMITTED
+</h1>
+
+<p class="text-lg">
+Your custom design order has been successfully submitted!
+</p>
+
+<p class="mt-2">
+Thank you for supporting a college student-owned business.
+</p>
+
 </div>
 
-<!-- SUMMARY -->
-<div class="summary-box">
+<!-- RECEIPT -->
+<div class="receipt-box">
 
-<h2 class="text-2xl font-bold mb-4">
-🛍️ Order Summary
+<h2 class="text-3xl font-bold mb-5">
+🧾 Receipt Summary
 </h2>
 
-<div id="orderSummary"></div>
-
-<hr class="my-4">
-
-<div class="total-line">
-<span>Subtotal</span>
-<span id="subtotalText">$0.00</span>
-</div>
-
-<div class="total-line">
-<span>Discount</span>
-<span id="discountText">-$0.00</span>
-</div>
-
-<div class="total-line">
-<span>Tax</span>
-<span id="taxText">$0.00</span>
-</div>
-
-<div class="total-line grand-total">
-<span>Total</span>
-<span id="totalText">$0.00</span>
-</div>
+<div id="receiptInfo"></div>
 
 </div>
 
-<!-- PAYMENT OPTIONS -->
-<h2 class="text-2xl font-bold mb-4">
-💳 Payment Options
+<!-- POINTS -->
+<div class="points-box" id="pointsBox">
+🎁 Loading reward points...
+</div>
+
+<!-- WARNING -->
+<div class="warning-box">
+
+<h2 class="text-2xl font-bold mb-3">
+⚠️ Important Notice
 </h2>
 
-<div class="payment-option active"
-onclick="selectPayment('card',this)">
-💳 Credit / Debit Card
-</div>
+<p class="mb-2">
+Custom graphic orders cannot be edited after submission once work begins.
+</p>
 
-<div class="payment-option"
-onclick="selectPayment('paypal',this)">
-🟦 PayPal
-</div>
-
-<div class="payment-option"
-onclick="selectPayment('cashapp',this)">
-💵 Cash App
-</div>
-
-<div class="payment-option"
-onclick="selectPayment('applepay',this)">
-🍎 Apple Pay
-</div>
-
-<div class="payment-option"
-onclick="selectPayment('googlepay',this)">
-🌐 Google Pay
-</div>
-
-<!-- CARD FORM -->
-<div id="cardForm" class="card-form mt-6">
-
-<input type="text"
-placeholder="Cardholder Name">
-
-<input type="text"
-placeholder="Card Number">
-
-<div class="grid grid-cols-2 gap-4">
-
-<input type="text"
-placeholder="MM/YY">
-
-<input type="text"
-placeholder="CVV">
+<p>
+Refunds are only approved if the design service was not delivered.
+</p>
 
 </div>
 
-</div>
-
-<!-- COMPLETE BUTTON -->
-<button class="pay-btn"
-onclick="goToConfirmation()">
-Complete Payment →
+<!-- BUTTON -->
+<button class="button"
+onclick="goHome()">
+✨ Create Another Order
 </button>
+
+<div class="footer">
+© Gabrielle Monroe 2025 — Gabby's Graphicz
+</div>
 
 </div>
 
 <script>
 
-// URL PARAMETERS
+// GET URL PARAMETERS
 const params =
 new URLSearchParams(window.location.search);
 
 const imgQty =
-parseInt(params.get('imgQty')) || 0;
+params.get('imgQty') || 0;
 
 const fontQty =
-parseInt(params.get('fontQty')) || 0;
+params.get('fontQty') || 0;
 
 const bgQty =
-parseInt(params.get('bgQty')) || 0;
+params.get('bgQty') || 0;
 
 const imgService =
 params.get('imgService') || 'Poster';
@@ -273,153 +308,98 @@ params.get('state') || 'NC';
 const couponCode =
 params.get('couponCode') || 'None';
 
-const discount =
-parseFloat(params.get('discount')) || 0;
+const subtotal =
+params.get('subtotal') || '0.00';
 
-// PRICES
-const imgPrice = 1.00;
-const fontPrice = 3.50;
-const bgPrice = 3.50;
-
-// TAXES
-const stateTax = {
-NC:0.0475,
-CA:0.0725,
-TX:0.0625,
-FL:0.06,
-NY:0.04,
-GA:0.04,
-VA:0.053
-};
-
-// TOTALS
-const imgTotal =
-imgQty * imgPrice;
-
-const fontTotal =
-fontQty * fontPrice;
-
-const bgTotal =
-bgQty * bgPrice;
-
-let subtotal =
-imgTotal + fontTotal + bgTotal;
-
-let discountAmount =
-subtotal * discount;
-
-subtotal -= discountAmount;
-
-const taxRate =
-stateTax[state] || 0.05;
+const discountAmount =
+params.get('discountAmount') || '0.00';
 
 const taxAmount =
-subtotal * taxRate;
+params.get('taxAmount') || '0.00';
 
 const total =
-subtotal + taxAmount;
+params.get('total') || '0.00';
 
-// DISPLAY SUMMARY
-document.getElementById('orderSummary').innerHTML = `
+const paymentMethod =
+params.get('paymentMethod') || 'Card';
 
-<div class="mb-2">
-<strong>Images:</strong>
+// POINT SYSTEM
+const rewardPoints =
+Math.floor(parseFloat(total) * 10);
+
+// DISPLAY RECEIPT
+document.getElementById('receiptInfo').innerHTML = `
+
+<div class="mb-3">
+<strong>🖼️ Images & Illustrations:</strong>
 ${imgQty} (${imgService})
 </div>
 
-<div class="mb-2">
-<strong>Fonts:</strong>
+<div class="mb-3">
+<strong>🔤 Fonts & Typography:</strong>
 ${fontQty} (${fontSelect})
 </div>
 
-<div class="mb-2">
-<strong>Backgrounds:</strong>
+<div class="mb-3">
+<strong>🎨 Backgrounds & Textures:</strong>
 ${bgQty} (${bgTheme})
 </div>
 
-<div class="mb-2">
-<strong>State:</strong>
+<div class="mb-3">
+<strong>📍 State:</strong>
 ${state}
 </div>
 
-<div class="mb-2">
-<strong>Coupon:</strong>
+<div class="mb-3">
+<strong>🎟️ Coupon Code:</strong>
 ${couponCode}
+</div>
+
+<div class="mb-3">
+<strong>💳 Payment Method:</strong>
+${paymentMethod}
+</div>
+
+<hr class="my-4">
+
+<div class="mb-2">
+Subtotal:
+$${parseFloat(subtotal).toFixed(2)}
+</div>
+
+<div class="mb-2">
+Discount:
+-$${parseFloat(discountAmount).toFixed(2)}
+</div>
+
+<div class="mb-2">
+Tax:
+$${parseFloat(taxAmount).toFixed(2)}
+</div>
+
+<div class="total mt-4">
+Total Paid:
+$${parseFloat(total).toFixed(2)}
 </div>
 
 `;
 
-document.getElementById('subtotalText').innerText =
-"$" + subtotal.toFixed(2);
+// DISPLAY POINTS
+document.getElementById('pointsBox').innerHTML =
+`🎁 You earned <strong>${rewardPoints}</strong> reward points from this purchase!`;
 
-document.getElementById('discountText').innerText =
-"-$" + discountAmount.toFixed(2);
+// NEXT PAGE / HOME
+function goHome(){
 
-document.getElementById('taxText').innerText =
-"$" + taxAmount.toFixed(2);
-
-document.getElementById('totalText').innerText =
-"$" + total.toFixed(2);
-
-// PAYMENT METHOD
-let selectedPayment = 'card';
-
-function selectPayment(method, element){
-
-  selectedPayment = method;
-
-  document.querySelectorAll('.payment-option')
-  .forEach(option => {
-    option.classList.remove('active');
-  });
-
-  element.classList.add('active');
-
-  // SHOW/HIDE CARD FORM
-  if(method === 'card'){
-    document.getElementById('cardForm').style.display='block';
-  } else {
-    document.getElementById('cardForm').style.display='none';
-  }
+  window.location.href =
+  "index.html";
 
 }
 
-// NEXT PAGE
-function goToConfirmation(){
+</script>
 
-  const nextParams =
-  new URLSearchParams();
-
-  nextParams.set('imgQty', imgQty);
-  nextParams.set('fontQty', fontQty);
-  nextParams.set('bgQty', bgQty);
-
-  nextParams.set('imgService', imgService);
-  nextParams.set('fontSelect', fontSelect);
-  nextParams.set('bgTheme', bgTheme);
-
-  nextParams.set('state', state);
-
-  nextParams.set('couponCode', couponCode);
-
-  nextParams.set('subtotal',
-  subtotal.toFixed(2));
-
-  nextParams.set('discountAmount',
-  discountAmount.toFixed(2));
-
-  nextParams.set('taxAmount',
-  taxAmount.toFixed(2));
-
-  nextParams.set('total',
-  total.toFixed(2));
-
-  nextParams.set('paymentMethod',
-  selectedPayment);
-
-  // GO TO STEP 3
-  window.location.href =
-  `confirmation_step3.html?${nextParams.toString()}`;
+</body>
+</html>
 
 }
 
