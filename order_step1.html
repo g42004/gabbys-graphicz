@@ -1,74 +1,67 @@
-<!-- COUPONS + BIRTHDAY SYSTEM -->
-<div class="mt-8 bg-pink-100 p-6 rounded-2xl border-2 border-pink-300">
+<!-- ========================= -->
+<!-- 🎟️ COUPON + BIRTHDAY SYSTEM -->
+<!-- ========================= -->
 
-<h2 class="text-3xl font-bold text-center text-pink-500 mb-6">
-🎟️ Coupons & Discounts
+<div class="mt-8 bg-white p-6 rounded-2xl border-2 border-pink-300 shadow-lg">
+
+<h2 class="text-3xl font-bold text-center text-pink-500 mb-5">
+🎁 Coupons & Discounts
 </h2>
 
-<!-- HOLIDAY COUPONS -->
-<div class="mb-6">
+<!-- CURRENT HOLIDAY CODES -->
+<div class="bg-pink-50 border border-pink-200 rounded-xl p-4 mb-6">
 
 <h3 class="text-xl font-bold text-pink-500 mb-3">
-🔥 Current Holiday Coupons
+🔥 Current Promo Codes
 </h3>
 
 <ul class="space-y-2 text-gray-700">
 
 <li>
 🎓 <strong>GRAD26</strong> —
-20% Off Graduation Designs
-</li>
-
-<li>
-☀️ <strong>SUMMER26</strong> —
-15% Off Entire Order
+20% off for Class of 2026 Graduates
 </li>
 
 <li>
 🇺🇸 <strong>MEMORIAL26</strong> —
-10% Off Orders Over $15
+15% off Memorial Day Sale
 </li>
 
 <li>
-🎆 <strong>JULY4TH26</strong> —
-25% Off Patriotic Designs
+☀️ <strong>SUMMER26</strong> —
+10% off Summer Graphics
 </li>
 
 <li>
-🍂 <strong>FALL26</strong> —
-15% Off Background Designs
+🎂 <strong>BIRTHDAYGABBY</strong> —
+Birthday surprise discount
 </li>
 
 <li>
-🎃 <strong>SPOOKY26</strong> —
-20% Off Halloween Themes
+🎄 <strong>XMAS26</strong> —
+25% off Christmas Specials
 </li>
 
 <li>
 🦃 <strong>THANKFUL26</strong> —
-20% Off Thanksgiving Graphics
+20% off Thanksgiving Designs
 </li>
 
 <li>
-🎄 <strong>MERRY26</strong> —
-25% Off Christmas Orders
-</li>
-
-<li>
-💕 <strong>LOVE26</strong> —
-15% Off Valentine Designs
+🖤 <strong>BLACKFRIDAY26</strong> —
+30% off Black Friday Deals
 </li>
 
 </ul>
 
 </div>
 
-<!-- COUPON INPUT -->
-<label class="font-semibold">
-Enter Coupon Code
+<!-- APPLY COUPON -->
+<label class="font-semibold text-lg">
+Apply Coupon Code
 </label>
 
-<div class="flex gap-3 mt-3">
+<div class="flex gap-3 mt-2">
 
 <input
 type="text"
@@ -88,41 +81,40 @@ Apply
 
 <p
 id="couponMessage"
-class="mt-3 font-bold text-pink-500">
+class="mt-3 font-semibold text-pink-500">
 </p>
 
-<!-- BIRTHDAY -->
-<div class="mt-8">
+</div>
 
-<h3 class="text-2xl font-bold text-pink-500 mb-3">
-🎂 Birthday Discount
-</h3>
+<!-- ========================= -->
+<!-- 🎂 BIRTHDAY POPUP -->
+<!-- ========================= -->
 
-<p class="text-gray-600 mb-4">
-Enter your birthday to receive a one-time birthday coupon.
+<div
+id="birthdayPopup"
+class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+<div class="bg-white p-8 rounded-3xl max-w-md w-full text-center shadow-2xl border-4 border-pink-300">
+
+<h2 class="text-4xl font-bold text-pink-500 mb-4">
+🎂 Birthday Rewards
+</h2>
+
+<p class="mb-4 text-gray-700">
+Enter your birthday to unlock a special birthday coupon!
 </p>
-
-<label class="font-semibold">
-Birthday
-</label>
 
 <input
 type="date"
 id="birthdayInput"
-class="w-full p-3 border rounded-xl mt-2"
+class="w-full p-3 border rounded-xl mb-4"
 />
 
 <button
-onclick="generateBirthdayCoupon()"
-type="button"
-class="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl font-bold w-full">
-Generate Birthday Coupon
+onclick="saveBirthday()"
+class="w-full bg-pink-500 hover:bg-pink-600 text-white p-3 rounded-xl font-bold">
+Unlock Birthday Coupon
 </button>
-
-<p
-id="birthdayMessage"
-class="mt-4 font-bold text-pink-500">
-</p>
 
 </div>
 
@@ -130,81 +122,15 @@ class="mt-4 font-bold text-pink-500">
 
 <script>
 
-// STATE TAXES
-const stateTax = {
-AL:0.04,
-AK:0.00,
-AZ:0.056,
-AR:0.065,
-CA:0.0725,
-CO:0.029,
-CT:0.0635,
-DE:0.00,
-FL:0.06,
-GA:0.04,
-HI:0.04,
-ID:0.06,
-IL:0.0625,
-IN:0.07,
-IA:0.06,
-KS:0.065,
-KY:0.06,
-LA:0.0445,
-ME:0.055,
-MD:0.06,
-MA:0.0625,
-MI:0.06,
-MN:0.06875,
-MS:0.07,
-MO:0.04225,
-MT:0.00,
-NE:0.055,
-NV:0.0685,
-NH:0.00,
-NJ:0.06625,
-NM:0.05125,
-NY:0.04,
-NC:0.0475,
-ND:0.05,
-OH:0.0575,
-OK:0.045,
-OR:0.00,
-PA:0.06,
-RI:0.07,
-SC:0.06,
-SD:0.045,
-TN:0.07,
-TX:0.0625,
-UT:0.061,
-VT:0.06,
-VA:0.053,
-WA:0.065,
-WV:0.06,
-WI:0.05,
-WY:0.04
-};
+// =========================
+// ONE-TIME COUPON SYSTEM
+// =========================
 
-// ACTIVE DISCOUNT
-let currentDiscount = 0;
-
-// ONE-TIME USE TRACKER
-let usedCoupons =
+const usedCoupons =
 JSON.parse(localStorage.getItem('usedCoupons')) || [];
 
-// COUPONS
-const coupons = {
-
-GRAD26:0.20,
-SUMMER26:0.15,
-MEMORIAL26:0.10,
-JULY4TH26:0.25,
-FALL26:0.15,
-SPOOKY26:0.20,
-THANKFUL26:0.20,
-MERRY26:0.25,
-LOVE26:0.15
-
-};
+// CURRENT DISCOUNT
+let currentDiscount = 0;
 
 // APPLY COUPON
 function applyCoupon(){
@@ -218,24 +144,41 @@ function applyCoupon(){
   const msg =
   document.getElementById('couponMessage');
 
-  // ALREADY USED
+  // CHECK IF USED
   if(usedCoupons.includes(code)){
 
     msg.innerHTML =
-    "❌ This coupon was already used.";
+    "❌ This coupon has already been used.";
 
     msg.style.color = "red";
 
     return;
-
   }
 
-  // VALID
+  // COUPON VALUES
+  const coupons = {
+
+    "GRAD26":0.20,
+    "MEMORIAL26":0.15,
+    "SUMMER26":0.10,
+    "BIRTHDAYGABBY":0.25,
+    "XMAS26":0.25,
+    "THANKFUL26":0.20,
+    "BLACKFRIDAY26":0.30
+
+  };
+
+  // VALID COUPON
   if(coupons[code]){
 
-    currentDiscount =
-    coupons[code];
+    currentDiscount = coupons[code];
 
+    msg.innerHTML =
+    `✅ Coupon Applied: ${currentDiscount*100}% OFF`;
+
+    msg.style.color = "green";
+
+    // SAVE USED
     usedCoupons.push(code);
 
     localStorage.setItem(
@@ -243,14 +186,11 @@ function applyCoupon(){
       JSON.stringify(usedCoupons)
     );
 
-    msg.innerHTML =
-    `✅ Coupon Applied! ${currentDiscount*100}% OFF`;
-
-    msg.style.color = "green";
-
     calculateTotal();
 
-  } else {
+  }
+
+  else{
 
     msg.innerHTML =
     "❌ Invalid coupon code.";
@@ -261,79 +201,58 @@ function applyCoupon(){
 
 }
 
-// BIRTHDAY COUPON
-function generateBirthdayCoupon(){
+// =========================
+// BIRTHDAY POPUP
+// =========================
+
+// SHOW ONLY IF NOT COMPLETED
+if(!localStorage.getItem('birthdaySaved')){
+
+  document.getElementById('birthdayPopup')
+  .style.display = 'flex';
+
+}
+
+// SAVE BIRTHDAY
+function saveBirthday(){
 
   const birthday =
   document.getElementById('birthdayInput').value;
 
-  const msg =
-  document.getElementById('birthdayMessage');
-
   if(!birthday){
 
-    msg.innerHTML =
-    "❌ Please enter your birthday.";
-
-    msg.style.color = "red";
+    alert("Please enter your birthday.");
 
     return;
 
   }
 
-  // CHECK IF ALREADY GENERATED
-  if(localStorage.getItem('birthdayCouponUsed')){
+  // SAVE BIRTHDAY
+  localStorage.setItem(
+    'birthdaySaved',
+    birthday
+  );
 
-    msg.innerHTML =
-    "❌ Birthday coupon already claimed.";
+  // GENERATE BIRTHDAY COUPON
+  localStorage.setItem(
+    'birthdayCoupon',
+    'BIRTHDAYGABBY'
+  );
 
-    msg.style.color = "red";
+  // CLOSE POPUP
+  document.getElementById('birthdayPopup')
+  .style.display = 'none';
 
-    return;
-
-  }
-
-  const today =
-  new Date();
-
-  const birthDate =
-  new Date(birthday);
-
-  // MATCH MONTH + DAY
-  if(
-    today.getMonth() === birthDate.getMonth()
-    &&
-    today.getDate() === birthDate.getDate()
-  ){
-
-    const birthdayCode =
-    "BDAY26";
-
-    coupons[birthdayCode] = 0.30;
-
-    msg.innerHTML =
-    `🎉 Happy Birthday! Your one-time coupon code is:
-    ${birthdayCode} for 30% OFF`;
-
-    msg.style.color = "green";
-
-    localStorage.setItem(
-      'birthdayCouponUsed',
-      true
-    );
-
-  } else {
-
-    msg.innerHTML =
-    "🎂 Birthday discounts are only available on your birthday.";
-
-    msg.style.color = "#ff4fa3";
-
-  }
+  alert(
+    "🎉 Birthday coupon unlocked! Use code BIRTHDAYGABBY for 25% OFF."
+  );
 
 }
 
-// CALCULATE TOTAL
+// =========================
+// UPDATED TOTAL FUNCTION
+// =========================
+
 function calculateTotal(){
 
   const imgQty =
@@ -360,15 +279,15 @@ function calculateTotal(){
   const bgTotal =
   bgQty * bgUnit;
 
-  // DISPLAY
-  document.getElementById('imgPrice').innerText =
-  imgTotal.toFixed(2);
+  // UPDATE SECTION
+  document.getElementById('imgPrice')
+  .innerText = imgTotal.toFixed(2);
 
-  document.getElementById('fontPrice').innerText =
-  fontTotal.toFixed(2);
+  document.getElementById('fontPrice')
+  .innerText = fontTotal.toFixed(2);
 
-  document.getElementById('bgPrice').innerText =
-  bgTotal.toFixed(2);
+  document.getElementById('bgPrice')
+  .innerText = bgTotal.toFixed(2);
 
   // SUBTOTAL
   let subtotal =
@@ -380,11 +299,10 @@ function calculateTotal(){
 
   subtotal -= discountAmount;
 
-  // STATE
+  // STATE TAX
   const selectedState =
   document.getElementById('stateSelect').value;
 
-  // TAX
   const taxRate =
   stateTax[selectedState] || 0.05;
 
@@ -396,27 +314,32 @@ function calculateTotal(){
   subtotal + taxAmount;
 
   // DISPLAY
-  document.getElementById('imgTotal').innerText =
+  document.getElementById('imgTotal')
+  .innerText =
   "$" + imgTotal.toFixed(2);
 
-  document.getElementById('fontTotal').innerText =
+  document.getElementById('fontTotal')
+  .innerText =
   "$" + fontTotal.toFixed(2);
 
-  document.getElementById('bgTotal').innerText =
+  document.getElementById('bgTotal')
+  .innerText =
   "$" + bgTotal.toFixed(2);
 
-  document.getElementById('taxTotal').innerText =
+  document.getElementById('taxTotal')
+  .innerText =
   "$" + taxAmount.toFixed(2);
 
-  document.getElementById('discountTotal').innerText =
+  document.getElementById('discountTotal')
+  .innerText =
   "-$" + discountAmount.toFixed(2);
 
-  document.getElementById('grandTotal').innerText =
+  document.getElementById('grandTotal')
+  .innerText =
   "$" + finalTotal.toFixed(2);
 
 }
 
-// INITIALIZE
 calculateTotal();
 
 </script>
