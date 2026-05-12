@@ -1,3 +1,6 @@
+# Gabby's Graphicz — Fixed Professional Step 3 (confirmation_step3.html)
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +8,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- WEBSITE ICON -->
+<title>Gabby's Graphicz • Order Confirmation</title>
+
+<!-- HEART WEBSITE ICON -->
 <link rel="icon"
 type="image/png"
 href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
-
-<title>Gabby's Graphicz • Order Confirmation</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -22,6 +25,8 @@ rel="stylesheet">
 body{
 
   font-family:'Poppins',sans-serif;
+
+  /* CHEETAH BACKGROUND */
 
   background:
   radial-gradient(circle at 20% 20%, #2f1b12 8%, transparent 8%),
@@ -40,17 +45,17 @@ body{
 
 .main-container{
 
-  max-width:1100px;
+  max-width:1150px;
 
   margin:auto;
 
-  background:rgba(255,255,255,0.97);
+  background:rgba(255,255,255,0.98);
 
-  border-radius:30px;
+  border-radius:32px;
 
   overflow:hidden;
 
-  box-shadow:0 20px 45px rgba(0,0,0,0.2);
+  box-shadow:0 25px 55px rgba(0,0,0,0.25);
 
 }
 
@@ -77,6 +82,16 @@ body{
 
 }
 
+.subtitle{
+
+  margin-top:1rem;
+
+  font-size:1.1rem;
+
+  opacity:0.95;
+
+}
+
 .success-badge{
 
   display:inline-block;
@@ -85,11 +100,11 @@ body{
 
   color:#ff4fa3;
 
-  padding:0.8rem 1.4rem;
+  padding:0.9rem 1.5rem;
 
   border-radius:999px;
 
-  margin-top:1.5rem;
+  margin-top:1.8rem;
 
   font-weight:700;
 
@@ -107,7 +122,7 @@ body{
 
   display:grid;
 
-  grid-template-columns:1fr 380px;
+  grid-template-columns:1fr 390px;
 
   gap:2rem;
 
@@ -127,13 +142,13 @@ body{
 
   background:#fff;
 
-  border:1px solid #f3d0e2;
+  border:1px solid #f5d3e5;
 
-  border-radius:25px;
+  border-radius:28px;
 
   padding:2rem;
 
-  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
 
 }
 
@@ -155,9 +170,17 @@ body{
 
   justify-content:space-between;
 
-  padding:0.9rem 0;
+  gap:1rem;
+
+  padding:1rem 0;
 
   border-bottom:1px solid #f3f3f3;
+
+}
+
+.order-line:last-child{
+
+  border-bottom:none;
 
 }
 
@@ -167,7 +190,7 @@ body{
 
   border:2px solid #ffb6d9;
 
-  border-radius:25px;
+  border-radius:28px;
 
   padding:2rem;
 
@@ -200,9 +223,9 @@ body{
 
   color:white;
 
-  border-radius:25px;
+  border-radius:28px;
 
-  padding:1.8rem;
+  padding:2rem;
 
   margin-top:2rem;
 
@@ -218,9 +241,43 @@ body{
 
   padding:1.5rem;
 
-  border-radius:20px;
+  border-radius:22px;
 
   margin-top:2rem;
+
+}
+
+.status-box{
+
+  margin-top:2rem;
+
+}
+
+.progress-track{
+
+  width:100%;
+
+  height:14px;
+
+  background:#ececec;
+
+  border-radius:999px;
+
+  overflow:hidden;
+
+  margin-top:1rem;
+
+}
+
+.progress-bar{
+
+  width:45%;
+
+  height:100%;
+
+  background:#ff4fa3;
+
+  border-radius:999px;
 
 }
 
@@ -256,17 +313,17 @@ body{
 
 }
 
-.small-button{
+.secondary-button{
 
-  background:#fff;
-
-  border:2px solid #ff4fa3;
+  background:white;
 
   color:#ff4fa3;
 
+  border:2px solid #ff4fa3;
+
 }
 
-.small-button:hover{
+.secondary-button:hover{
 
   background:#fff0f7;
 
@@ -299,12 +356,12 @@ body{
 💖 Gabby's Graphicz
 </div>
 
-<p class="text-xl mt-4">
-Custom graphics made affordable for students, creators & businesses
+<p class="subtitle">
+Affordable custom graphics for students, creators & businesses
 </p>
 
 <div class="success-badge">
-✅ PAYMENT SUCCESSFUL
+✅ ORDER CONFIRMED
 </div>
 
 </div>
@@ -314,7 +371,7 @@ Custom graphics made affordable for students, creators & businesses
 
 <div class="grid-layout">
 
-<!-- LEFT SIDE -->
+<!-- LEFT COLUMN -->
 <div>
 
 <div class="card">
@@ -327,41 +384,39 @@ Custom graphics made affordable for students, creators & businesses
 
 </div>
 
-<div class="card mt-6">
+<div class="card status-box">
 
 <h2 class="section-title">
-📦 Order Status
+📦 Production Status
 </h2>
 
-<div class="flex items-center justify-between mb-5">
+<div class="flex justify-between items-center">
 
 <div>
+
 <p class="font-semibold text-lg">
 Design Request Submitted
 </p>
 
-<p class="text-gray-500">
-Your order is now in production.
+<p class="text-gray-500 mt-1">
+Your order is officially in queue.
 </p>
+
 </div>
 
-<div class="text-green-500 text-3xl">
+<div class="text-4xl text-green-500">
 ✔
 </div>
 
 </div>
 
-<div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-
-<div class="bg-pink-500 h-4 rounded-full"
-style="width:35%">
-</div>
-
+<div class="progress-track">
+<div class="progress-bar"></div>
 </div>
 
 <p class="mt-4 text-gray-600">
 Estimated turnaround:
-<strong>24–72 Hours</strong>
+<strong>24–72 hours</strong>
 </p>
 
 </div>
@@ -369,22 +424,22 @@ Estimated turnaround:
 <div class="notice-box">
 
 <h3 class="font-bold text-xl mb-3">
-⚠️ Refund & Policy Notice
+⚠️ Important Notice
 </h3>
 
 <p class="text-gray-700 mb-3">
-Custom digital products are non-refundable once work has started.
+All custom graphic orders are non-refundable once design work begins.
 </p>
 
 <p class="text-gray-700">
-By continuing, you agree to Gabby's Graphicz terms of service and digital product policies.
+By continuing, you agree to Gabby's Graphicz terms, policies, and digital product conditions.
 </p>
 
 </div>
 
 </div>
 
-<!-- RIGHT SIDE -->
+<!-- RIGHT COLUMN -->
 <div>
 
 <div class="total-box">
@@ -415,9 +470,9 @@ By continuing, you agree to Gabby's Graphicz terms of service and digital produc
 <span id="totalText">$0.00</span>
 </div>
 
-<div class="mt-5 text-gray-600">
+<div class="mt-6 text-gray-700 space-y-2">
 
-<p class="mb-2">
+<p>
 💳 Payment Method:
 <strong id="paymentMethodText">
 Card
@@ -428,6 +483,13 @@ Card
 📍 Region:
 <strong id="stateText">
 NC
+</strong>
+</p>
+
+<p>
+🎟 Coupon:
+<strong id="couponText">
+None
 </strong>
 </p>
 
@@ -450,7 +512,7 @@ reward points!
 </p>
 
 <p class="mt-3 text-sm opacity-90">
-Use points on future graphic orders & seasonal discounts.
+Use points for future discounts and seasonal sales.
 </p>
 
 </div>
@@ -460,8 +522,8 @@ onclick="downloadReceipt()">
 ⬇ Download Receipt
 </button>
 
-<button class="button small-button"
-onclick="window.location.href='step4.html'">
+<button class="button secondary-button"
+onclick="goToStep4()">
 Continue →
 </button>
 
@@ -479,56 +541,32 @@ Continue →
 
 <script>
 
-// URL PARAMETERS
-const params =
-new URLSearchParams(window.location.search);
+// GET URL PARAMETERS
+const params = new URLSearchParams(window.location.search);
 
 // DATA
-const imgQty =
-params.get('imgQty') || 0;
+const imgQty = params.get('imgQty') || 0;
+const fontQty = params.get('fontQty') || 0;
+const bgQty = params.get('bgQty') || 0;
 
-const fontQty =
-params.get('fontQty') || 0;
+const imgService = params.get('imgService') || 'Poster';
+const fontSelect = params.get('fontSelect') || 'Babaloo';
+const bgTheme = params.get('bgTheme') || 'Cheetah';
 
-const bgQty =
-params.get('bgQty') || 0;
+const subtotal = params.get('subtotal') || '0.00';
+const discount = params.get('discountAmount') || '0.00';
+const tax = params.get('taxAmount') || '0.00';
+const total = params.get('total') || '0.00';
 
-const imgService =
-params.get('imgService') || 'Poster';
-
-const fontSelect =
-params.get('fontSelect') || 'Babaloo';
-
-const bgTheme =
-params.get('bgTheme') || 'Cheetah';
-
-const subtotal =
-params.get('subtotal') || '0.00';
-
-const discount =
-params.get('discountAmount') || '0.00';
-
-const tax =
-params.get('taxAmount') || '0.00';
-
-const total =
-params.get('total') || '0.00';
-
-const paymentMethod =
-params.get('paymentMethod') || 'Card';
-
-const state =
-params.get('state') || 'NC';
-
-const coupon =
-params.get('couponCode') || 'None';
+const paymentMethod = params.get('paymentMethod') || 'PayPal';
+const state = params.get('state') || 'NC';
+const coupon = params.get('couponCode') || 'None';
 
 // REWARD POINTS
-const rewardPoints =
-Math.floor(parseFloat(total) * 10);
+const rewardPoints = Math.floor(parseFloat(total) * 10);
 
-// DISPLAY ORDER DETAILS
-document.getElementById('orderDetails').innerHTML = `
+// ORDER DETAILS
+const orderHTML = `
 
 <div class="order-line">
 <span>🖼️ Images & Illustrations</span>
@@ -546,30 +584,36 @@ document.getElementById('orderDetails').innerHTML = `
 </div>
 
 <div class="order-line">
-<span>🎟 Coupon Used</span>
+<span>🎟 Coupon Applied</span>
 <span>${coupon}</span>
 </div>
 
 `;
 
-// PAYMENT INFO
+document.getElementById('orderDetails').innerHTML = orderHTML;
+
+// PAYMENT SUMMARY
+
 document.getElementById('subtotalText').innerText =
-"$" + parseFloat(subtotal).toFixed(2);
+'$' + parseFloat(subtotal).toFixed(2);
 
 document.getElementById('discountText').innerText =
-"-$" + parseFloat(discount).toFixed(2);
+'-$' + parseFloat(discount).toFixed(2);
 
 document.getElementById('taxText').innerText =
-"$" + parseFloat(tax).toFixed(2);
+'$' + parseFloat(tax).toFixed(2);
 
 document.getElementById('totalText').innerText =
-"$" + parseFloat(total).toFixed(2);
+'$' + parseFloat(total).toFixed(2);
 
 document.getElementById('paymentMethodText').innerText =
 paymentMethod;
 
 document.getElementById('stateText').innerText =
 state;
+
+document.getElementById('couponText').innerText =
+coupon;
 
 document.getElementById('pointsText').innerText =
 rewardPoints;
@@ -616,20 +660,24 @@ ${rewardPoints}
 © Gabrielle Monroe 2025
 `;
 
-  const blob =
-  new Blob([receipt],
+  const blob = new Blob([receipt],
   {type:'text/plain'});
 
-  const link =
-  document.createElement('a');
+  const link = document.createElement('a');
 
-  link.href =
-  URL.createObjectURL(blob);
+  link.href = URL.createObjectURL(blob);
 
-  link.download =
-  'GabbyGraphiczReceipt.txt';
+  link.download = 'GabbyGraphiczReceipt.txt';
 
   link.click();
+
+}
+
+// GO TO STEP 4
+function goToStep4(){
+
+  window.location.href =
+  'step4.html?' + params.toString();
 
 }
 
@@ -637,3 +685,5 @@ ${rewardPoints}
 
 </body>
 </html>
+```
+
