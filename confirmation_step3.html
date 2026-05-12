@@ -5,160 +5,222 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- HEART WEBSITE ICON -->
-<link rel="icon" type="image/png"
+<!-- WEBSITE ICON -->
+<link rel="icon"
+type="image/png"
 href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 
-<title>Gabby's Graphicz - Step 4 Submitted</title>
+<title>Gabby's Graphicz • Order Confirmation</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 <style>
 
 body{
 
-  font-family:'Roboto',sans-serif;
+  font-family:'Poppins',sans-serif;
 
-  /* CHEETAH BACKGROUND */
   background:
-  radial-gradient(circle at 20% 20%, #2e1b0f 8%, transparent 8%),
-  radial-gradient(circle at 70% 30%, #2e1b0f 10%, transparent 10%),
-  radial-gradient(circle at 40% 70%, #2e1b0f 7%, transparent 7%),
-  radial-gradient(circle at 80% 80%, #2e1b0f 9%, transparent 9%),
-  #d8a15d;
+  radial-gradient(circle at 20% 20%, #2f1b12 8%, transparent 8%),
+  radial-gradient(circle at 70% 30%, #2f1b12 10%, transparent 10%),
+  radial-gradient(circle at 40% 75%, #2f1b12 7%, transparent 7%),
+  radial-gradient(circle at 80% 85%, #2f1b12 8%, transparent 8%),
+  #d6a161;
 
   background-size:140px 140px;
 
   min-height:100vh;
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
   padding:2rem;
 
 }
 
-.main-box{
+.main-container{
 
-  max-width:850px;
-  width:100%;
+  max-width:1100px;
 
-  background:rgba(255,255,255,0.96);
+  margin:auto;
+
+  background:rgba(255,255,255,0.97);
 
   border-radius:30px;
 
+  overflow:hidden;
+
+  box-shadow:0 20px 45px rgba(0,0,0,0.2);
+
+}
+
+.top-banner{
+
+  background:
+  linear-gradient(135deg,#ff4fa3,#ff8ec7);
+
   padding:3rem;
 
-  box-shadow:0 15px 35px rgba(0,0,0,0.25);
-
-}
-
-.title{
-
-  font-family:'Baloo 2',cursive;
-
-  color:#ff4fa3;
-
-  font-size:3.5rem;
-
   text-align:center;
-
-  margin-bottom:1rem;
-
-}
-
-.submitted-box{
-
-  background:linear-gradient(90deg,#ff4fa3,#ff91c8);
 
   color:white;
 
-  text-align:center;
+}
 
-  padding:1.5rem;
+.logo{
 
-  border-radius:20px;
+  font-family:'Baloo 2',cursive;
 
-  margin-bottom:2rem;
+  font-size:4rem;
 
-  animation:pulse 2s infinite;
+  line-height:1;
 
 }
 
-@keyframes pulse{
+.success-badge{
 
-  0%{transform:scale(1);}
-  50%{transform:scale(1.02);}
-  100%{transform:scale(1);}
+  display:inline-block;
+
+  background:white;
+
+  color:#ff4fa3;
+
+  padding:0.8rem 1.4rem;
+
+  border-radius:999px;
+
+  margin-top:1.5rem;
+
+  font-weight:700;
+
+  font-size:1rem;
 
 }
 
-.receipt-box{
+.content{
+
+  padding:3rem;
+
+}
+
+.grid-layout{
+
+  display:grid;
+
+  grid-template-columns:1fr 380px;
+
+  gap:2rem;
+
+}
+
+@media(max-width:900px){
+
+  .grid-layout{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+.card{
+
+  background:#fff;
+
+  border:1px solid #f3d0e2;
+
+  border-radius:25px;
+
+  padding:2rem;
+
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+
+}
+
+.section-title{
+
+  font-size:1.7rem;
+
+  font-weight:700;
+
+  color:#ff4fa3;
+
+  margin-bottom:1.5rem;
+
+}
+
+.order-line{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:0.9rem 0;
+
+  border-bottom:1px solid #f3f3f3;
+
+}
+
+.total-box{
 
   background:#fff0f7;
 
   border:2px solid #ffb6d9;
 
-  border-radius:20px;
+  border-radius:25px;
 
   padding:2rem;
 
-  margin-bottom:2rem;
+}
+
+.total-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:1rem;
 
 }
 
-.total{
-
-  color:#ff4fa3;
+.final-total{
 
   font-size:2rem;
 
-  font-weight:bold;
+  font-weight:700;
+
+  color:#ff4fa3;
 
 }
 
-.points-box{
+.reward-box{
 
-  background:linear-gradient(
-  90deg,
-  #ff0080,
-  #ff8c00,
-  #40e0d0,
-  #7b68ee
-  );
+  background:
+  linear-gradient(135deg,#ff0080,#ff8c00,#40e0d0,#7b68ee);
 
   color:white;
 
-  padding:1.5rem;
+  border-radius:25px;
 
-  border-radius:20px;
+  padding:1.8rem;
+
+  margin-top:2rem;
 
   text-align:center;
 
-  font-size:1.3rem;
-
-  font-weight:bold;
-
-  margin-bottom:2rem;
-
 }
 
-.warning-box{
+.notice-box{
 
   background:#fff7ed;
 
-  border:2px solid #fb923c;
-
-  color:#9a3412;
+  border-left:6px solid #fb923c;
 
   padding:1.5rem;
 
   border-radius:20px;
 
-  margin-bottom:2rem;
+  margin-top:2rem;
 
 }
 
@@ -170,19 +232,21 @@ body{
 
   color:white;
 
-  padding:1rem;
-
   border:none;
 
-  border-radius:15px;
+  padding:1rem;
 
-  font-size:1.1rem;
+  border-radius:18px;
 
-  font-weight:bold;
+  font-weight:700;
+
+  font-size:1rem;
 
   cursor:pointer;
 
   transition:0.3s;
+
+  margin-top:1rem;
 
 }
 
@@ -192,11 +256,27 @@ body{
 
 }
 
+.small-button{
+
+  background:#fff;
+
+  border:2px solid #ff4fa3;
+
+  color:#ff4fa3;
+
+}
+
+.small-button:hover{
+
+  background:#fff0f7;
+
+}
+
 .footer{
 
   text-align:center;
 
-  margin-top:2rem;
+  padding:2rem;
 
   color:#777;
 
@@ -210,80 +290,200 @@ body{
 
 <body>
 
-<div class="main-box">
+<div class="main-container">
 
-<div class="title">
+<!-- TOP HEADER -->
+<div class="top-banner">
+
+<div class="logo">
 💖 Gabby's Graphicz
 </div>
 
-<!-- ORDER SUBMITTED -->
-<div class="submitted-box">
-
-<h1 class="text-4xl font-bold mb-3">
-✅ ORDER SUBMITTED
-</h1>
-
-<p class="text-lg">
-Your custom design order has been successfully submitted!
+<p class="text-xl mt-4">
+Custom graphics made affordable for students, creators & businesses
 </p>
 
-<p class="mt-2">
-Thank you for supporting a college student-owned business.
+<div class="success-badge">
+✅ PAYMENT SUCCESSFUL
+</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+<div class="grid-layout">
+
+<!-- LEFT SIDE -->
+<div>
+
+<div class="card">
+
+<h2 class="section-title">
+🧾 Order Confirmation
+</h2>
+
+<div id="orderDetails"></div>
+
+</div>
+
+<div class="card mt-6">
+
+<h2 class="section-title">
+📦 Order Status
+</h2>
+
+<div class="flex items-center justify-between mb-5">
+
+<div>
+<p class="font-semibold text-lg">
+Design Request Submitted
+</p>
+
+<p class="text-gray-500">
+Your order is now in production.
+</p>
+</div>
+
+<div class="text-green-500 text-3xl">
+✔
+</div>
+
+</div>
+
+<div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+
+<div class="bg-pink-500 h-4 rounded-full"
+style="width:35%">
+</div>
+
+</div>
+
+<p class="mt-4 text-gray-600">
+Estimated turnaround:
+<strong>24–72 Hours</strong>
 </p>
 
 </div>
 
-<!-- RECEIPT -->
-<div class="receipt-box">
+<div class="notice-box">
 
-<h2 class="text-3xl font-bold mb-5">
-🧾 Receipt Summary
-</h2>
+<h3 class="font-bold text-xl mb-3">
+⚠️ Refund & Policy Notice
+</h3>
 
-<div id="receiptInfo"></div>
+<p class="text-gray-700 mb-3">
+Custom digital products are non-refundable once work has started.
+</p>
+
+<p class="text-gray-700">
+By continuing, you agree to Gabby's Graphicz terms of service and digital product policies.
+</p>
 
 </div>
 
-<!-- POINTS -->
-<div class="points-box" id="pointsBox">
-🎁 Loading reward points...
 </div>
 
-<!-- WARNING -->
-<div class="warning-box">
+<!-- RIGHT SIDE -->
+<div>
 
-<h2 class="text-2xl font-bold mb-3">
-⚠️ Important Notice
+<div class="total-box">
+
+<h2 class="section-title">
+💳 Payment Summary
 </h2>
+
+<div class="total-row">
+<span>Subtotal</span>
+<span id="subtotalText">$0.00</span>
+</div>
+
+<div class="total-row">
+<span>Discount</span>
+<span id="discountText">-$0.00</span>
+</div>
+
+<div class="total-row">
+<span>Tax</span>
+<span id="taxText">$0.00</span>
+</div>
+
+<hr class="my-5">
+
+<div class="total-row final-total">
+<span>Total</span>
+<span id="totalText">$0.00</span>
+</div>
+
+<div class="mt-5 text-gray-600">
 
 <p class="mb-2">
-Custom graphic orders cannot be edited after submission once work begins.
+💳 Payment Method:
+<strong id="paymentMethodText">
+Card
+</strong>
 </p>
 
 <p>
-Refunds are only approved if the design service was not delivered.
+📍 Region:
+<strong id="stateText">
+NC
+</strong>
 </p>
 
 </div>
 
-<!-- BUTTON -->
+</div>
+
+<div class="reward-box">
+
+<h2 class="text-2xl font-bold mb-3">
+🎁 Rewards Earned
+</h2>
+
+<p class="text-lg">
+You earned
+<strong id="pointsText">
+0
+</strong>
+reward points!
+</p>
+
+<p class="mt-3 text-sm opacity-90">
+Use points on future graphic orders & seasonal discounts.
+</p>
+
+</div>
+
 <button class="button"
-onclick="goHome()">
-✨ Create Another Order
+onclick="downloadReceipt()">
+⬇ Download Receipt
 </button>
 
+<button class="button small-button"
+onclick="window.location.href='step4.html'">
+Continue →
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 <div class="footer">
-© Gabrielle Monroe 2025 — Gabby's Graphicz
+© Gabrielle Monroe 2025 • Gabby's Graphicz
 </div>
 
 </div>
 
 <script>
 
-// GET URL PARAMETERS
+// URL PARAMETERS
 const params =
 new URLSearchParams(window.location.search);
 
+// DATA
 const imgQty =
 params.get('imgQty') || 0;
 
@@ -302,19 +502,13 @@ params.get('fontSelect') || 'Babaloo';
 const bgTheme =
 params.get('bgTheme') || 'Cheetah';
 
-const state =
-params.get('state') || 'NC';
-
-const couponCode =
-params.get('couponCode') || 'None';
-
 const subtotal =
 params.get('subtotal') || '0.00';
 
-const discountAmount =
+const discount =
 params.get('discountAmount') || '0.00';
 
-const taxAmount =
+const tax =
 params.get('taxAmount') || '0.00';
 
 const total =
@@ -323,83 +517,119 @@ params.get('total') || '0.00';
 const paymentMethod =
 params.get('paymentMethod') || 'Card';
 
-// POINT SYSTEM
+const state =
+params.get('state') || 'NC';
+
+const coupon =
+params.get('couponCode') || 'None';
+
+// REWARD POINTS
 const rewardPoints =
 Math.floor(parseFloat(total) * 10);
 
-// DISPLAY RECEIPT
-document.getElementById('receiptInfo').innerHTML = `
+// DISPLAY ORDER DETAILS
+document.getElementById('orderDetails').innerHTML = `
 
-<div class="mb-3">
-<strong>🖼️ Images & Illustrations:</strong>
-${imgQty} (${imgService})
+<div class="order-line">
+<span>🖼️ Images & Illustrations</span>
+<span>${imgQty} (${imgService})</span>
 </div>
 
-<div class="mb-3">
-<strong>🔤 Fonts & Typography:</strong>
-${fontQty} (${fontSelect})
+<div class="order-line">
+<span>🔤 Fonts & Typography</span>
+<span>${fontQty} (${fontSelect})</span>
 </div>
 
-<div class="mb-3">
-<strong>🎨 Backgrounds & Textures:</strong>
-${bgQty} (${bgTheme})
+<div class="order-line">
+<span>🎨 Backgrounds & Textures</span>
+<span>${bgQty} (${bgTheme})</span>
 </div>
 
-<div class="mb-3">
-<strong>📍 State:</strong>
-${state}
-</div>
-
-<div class="mb-3">
-<strong>🎟️ Coupon Code:</strong>
-${couponCode}
-</div>
-
-<div class="mb-3">
-<strong>💳 Payment Method:</strong>
-${paymentMethod}
-</div>
-
-<hr class="my-4">
-
-<div class="mb-2">
-Subtotal:
-$${parseFloat(subtotal).toFixed(2)}
-</div>
-
-<div class="mb-2">
-Discount:
--$${parseFloat(discountAmount).toFixed(2)}
-</div>
-
-<div class="mb-2">
-Tax:
-$${parseFloat(taxAmount).toFixed(2)}
-</div>
-
-<div class="total mt-4">
-Total Paid:
-$${parseFloat(total).toFixed(2)}
+<div class="order-line">
+<span>🎟 Coupon Used</span>
+<span>${coupon}</span>
 </div>
 
 `;
 
-// DISPLAY POINTS
-document.getElementById('pointsBox').innerHTML =
-`🎁 You earned <strong>${rewardPoints}</strong> reward points from this purchase!`;
+// PAYMENT INFO
+document.getElementById('subtotalText').innerText =
+"$" + parseFloat(subtotal).toFixed(2);
 
-// NEXT PAGE / HOME
-function goHome(){
+document.getElementById('discountText').innerText =
+"-$" + parseFloat(discount).toFixed(2);
 
-  window.location.href =
-  "index.html";
+document.getElementById('taxText').innerText =
+"$" + parseFloat(tax).toFixed(2);
 
-}
+document.getElementById('totalText').innerText =
+"$" + parseFloat(total).toFixed(2);
 
-</script>
+document.getElementById('paymentMethodText').innerText =
+paymentMethod;
 
-</body>
-</html>
+document.getElementById('stateText').innerText =
+state;
+
+document.getElementById('pointsText').innerText =
+rewardPoints;
+
+// DOWNLOAD RECEIPT
+function downloadReceipt(){
+
+  const receipt = `
+Gabby's Graphicz Receipt
+
+Images:
+${imgQty} (${imgService})
+
+Fonts:
+${fontQty} (${fontSelect})
+
+Backgrounds:
+${bgQty} (${bgTheme})
+
+Coupon:
+${coupon}
+
+Subtotal:
+$${subtotal}
+
+Discount:
+-$${discount}
+
+Tax:
+$${tax}
+
+Total:
+$${total}
+
+Payment Method:
+${paymentMethod}
+
+State:
+${state}
+
+Reward Points:
+${rewardPoints}
+
+© Gabrielle Monroe 2025
+`;
+
+  const blob =
+  new Blob([receipt],
+  {type:'text/plain'});
+
+  const link =
+  document.createElement('a');
+
+  link.href =
+  URL.createObjectURL(blob);
+
+  link.download =
+  'GabbyGraphiczReceipt.txt';
+
+  link.click();
 
 }
 
