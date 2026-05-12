@@ -1,192 +1,129 @@
-<!-- IMAGES & ILLUSTRATIONS -->
-<div class="service-section">
+<!-- COUPONS + BIRTHDAY SYSTEM -->
+<div class="mt-8 bg-pink-100 p-6 rounded-2xl border-2 border-pink-300">
 
-<h2 class="text-2xl font-bold text-pink-500 mb-2">
-🖼️ Images & Illustrations
+<h2 class="text-3xl font-bold text-center text-pink-500 mb-6">
+🎟️ Coupons & Discounts
 </h2>
 
-<p class="mb-3 text-gray-600">
-$0.75 – $1.00 per image
-</p>
+<!-- HOLIDAY COUPONS -->
+<div class="mb-6">
 
-<label class="font-semibold">
-Choose Service Type
-</label>
+<h3 class="text-xl font-bold text-pink-500 mb-3">
+🔥 Current Holiday Coupons
+</h3>
 
-<select id="imgType"
-class="w-full p-3 border rounded-xl mt-2 mb-4">
+<ul class="space-y-2 text-gray-700">
 
-<option value="Poster">Poster</option>
-<option value="Flyer">Flyer</option>
-<option value="Logo">Logo</option>
-<option value="Birthday">Birthday Design</option>
-<option value="Graduation">Graduation</option>
-<option value="Business Card">Business Card</option>
-<option value="Social Media">Social Media Graphic</option>
+<li>
+🎓 <strong>GRAD26</strong> —
+20% Off Graduation Designs
+</li>
 
-</select>
+<li>
+☀️ <strong>SUMMER26</strong> —
+15% Off Entire Order
+</li>
 
-<label class="font-semibold">
-Quantity
-</label>
+<li>
+🇺🇸 <strong>MEMORIAL26</strong> —
+10% Off Orders Over $15
+</li>
 
-<input
-type="number"
-id="imgQty"
-min="0"
-value="0"
-oninput="calculateTotal()"
-class="w-full p-3 border rounded-xl mt-2"
-/>
+<li>
+🎆 <strong>JULY4TH26</strong> —
+25% Off Patriotic Designs
+</li>
 
-<p class="mt-3 text-pink-500 font-bold">
-Price: $<span id="imgPrice">0.00</span>
-</p>
+<li>
+🍂 <strong>FALL26</strong> —
+15% Off Background Designs
+</li>
 
-<!-- SAMPLE EMBEDS -->
-<div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+<li>
+🎃 <strong>SPOOKY26</strong> —
+20% Off Halloween Themes
+</li>
 
-<iframe
-src="https://www.canva.com/design/DAG0FHls9Bg/MYjkPdUSSISEQDmDkIzp0A/view?embed"
-class="w-full h-72 rounded-xl border"
-allowfullscreen>
-</iframe>
+<li>
+🦃 <strong>THANKFUL26</strong> —
+20% Off Thanksgiving Graphics
+</li>
 
-<iframe
-src="https://www.canva.com/design/DAGdnrj0aCc/h6FpB30amYqiJy73BWOk_A/view?embed"
-class="w-full h-72 rounded-xl border"
-allowfullscreen>
-</iframe>
+<li>
+🎄 <strong>MERRY26</strong> —
+25% Off Christmas Orders
+</li>
+
+<li>
+💕 <strong>LOVE26</strong> —
+15% Off Valentine Designs
+</li>
+
+</ul>
 
 </div>
 
-</div>
-
-<!-- FONTS & TYPOGRAPHY -->
-<div class="service-section mt-6">
-
-<h2 class="text-2xl font-bold text-pink-500 mb-2">
-🔤 Fonts & Typography Design
-</h2>
-
-<p class="mb-3 text-gray-600">
-$1.50 – $3.50 per font
-</p>
-
+<!-- COUPON INPUT -->
 <label class="font-semibold">
-Choose Font Style
+Enter Coupon Code
 </label>
 
-<select id="fontSelect"
-class="w-full p-3 border rounded-xl mt-2 mb-4">
-
-<option value="Babaloo">Babaloo</option>
-<option value="Pacifico">Pacifico</option>
-<option value="Montserrat">Montserrat</option>
-<option value="Poppins">Poppins</option>
-<option value="Roboto">Roboto</option>
-<option value="Anton">Anton</option>
-<option value="Oswald">Oswald</option>
-
-</select>
-
-<label class="font-semibold">
-Quantity
-</label>
-
-<input
-type="number"
-id="fontQty"
-min="0"
-value="0"
-oninput="calculateTotal()"
-class="w-full p-3 border rounded-xl mt-2"
-/>
-
-<p class="mt-3 text-pink-500 font-bold">
-Price: $<span id="fontPrice">0.00</span>
-</p>
-
-</div>
-
-<!-- BACKGROUNDS & TEXTURES -->
-<div class="service-section mt-6">
-
-<h2 class="text-2xl font-bold text-pink-500 mb-2">
-🎨 Backgrounds & Textures
-</h2>
-
-<p class="mb-3 text-gray-600">
-$1.50 – $3.50 per design
-</p>
-
-<label class="font-semibold">
-Theme / Style
-</label>
+<div class="flex gap-3 mt-3">
 
 <input
 type="text"
-id="bgTheme"
-placeholder="Example: Cheetah, Pastel, Y2K, Rainbow"
-class="w-full p-3 border rounded-xl mt-2 mb-4"
+id="couponInput"
+placeholder="Enter coupon code"
+class="w-full p-3 border rounded-xl"
 />
 
+<button
+onclick="applyCoupon()"
+type="button"
+class="bg-pink-500 hover:bg-pink-600 text-white px-6 rounded-xl font-bold">
+Apply
+</button>
+
+</div>
+
+<p
+id="couponMessage"
+class="mt-3 font-bold text-pink-500">
+</p>
+
+<!-- BIRTHDAY -->
+<div class="mt-8">
+
+<h3 class="text-2xl font-bold text-pink-500 mb-3">
+🎂 Birthday Discount
+</h3>
+
+<p class="text-gray-600 mb-4">
+Enter your birthday to receive a one-time birthday coupon.
+</p>
+
 <label class="font-semibold">
-Quantity
+Birthday
 </label>
 
 <input
-type="number"
-id="bgQty"
-min="0"
-value="0"
-oninput="calculateTotal()"
+type="date"
+id="birthdayInput"
 class="w-full p-3 border rounded-xl mt-2"
 />
 
-<p class="mt-3 text-pink-500 font-bold">
-Price: $<span id="bgPrice">0.00</span>
+<button
+onclick="generateBirthdayCoupon()"
+type="button"
+class="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl font-bold w-full">
+Generate Birthday Coupon
+</button>
+
+<p
+id="birthdayMessage"
+class="mt-4 font-bold text-pink-500">
 </p>
 
-</div>
-
-<!-- TOTAL BOX -->
-<div class="mt-8 bg-pink-100 p-6 rounded-2xl border-2 border-pink-300">
-
-<h2 class="text-3xl font-bold text-center text-pink-500 mb-4">
-🛍️ Order Total
-</h2>
-
-<div class="flex justify-between mb-2">
-<span>Images & Illustrations</span>
-<span id="imgTotal">$0.00</span>
-</div>
-
-<div class="flex justify-between mb-2">
-<span>Fonts & Typography</span>
-<span id="fontTotal">$0.00</span>
-</div>
-
-<div class="flex justify-between mb-2">
-<span>Backgrounds & Textures</span>
-<span id="bgTotal">$0.00</span>
-</div>
-
-<div class="flex justify-between mb-2">
-<span>State Tax</span>
-<span id="taxTotal">$0.00</span>
-</div>
-
-<div class="flex justify-between mb-2">
-<span>Discount</span>
-<span id="discountTotal">-$0.00</span>
-</div>
-
-<hr class="my-4">
-
-<div class="flex justify-between text-2xl font-bold text-pink-600">
-<span>Total</span>
-<span id="grandTotal">$0.00</span>
 </div>
 
 </div>
@@ -195,17 +132,206 @@ Price: $<span id="bgPrice">0.00</span>
 
 // STATE TAXES
 const stateTax = {
-NC:0.0475,
+AL:0.04,
+AK:0.00,
+AZ:0.056,
+AR:0.065,
 CA:0.0725,
-TX:0.0625,
+CO:0.029,
+CT:0.0635,
+DE:0.00,
 FL:0.06,
-NY:0.04,
 GA:0.04,
-VA:0.053
+HI:0.04,
+ID:0.06,
+IL:0.0625,
+IN:0.07,
+IA:0.06,
+KS:0.065,
+KY:0.06,
+LA:0.0445,
+ME:0.055,
+MD:0.06,
+MA:0.0625,
+MI:0.06,
+MN:0.06875,
+MS:0.07,
+MO:0.04225,
+MT:0.00,
+NE:0.055,
+NV:0.0685,
+NH:0.00,
+NJ:0.06625,
+NM:0.05125,
+NY:0.04,
+NC:0.0475,
+ND:0.05,
+OH:0.0575,
+OK:0.045,
+OR:0.00,
+PA:0.06,
+RI:0.07,
+SC:0.06,
+SD:0.045,
+TN:0.07,
+TX:0.0625,
+UT:0.061,
+VT:0.06,
+VA:0.053,
+WA:0.065,
+WV:0.06,
+WI:0.05,
+WY:0.04
 };
 
-// CURRENT DISCOUNT
+// ACTIVE DISCOUNT
 let currentDiscount = 0;
+
+// ONE-TIME USE TRACKER
+let usedCoupons =
+JSON.parse(localStorage.getItem('usedCoupons')) || [];
+
+// COUPONS
+const coupons = {
+
+GRAD26:0.20,
+SUMMER26:0.15,
+MEMORIAL26:0.10,
+JULY4TH26:0.25,
+FALL26:0.15,
+SPOOKY26:0.20,
+THANKFUL26:0.20,
+MERRY26:0.25,
+LOVE26:0.15
+
+};
+
+// APPLY COUPON
+function applyCoupon(){
+
+  const code =
+  document.getElementById('couponInput')
+  .value
+  .trim()
+  .toUpperCase();
+
+  const msg =
+  document.getElementById('couponMessage');
+
+  // ALREADY USED
+  if(usedCoupons.includes(code)){
+
+    msg.innerHTML =
+    "❌ This coupon was already used.";
+
+    msg.style.color = "red";
+
+    return;
+
+  }
+
+  // VALID
+  if(coupons[code]){
+
+    currentDiscount =
+    coupons[code];
+
+    usedCoupons.push(code);
+
+    localStorage.setItem(
+      'usedCoupons',
+      JSON.stringify(usedCoupons)
+    );
+
+    msg.innerHTML =
+    `✅ Coupon Applied! ${currentDiscount*100}% OFF`;
+
+    msg.style.color = "green";
+
+    calculateTotal();
+
+  } else {
+
+    msg.innerHTML =
+    "❌ Invalid coupon code.";
+
+    msg.style.color = "red";
+
+  }
+
+}
+
+// BIRTHDAY COUPON
+function generateBirthdayCoupon(){
+
+  const birthday =
+  document.getElementById('birthdayInput').value;
+
+  const msg =
+  document.getElementById('birthdayMessage');
+
+  if(!birthday){
+
+    msg.innerHTML =
+    "❌ Please enter your birthday.";
+
+    msg.style.color = "red";
+
+    return;
+
+  }
+
+  // CHECK IF ALREADY GENERATED
+  if(localStorage.getItem('birthdayCouponUsed')){
+
+    msg.innerHTML =
+    "❌ Birthday coupon already claimed.";
+
+    msg.style.color = "red";
+
+    return;
+
+  }
+
+  const today =
+  new Date();
+
+  const birthDate =
+  new Date(birthday);
+
+  // MATCH MONTH + DAY
+  if(
+    today.getMonth() === birthDate.getMonth()
+    &&
+    today.getDate() === birthDate.getDate()
+  ){
+
+    const birthdayCode =
+    "BDAY26";
+
+    coupons[birthdayCode] = 0.30;
+
+    msg.innerHTML =
+    `🎉 Happy Birthday! Your one-time coupon code is:
+    ${birthdayCode} for 30% OFF`;
+
+    msg.style.color = "green";
+
+    localStorage.setItem(
+      'birthdayCouponUsed',
+      true
+    );
+
+  } else {
+
+    msg.innerHTML =
+    "🎂 Birthday discounts are only available on your birthday.";
+
+    msg.style.color = "#ff4fa3";
+
+  }
+
+}
 
 // CALCULATE TOTAL
 function calculateTotal(){
@@ -219,17 +345,22 @@ function calculateTotal(){
   const bgQty =
   parseInt(document.getElementById('bgQty').value) || 0;
 
-  // RANDOMIZED PRICES
+  // PRICES
   const imgUnit = 1.00;
   const fontUnit = 3.50;
   const bgUnit = 3.50;
 
-  // SECTION TOTALS
-  const imgTotal = imgQty * imgUnit;
-  const fontTotal = fontQty * fontUnit;
-  const bgTotal = bgQty * bgUnit;
+  // TOTALS
+  const imgTotal =
+  imgQty * imgUnit;
 
-  // UPDATE SECTION PRICES
+  const fontTotal =
+  fontQty * fontUnit;
+
+  const bgTotal =
+  bgQty * bgUnit;
+
+  // DISPLAY
   document.getElementById('imgPrice').innerText =
   imgTotal.toFixed(2);
 
@@ -249,21 +380,22 @@ function calculateTotal(){
 
   subtotal -= discountAmount;
 
-  // TAX
+  // STATE
   const selectedState =
   document.getElementById('stateSelect').value;
 
+  // TAX
   const taxRate =
   stateTax[selectedState] || 0.05;
 
   const taxAmount =
   subtotal * taxRate;
 
-  // GRAND TOTAL
+  // FINAL
   const finalTotal =
   subtotal + taxAmount;
 
-  // DISPLAY TOTALS
+  // DISPLAY
   document.getElementById('imgTotal').innerText =
   "$" + imgTotal.toFixed(2);
 
@@ -288,4 +420,3 @@ function calculateTotal(){
 calculateTotal();
 
 </script>
-
