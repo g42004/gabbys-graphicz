@@ -3,138 +3,327 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabby's Graphicz - Shopping Cart</title>
-<link href="https://fonts.googleapis.com/css2?family=Babaloo&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<title>Gabby's Graphicz - Step 4</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  body {
-    font-family: 'Roboto', sans-serif;
-    background: url('https://images.unsplash.com/photo-1612831455545-8d2e10d1a5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZHxlbnwwfHwwfHw%3D&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    padding: 2rem;
-  }
-  .container { background: rgba(255,255,255,0.95); max-width: 900px; margin: auto; padding: 2rem; border-radius: 12px; box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-  h1 { font-family: 'Babaloo', cursive; font-size: 2.8rem; color: #F472B6; text-align: center; margin-bottom:1rem;}
-  table { width:100%; border-collapse: collapse; }
-  th, td { padding: 0.75rem; border-bottom: 1px solid #ddd; text-align:left; }
-  th { background-color: #F472B6; color:white; }
-  .remove-btn { color: #EF4444; cursor:pointer; font-weight:bold; }
-  footer { margin-top:2rem; text-align:center; font-size:0.9rem; color:#555; }
-  .total { font-weight:bold; font-size:1.2rem; margin-top:1rem; text-align:right; }
-  .button-base { background-color:#F472B6; color:white; padding:0.75rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:bold; margin-top:1rem;}
+
+body{
+  font-family:'Roboto',sans-serif;
+  background:#ffe4f2;
+  min-height:100vh;
+  padding:2rem;
+}
+
+.main-box{
+  max-width:950px;
+  margin:auto;
+  background:white;
+  border-radius:20px;
+  padding:2rem;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.title{
+  font-family:'Baloo 2',cursive;
+  color:#ff4fa3;
+  font-size:3rem;
+  text-align:center;
+  margin-bottom:1rem;
+}
+
+.completed-box{
+  background:linear-gradient(90deg,#ff0080,#ff8c00,#40e0d0,#7b68ee);
+  color:white;
+  padding:1.5rem;
+  border-radius:18px;
+  text-align:center;
+  margin-bottom:2rem;
+}
+
+.section-box{
+  background:#fff0f7;
+  border:2px solid #ffb6d9;
+  border-radius:15px;
+  padding:1.5rem;
+  margin-bottom:1.5rem;
+}
+
+.download-btn{
+  width:100%;
+  background:#ff4fa3;
+  color:white;
+  padding:1rem;
+  border:none;
+  border-radius:12px;
+  font-size:1rem;
+  font-weight:bold;
+  margin-top:1rem;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.download-btn:hover{
+  background:#e63d90;
+}
+
+.points-box{
+  background:#f0fdf4;
+  border:2px solid #22c55e;
+  color:#166534;
+  padding:1rem;
+  border-radius:15px;
+  margin-top:1rem;
+  text-align:center;
+  font-weight:bold;
+}
+
+.status-box{
+  background:#eff6ff;
+  border:2px solid #60a5fa;
+  color:#1e3a8a;
+  padding:1rem;
+  border-radius:15px;
+  margin-top:1rem;
+}
+
+.copyright{
+  text-align:center;
+  margin-top:2rem;
+  color:#777;
+  font-size:0.9rem;
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Shopping Cart</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Service</th>
-        <th>Type/Font</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Remove</th>
-      </tr>
-    </thead>
-    <tbody id="cartBody">
-      <!-- Items will appear here -->
-    </tbody>
-  </table>
+<div class="main-box">
 
-  <div class="total" id="totalDisplay"></div>
-  <button onclick="goToStep2()" class="button-base">Proceed to Payment (Step 2)</button>
+<div class="title">
+Gabby's Graphicz
 </div>
 
-<footer>© Gabrielle Monroe 2025</footer>
+<!-- ORDER COMPLETED -->
+<div class="completed-box">
+
+<h1 class="text-4xl font-bold mb-3">
+✨ Order Completed ✨
+</h1>
+
+<p class="text-lg">
+Thank you for supporting Gabby's Graphicz!
+Your order has officially been placed and is now in production.
+</p>
+
+</div>
+
+<!-- CUSTOMER DETAILS -->
+<div class="section-box">
+
+<h2 class="text-2xl font-bold mb-4">
+Customer Receipt
+</h2>
+
+<div id="receiptInfo"></div>
+
+</div>
+
+<!-- REWARD POINTS -->
+<div class="points-box" id="rewardPointsBox">
+Loading reward points...
+</div>
+
+<!-- ORDER STATUS -->
+<div class="status-box">
+
+<h2 class="text-xl font-bold mb-2">
+📦 Order Status
+</h2>
+
+<p>
+Status: <strong>Processing Design Request</strong>
+</p>
+
+<p class="mt-2">
+Estimated turnaround time:
+<strong>24–72 hours</strong>
+</p>
+
+</div>
+
+<!-- DOWNLOAD SECTION -->
+<div class="section-box">
+
+<h2 class="text-2xl font-bold mb-4">
+Downloads & Next Steps
+</h2>
+
+<p class="mb-3">
+Your invoice and order details can be downloaded below.
+</p>
+
+<button class="download-btn" onclick="downloadReceipt()">
+⬇️ Download Receipt
+</button>
+
+<button class="download-btn mt-4"
+onclick="window.location.href='index.html'">
+🛍️ Create Another Order
+</button>
+
+</div>
+
+<!-- CONTACT -->
+<div class="section-box">
+
+<h2 class="text-2xl font-bold mb-4">
+Contact Information
+</h2>
+
+<p>
+📧 Email:
+<strong>gmonroe04@gmail.com</strong>
+</p>
+
+<p class="mt-2">
+📱 Phone:
+<strong>252-413-8199</strong>
+</p>
+
+<p class="mt-2">
+💖 Thank you for supporting a college student-owned business.
+</p>
+
+</div>
+
+<div class="copyright">
+© Gabrielle Monroe 2025 — Gabby's Graphicz
+</div>
+
+</div>
 
 <script>
-const taxRates = { 'NC': 0.0725, 'NY':0.08875, 'CA':0.0725, 'TX':0.0625, 'Other':0 };
 
-// Retrieve order from URL
+// GET URL PARAMETERS
 const params = new URLSearchParams(window.location.search);
 
-let cartItems = [];
+const imgQty = params.get('imgQty') || 0;
+const fontQty = params.get('fontQty') || 0;
+const bgQty = params.get('bgQty') || 0;
 
-// Images
-if(parseInt(params.get('imgQty'))>0){
-  cartItems.push({
-    service:'Images & Illustrations',
-    type: params.get('imgService'),
-    qty: parseInt(params.get('imgQty')),
-    price:0.75
-  });
+const imgService = params.get('imgService') || 'None';
+const fontSelect = params.get('fontSelect') || 'None';
+const bgTheme = params.get('bgTheme') || 'None';
+
+const total = params.get('total') || '0.00';
+
+const paymentMethod =
+params.get('paymentMethod') || 'Card';
+
+const state =
+params.get('state') || 'NC';
+
+const coupon =
+params.get('couponCode') || 'None';
+
+// POINT SYSTEM
+const rewardPoints = Math.floor(parseFloat(total) * 10);
+
+// DISPLAY RECEIPT
+document.getElementById('receiptInfo').innerHTML = `
+
+<p class="mb-2">
+<strong>Images & Illustrations:</strong>
+${imgQty} (${imgService})
+</p>
+
+<p class="mb-2">
+<strong>Fonts & Typography:</strong>
+${fontQty} (${fontSelect})
+</p>
+
+<p class="mb-2">
+<strong>Backgrounds & Textures:</strong>
+${bgQty} (${bgTheme})
+</p>
+
+<p class="mb-2">
+<strong>State:</strong>
+${state}
+</p>
+
+<p class="mb-2">
+<strong>Coupon Used:</strong>
+${coupon}
+</p>
+
+<p class="mb-2">
+<strong>Payment Method:</strong>
+${paymentMethod}
+</p>
+
+<p class="mt-4 text-2xl font-bold text-pink-500">
+Total Paid: $${parseFloat(total).toFixed(2)}
+</p>
+
+`;
+
+// DISPLAY POINTS
+document.getElementById('rewardPointsBox').innerHTML =
+`🎁 You now have <strong>${rewardPoints}</strong> reward points available for future discounts!`;
+
+// DOWNLOAD RECEIPT
+function downloadReceipt(){
+
+  const receiptText = `
+Gabby's Graphicz Receipt
+
+Images:
+${imgQty} (${imgService})
+
+Fonts:
+${fontQty} (${fontSelect})
+
+Backgrounds:
+${bgQty} (${bgTheme})
+
+State:
+${state}
+
+Coupon:
+${coupon}
+
+Payment Method:
+${paymentMethod}
+
+Total Paid:
+$${parseFloat(total).toFixed(2)}
+
+Reward Points:
+${rewardPoints}
+
+© Gabrielle Monroe 2026
+`;
+
+  const blob = new Blob([receiptText],
+  { type: 'text/plain' });
+
+  const link = document.createElement('a');
+
+  link.href = URL.createObjectURL(blob);
+
+  link.download = 'GabbysGraphiczReceipt.txt';
+
+  link.click();
+
 }
 
-// Fonts
-if(parseInt(params.get('fontQty'))>0){
-  cartItems.push({
-    service:'Fonts & Typography',
-    type: params.get('fontSelect'),
-    qty: parseInt(params.get('fontQty')),
-    price:2.5
-  });
-}
-
-// Backgrounds
-if(parseInt(params.get('bgQty'))>0){
-  cartItems.push({
-    service:'Backgrounds & Textures',
-    type:'Designs',
-    qty: parseInt(params.get('bgQty')),
-    price:2.5
-  });
-}
-
-const state = params.get('state') || 'NC';
-const taxRate = taxRates[state] || 0;
-
-function renderCart(){
-  const tbody = document.getElementById('cartBody');
-  tbody.innerHTML = '';
-  let subtotal = 0;
-  cartItems.forEach((item,index)=>{
-    const priceTotal = item.price*item.qty;
-    subtotal += priceTotal;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${item.service}</td>
-                    <td>${item.type}</td>
-                    <td>${item.qty}</td>
-                    <td>$${priceTotal.toFixed(2)}</td>
-                    <td><span class="remove-btn" onclick="removeItem(${index})">X</span></td>`;
-    tbody.appendChild(tr);
-  });
-  const tax = subtotal*taxRate;
-  const total = subtotal + tax;
-  document.getElementById('totalDisplay').innerHTML = `
-    Subtotal: $${subtotal.toFixed(2)}<br>
-    Tax (${(taxRate*100).toFixed(2)}%): $${tax.toFixed(2)}<br>
-    <strong>Total: $${total.toFixed(2)}</strong>
-  `;
-}
-
-function removeItem(index){
-  cartItems.splice(index,1);
-  renderCart();
-}
-
-function goToStep2(){
-  // Build URL with updated cart
-  const newParams = new URLSearchParams();
-  cartItems.forEach(item=>{
-    if(item.service==='Images & Illustrations') newParams.set('imgQty', item.qty);
-    if(item.service==='Fonts & Typography') newParams.set('fontQty', item.qty);
-    if(item.service==='Backgrounds & Textures') newParams.set('bgQty', item.qty);
-    newParams.set('imgService', params.get('imgService'));
-    newParams.set('fontSelect', params.get('fontSelect'));
-    newParams.set('state', state);
-  });
-  window.location.href = `payment_step2.html?${newParams.toString()}`;
-}
-
-renderCart();
 </script>
 
 </body>
