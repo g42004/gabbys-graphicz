@@ -1,112 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Payment – Gabby's Graphicz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffc5e3; 
-            margin: 0;
-            padding: 30px;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabby's Graphicz - Step 2 Payment</title>
 
-        .container {
-            max-width: 600px;
-            background: white;
-            padding: 25px;
-            margin: auto;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+<style>
+  body{
+    font-family:'Roboto',sans-serif;
+    background:#ffe4f2;
+    min-height:100vh;
+    padding:2rem;
+  }
 
-        .button {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            margin-top: 12px;
-            background-color: hotpink;
-            color: white;
-            text-decoration: none;
-            font-size: 17px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-        }
+  .main-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:2rem;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  }
 
-        .payment-section {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            background: #f9f9f9;
-        }
+  .title{
+    font-family:'Baloo 2',cursive;
+    color:#ff4fa3;
+    font-size:3rem;
+    text-align:center;
+    margin-bottom:1rem;
+  }
 
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            border-radius: 6px;
-            border: 1px solid #aaa;
-        }
+  .summary-box{
+    background:#fff0f7;
+    border:2px solid #ffb6d9;
+    border-radius:15px;
+    padding:1rem;
+    margin-bottom:1.5rem;
+  }
 
-        label {
-            font-size: 15px;
-            font-weight: bold;
-        }
-    </style>
+  .payment-option{
+    border:2px solid #ddd;
+    border-radius:15px;
+    padding:1rem;
+    margin-bottom:1rem;
+    cursor:pointer;
+    transition:0.3s;
+  }
+
+  .payment-option:hover{
+    border-color:#ff4fa3;
+    background:#fff4fa;
+  }
+
+  .payment-option.active{
+    border-color:#ff4fa3;
+    background:#fff0f7;
+  }
+
+  .pay-btn{
+    width:100%;
+    background:#ff4fa3;
+    color:white;
+    padding:1rem;
+    border:none;
+    border-radius:12px;
+    font-size:1.1rem;
+    font-weight:bold;
+    margin-top:1.5rem;
+    cursor:pointer;
+    transition:0.3s;
+  }
+
+  .pay-btn:hover{
+    background:#e63d90;
+  }
+
+  .cart-icon{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:white;
+    border-radius:50%;
+    padding:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    font-size:1.4rem;
+  }
+
+  .card-form input{
+    width:100%;
+    padding:0.75rem;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-top:0.5rem;
+    margin-bottom:1rem;
+  }
+
+  .total-line{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:0.5rem;
+  }
+
+  .grand-total{
+    font-size:1.5rem;
+    font-weight:bold;
+    color:#ff4fa3;
+  }
+
+</style>
 </head>
 <body>
-    <div class="container">
 
-        <h2>Choose Your Payment Method</h2>
+<div class="cart-icon">
+🛍️
+</div>
 
-        <!-- PAYPAL BUTTON -->
-        <div class="payment-section">
-            <h3>PayPal</h3>
-            <p>Pay quickly and securely using PayPal.</p>
-            <a class="button" href="https://www.paypal.me/YOURUSERNAME" target="_blank">
-                Pay with PayPal
-            </a>
-        </div>
+<div class="main-box">
 
-        <!-- CREDIT / DEBIT CARDS -->
-        <div class="payment-section">
-            <h3>Credit or Debit Card</h3>
-            <label>Name on Card</label>
-            <input type="text" placeholder="Full Name">
+<div class="title">
+Gabby's Graphicz
+</div>
 
-            <label>Card Number</label>
-            <input type="number" placeholder="0000 0000 0000 0000">
+<h2 class="text-2xl font-bold text-center mb-6">
+Step 2: Payment
+</h2>
 
-            <label>Expiration Date</label>
-            <input type="text" placeholder="MM/YY">
+<!-- ORDER SUMMARY -->
+<div class="summary-box">
 
-            <label>CVV</label>
-            <input type="number" placeholder="123">
+<h3 class="text-xl font-bold mb-3">
+Order Summary
+</h3>
 
-            <a class="button" href="confirmation_step3.html">Submit Card Payment</a>
-        </div>
+<div id="orderSummary"></div>
 
-        <!-- DIGITAL WALLETS -->
-        <div class="payment-section">
-            <h3>Digital Wallets</h3>
-            <label>Select Wallet</label>
-            <select style="width:100%; padding:12px; margin-top:8px; border-radius:6px;">
-                <option>Apple Pay</option>
-                <option>Google Pay</option>
-                <option>Cash App Pay</option>
-                <option>Venmo</option>
-            </select>
+<hr class="my-4">
 
-            <a class="button" href="confirmation_step3.html">Use Digital Wallet</a>
-        </div>
+<div class="total-line">
+<span>Subtotal:</span>
+<span id="subtotalText">$0.00</span>
+</div>
 
-    </div>
+<div class="total-line">
+<span>Discount:</span>
+<span id="discountText">-$0.00</span>
+</div>
+
+<div class="total-line">
+<span>Tax:</span>
+<span id="taxText">$0.00</span>
+</div>
+
+<div class="total-line grand-total">
+<span>Total:</span>
+<span id="totalText">$0.00</span>
+</div>
+
+</div>
+
+<!-- PAYMENT OPTIONS -->
+<h3 class="text-xl font-bold mb-4">
+Choose Payment Method
+</h3>
+
+<div class="payment-option active" onclick="selectPayment('card',this)">
+💳 Credit / Debit Card
+</div>
+
+<div class="payment-option" onclick="selectPayment('paypal',this)">
+🟦 PayPal
+</div>
+
+<div class="payment-option" onclick="selectPayment('cashapp',this)">
+💵 Cash App
+</div>
+
+<div class="payment-option" onclick="selectPayment('applepay',this)">
+🍎 Apple Pay
+</div>
+
+<div class="payment-option" onclick="selectPayment('googlepay',this)">
+🌐 Google Pay
+</div>
+
+<!-- CARD FORM -->
+<div id="cardForm" class="card-form mt-6">
+
+<input type="text" placeholder="Cardholder Name">
+
+<input type="text" placeholder="Card Number">
+
+<div class="grid grid-cols-2 gap-4">
+  <input type="text" placeholder="MM/YY">
+  <input type="text" placeholder="CVV">
+</div>
+
+</div>
+
+<!-- PAY BUTTON -->
+<button class="pay-btn" onclick="completePayment()">
+Complete Payment
+</button>
+
+</div>
+
+<script>
+
+// GET URL DATA
+const params = new URLSearchParams(window.location.search);
+
+const imgQty = parseInt(params.get('imgQty')) || 0;
+const fontQty = parseInt(params.get('fontQty')) || 0;
+const bgQty = parseInt(params.get('bgQty')) || 0;
+
+const imgService = params.get('imgService') || 'None';
+const fontSelect = params.get('fontSelect') || 'None';
+const bgTheme = params.get('bgTheme') || 'None';
+
+const state = params.get('state') || 'NC';
+
+const couponCode = params.get('couponCode') || '';
+const discountPercent = parseFloat(params.get('discount')) || 0;
+
+// PRICES
+const imgPrice = 1.00;
+const fontPrice = 3.50;
+const bgPrice = 3.50;
+
+// TAXES
+const stateTax = {
+  NC:0.0475, AL:0.04, AK:0, AZ:0.056, AR:0.065, CA:0.0725,
+  CO:0.029, CT:0.0635, DE:0, FL:0.06, GA:0.04,
+  HI:0.04, ID:0.06, IL:0.0625, IN:0.07, IA:0.06,
+  KS:0.065, KY:0.06, LA:0.0445, ME:0.055, MD:0.06,
+  MA:0.0625, MI:0.06, MN:0.06875, MS:0.07, MO:0.04225,
+  MT:0, NE:0.055, NV:0.0685, NH:0, NJ:0.06625,
+  NM:0.05125, NY:0.04, ND:0.05, OH:0.0575,
+  OK:0.045, OR:0, PA:0.06, RI:0.07, SC:0.06,
+  SD:0.045, TN:0.07, TX:0.0625, UT:0.0485,
+  VT:0.06, VA:0.053, WA:0.065, WV:0.06,
+  WI:0.05, WY:0.04
+};
+
+// CALCULATIONS
+let subtotal =
+(imgQty * imgPrice) +
+(fontQty * fontPrice) +
+(bgQty * bgPrice);
+
+let discountAmount = subtotal * discountPercent;
+
+let discountedSubtotal = subtotal - discountAmount;
+
+let taxRate = stateTax[state] || 0.05;
+
+let taxAmount = discountedSubtotal * taxRate;
+
+let total = discountedSubtotal + taxAmount;
+
+// DISPLAY ORDER
+document.getElementById('orderSummary').innerHTML = `
+<div class="mb-2">
+<strong>Images:</strong> ${imgQty} (${imgService})
+</div>
+
+<div class="mb-2">
+<strong>Fonts:</strong> ${fontQty} (${fontSelect})
+</div>
+
+<div class="mb-2">
+<strong>Backgrounds:</strong> ${bgQty} (${bgTheme})
+</div>
+
+<div class="mb-2">
+<strong>State:</strong> ${state}
+</div>
+
+<div class="mb-2">
+<strong>Coupon:</strong> ${couponCode || 'None'}
+</div>
+`;
+
+document.getElementById('subtotalText').innerText =
+"$" + subtotal.toFixed(2);
+
+document.getElementById('discountText').innerText =
+"-$" + discountAmount.toFixed(2);
+
+document.getElementById('taxText').innerText =
+"$" + taxAmount.toFixed(2);
+
+document.getElementById('totalText').innerText =
+"$" + total.toFixed(2);
+
+// PAYMENT METHOD
+let selectedPayment = 'card';
+
+function selectPayment(method, element){
+
+  selectedPayment = method;
+
+  document.querySelectorAll('.payment-option')
+  .forEach(option => option.classList.remove('active'));
+
+  element.classList.add('active');
+
+  // SHOW/HIDE CARD FORM
+  if(method === 'card'){
+    document.getElementById('cardForm').style.display = 'block';
+  } else {
+    document.getElementById('cardForm').style.display = 'none';
+  }
+
+}
+
+// COMPLETE PAYMENT
+function completePayment(){
+
+  const finalParams = new URLSearchParams();
+
+  finalParams.set('imgQty', imgQty);
+  finalParams.set('fontQty', fontQty);
+  finalParams.set('bgQty', bgQty);
+
+  finalParams.set('imgService', imgService);
+  finalParams.set('fontSelect', fontSelect);
+  finalParams.set('bgTheme', bgTheme);
+
+  finalParams.set('state', state);
+
+  finalParams.set('couponCode', couponCode);
+
+  finalParams.set('subtotal', subtotal.toFixed(2));
+  finalParams.set('discountAmount', discountAmount.toFixed(2));
+  finalParams.set('taxAmount', taxAmount.toFixed(2));
+  finalParams.set('total', total.toFixed(2));
+
+  finalParams.set('paymentMethod', selectedPayment);
+
+  window.location.href =
+  `confirmation_step3.html?${finalParams.toString()}`;
+
+}
+
+</script>
+
 </body>
 </html>
